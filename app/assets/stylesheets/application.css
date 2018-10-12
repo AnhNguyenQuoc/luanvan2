@@ -286,3 +286,20 @@
     }
 
 /*# sourceMappingURL=rider.css.map */
+.alert {
+      text-align: center;
+      color: white;
+      font-weight: bold;
+}
+
+.alert-success {
+      background: green;
+}
+
+.alert-info {
+      background: blue;
+}
+
+.alert-danger {
+      background: red;
+}

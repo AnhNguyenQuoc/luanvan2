@@ -3,4 +3,12 @@ Rails.application.routes.draw do
       root to: 'templates#index'
       get '/restaurant' => 'templates#restaurant'
       get '/shipper' => 'templates#shipper'
+
+
+      get '/signup' => 'users#new'
+      post '/signup' => 'users#create'
+
+      get '/login', to: 'sessions#new'
+      post '/login',  to: 'sessions#create'
+      delete '/logout', to: 'sessions#destroy'
 end

@@ -5,6 +5,6 @@ class TemplatesController < ApplicationController
   def shipper 
   end 
 
-  def restaurant
+  def inforestaurant
   end
 end

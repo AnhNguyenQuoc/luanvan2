@@ -1,1 +1,190 @@
-<%= image_tag @restaurant.image %>
+     <%= render 'layout_extends/header' %>
+     
+      <section class="main-restaurant" style="padding-top: 5%;">
+            <div class="container">
+                  <div class="row">
+                        <div class="col m8 s12">
+                              <nav>
+                                    <div class="nav-wrapper" >
+                                          <div class="col s12">
+                                                <a href="#!" class="breadcrumb">Home</a>
+                                                <a href="#!" class="breadcrumb">Cửa hàng</a>
+                                                <a href="#!" class="breadcrumb"><%= @restaurant.name %></a>
+                                          </div>
+                                    </div>
+                              </nav>
+                              <div class="main-restaurant-text">
+                                    <h1><%= @restaurant.name%></h1>
+
+                                    <div>
+                                          <h6>Địa chỉ </h6><span><%= @restaurant.address %></span>
+                                          <br />
+                                          <h6>Phone</h6><span><%= @restaurant.phone %></span>
+                                          <br />
+                                          <h6>Loại</h6><span>Nhà hàng</span>
+                                          <br />
+                                          <h6>Mô tả</h6><span><%= @restaurant.description%></span>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="col m4 s12">
+                              <div class="img-main-restaurant mt-2">
+                                    <%= image_tag @restaurant.image, class: "responsive-img", style: "height: 300px"%>
+                              </div>
+                              <div class="img-main-restaurant-text">
+                                    <span>Mở cửa từ</span>
+                                    <br>
+                                    <span><%= @restaurant.timeopen.strftime('%M:%S') %>  - <%= @restaurant.timeclose.strftime('%M:%S') %></span>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+            <section class="main-menu">
+            <div>
+                  <div class="row">
+                        <div class="col s12 m6 offset-m1 ">
+                              <h3>Menu</h3>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col m6 s12 offset-m1">
+                              <div class="menu-item mt-3">
+                              <% @products.each do |p|%>
+                                    <div class="col s6 m4">
+                                          <div class="card">
+                                                <div class="card-image waves-effect waves-block waves-light">
+                                                      <%= image_tag p.image, class: "activator", style: "height: 100px"%>
+                                                </div>
+                                                <div class="card-content">
+                                                      <span class="card-title activator grey-text text-darken-4"><%= p.name %><i class="material-icons right">more_vert</i></span>
+                                                      <span><%= p.price %></span>
+                                                      <p><button class='blue waves-effect waves-light btn'>Đặt Hàng</button></p>
+                                                </div>
+                                                <div class="card-reveal">
+                                                      <span class="card-title grey-text text-darken-4"><%= p.name %><i class="material-icons right">close</i></span>
+                                                      <p><%= p.description  %></p>
+                                                </div>
+                                          </div>
+                                    </div>
+                              <% end %>
+                              
+                              </div>
+                        </div>
+                        <div class="col m4 s12 checkout">
+                              <a class="waves-effect waves-light btn modal-trigger" href="#dathang" style="width: 100%">Đặt hàng</a>
+
+                              <!-- Modal Structure -->
+                              <div id="dathang" class="modal modal-fixed-footer" style="width: 80%">
+                                    <div class="modal-content">
+                                          <h4>Thông tin đặt hàng</h4>
+                                          <div class="row">
+                                                <div class="col s6">
+                                                      <ul class="collection">
+                                                            <li class="collection-item">
+                                                                  <div class="row">
+                                                                        <div class="col s3 center-align">
+                                                                              <a href="">
+                                                                                    <i class="material-icons">remove_circle</i>
+                                                                              </a>
+                                                                              <span>2</span>
+                                                                              <a href="">
+                                                                                    <i class="material-icons">add_circle</i>
+                                                                              </a>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <span>Dapibus ac facilisis in</span>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <span>50.000vnd</span>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <button class="btn red">
+                                                                                    <i class="material-icons">delete</i>
+                                                                              </button>
+
+                                                                        </div>
+                                                                  </div>
+                                                            </li>
+                                                            <li class="collection-item">
+                                                                  <div class="row">
+                                                                        <div class="col s3 center-align">
+                                                                              <a href="">
+                                                                                    <i class="material-icons">remove_circle</i>
+                                                                              </a>
+                                                                              <span>2</span>
+                                                                              <a href="">
+                                                                                    <i class="material-icons">add_circle</i>
+                                                                              </a>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <span>Dapibus ac facilisis in</span>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <span>50.000vnd</span>
+                                                                        </div>
+                                                                        <div class="col s3">
+                                                                              <button class="btn red">
+                                                                                    <i class="material-icons">delete</i>
+                                                                              </button>
+                                                                        </div>
+                                                                  </div>
+                                                            </li>
+                                                      </ul>
+                                                </div>
+                                                <div class="col s6">1</div>
+                                          </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+
+                                    </div>
+                              </div>
+                              <div class="list-checkout-item">
+                                    <ul class="collection">
+                                          <li class="collection-item">
+                                                <div class="row">
+                                                      <div class="col s3 center-align">
+                                                            <a href="">
+                                                                  <i class="material-icons">remove_circle</i>
+                                                            </a>
+                                                            <span>2</span>
+                                                            <a href="">
+                                                                  <i class="material-icons">add_circle</i>
+                                                            </a>
+                                                      </div>
+                                                      <div class="col s3">
+                                                            <span>Dapibus ac facilisis in</span>
+                                                      </div>
+                                                      <div class="col s3">
+                                                            <span>50.000vnd</span>
+                                                      </div>
+                                                      <div class="col s3">
+                                                            <button class="btn red">
+                                                                  <i class="material-icons">delete</i>
+                                                            </button>
+                                                      </div>
+                                                </div>
+                                          </li>
+                   
+                                    </ul>
+                              </div>
+                              <div class="list-checkout-total">
+                                    <ul class="collection">
+                                          <li class="collection-item">
+                                                <span>Tổng cộng</span>
+                                                <div>
+                                                      <span>500.000vnd</span>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+
+
+           <%= render 'layout_extends/footer' %>

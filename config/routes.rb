@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
       root to: 'templates#index'
-      get '/restaurant' => 'templates#restaurant'
+      get '/restaurantinfo' => 'templates#inforestaurant'
       get '/shipper' => 'templates#shipper'
 
 
@@ -14,4 +14,5 @@ Rails.application.routes.draw do
       delete '/logout', to: 'sessions#destroy'
 
       resources :restaurants
+      resources :products
 end

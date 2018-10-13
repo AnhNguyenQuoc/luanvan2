@@ -1,0 +1,173 @@
+      <header class="header" style="background-image: none;">
+            <div class="header-bar">
+                  <nav style="background: #5DC1BF">
+                        <div class="nav-wrapper">
+                              <a href="#!" class="brand-logo">Logo</a>
+                              <a href="#" data-activates="mobile-demo" class="button-collapse">
+                                    <i class="material-icons">menu</i>
+                              </a>
+                              <ul class="right hide-on-med-and-down">
+                                    <li>
+                                          <a href="sass.html">Cửa hàng</a>
+                                    </li>
+                                    <li>
+                                          <a href="badges.html">Đăng nhập</a>
+                                    </li>
+                              </ul>
+                        </div>
+                  </nav>
+
+                  <ul class="side-nav" id="mobile-demo">
+                        <li>
+                              <a href="sass.html">Cửa hàng</a>
+                        </li>
+                        <li>
+                              <a href="badges.html">Đăng nhập</a>
+                        </li>
+                  </ul>
+                  <div class="background-list-restaurant">
+                        <div class="container">
+                              <div class="row">
+                                    <nav>
+                                          <div class="nav-wrapper">
+                                                <div class="col s12">
+                                                      <a href="#!" class="breadcrumb">Home</a>
+                                                      <a href="#!" class="breadcrumb">Cửa hàng</a>
+                                                </div>
+                                          </div>
+                                    </nav>
+                              </div>
+                              <div class="input-field col s12">
+                                    <!-- Dropdown Trigger -->
+                                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Chọn Quận</a>
+
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown1' class='dropdown-content'>
+                                          <li>
+                                                <a href="#!">Quận Ninh Kiều</a>
+                                          </li>
+                                          <li>
+                                                <a href="#!">Quận Bình Thủy</a>
+                                          </li>
+                                          <li>
+                                                <a href="#!">Quận Cái Răng</a>
+                                          </li>
+                                          <li>
+                                                <a href="#!">Quận Ô Môn</a>
+                                          </li>
+                                          <li>
+                                                <a href="#!">Quận Thốt Nốt</a>
+                                          </li>
+                                    </ul>
+                              </div>
+                              <div class="row">
+                                    <div class="input-field col s12 m4">
+                                          <a class='dropdown-button btn' href='#' data-activates='loaicuahang'>Chọn Loại Cửa Hàng</a>
+
+
+                                          <ul id='loaicuahang' class='dropdown-content'>
+                                                <li>
+                                                      <a href="#!">Quận Ninh Kiều</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Bình Thủy</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Cái Răng</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Ô Môn</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Thốt Nốt</a>
+                                                </li>
+                                          </ul>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                          <a class='dropdown-button btn' href='#' data-activates='loaithucan'>Chọn Loại Thức ăn</a>
+
+
+                                          <ul id='loaithucan' class='dropdown-content'>
+                                                <li>
+                                                      <a href="#!">Quận Ninh Kiều</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Bình Thủy</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Cái Răng</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Ô Môn</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Quận Thốt Nốt</a>
+                                                </li>
+                                          </ul>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                          <a class='dropdown-button btn' href='#' data-activates='sapxep'>Sắp xếp</a>
+
+
+                                          <ul id='sapxep' class='dropdown-content'>
+                                                <li>
+                                                      <a href="#!">Từ A - Z</a>
+                                                </li>
+                                                <li>
+                                                      <a href="#!">Theo Nhận Xét</a>
+                                                </li>
+                                          </ul>
+                                    </div>
+                              </div>
+                              <div class="row">
+                                    <form class="col s12">
+                                          <div class="row">
+                                                <div class="input-field col s12">
+                                                      <i class="material-icons prefix">search</i>
+                                                      <input id="icon_prefix" type="text" class="validate">
+                                                      <label for="icon_prefix">Tìm kiếm</label>
+                                                </div>
+                                          </div>
+
+                                    </form>
+                              </div>
+
+                        </div>
+                  </div>
+            </div>
+      </header>
+
+
+
+            <section class="list-restaurant">
+            <div class="container">
+                  <div class="row">
+                        
+                        <% @restaurants.each do |restaurant| %>
+                        <div class="col m4 s12">
+                              <div class="restaurant-card card" style="width: 100%;">
+                                    <div class="card-image">
+                                          <%= image_tag restaurant.image, class: "card-img-top", alt: restaurant.image.filename %>
+                                          <span class="card-title"><%= restaurant.name%></span>
+                                    </div>
+                                    <div class="card-content">
+                                          <p><%= restaurant.description %></p>
+                                          <p><%= restaurant.timeopen.strftime('%M:%S') %>  - <%= restaurant.timeclose.strftime('%M:%S') %></p>
+
+                                    </div>
+                                    <div class="card-action">
+                                          <button class="btn waves-effect waves-light" type="submit" name="action" style="width: 100%;">Đi đến cửa hàng
+                                                <i class="material-icons right">send</i>
+                                          </button>
+                                    </div>
+                              </div>
+                        </div>
+                        <% end %>
+                        
+                  </div>
+            </div>
+      </section>
+
+
+
+      <%= render 'layout_extends/footer' %>

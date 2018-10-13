@@ -1,0 +1,85 @@
+
+<%= render 'layout_extends/header' %>
+      <section id="login-form">
+            <div class="container">
+                  <div class="row justify-content-md-center mt-5">
+                        <div class="col-md-5 col-sm-12">
+                              <h1 class="text-login-form">Welcome restaurant</h1>
+                        </div>
+                  </div>
+                  <div class="row justify-content-md-center">
+                        <%= form_for @restaurant, url: restaurants_path, :html => {:class => "col s12"} do |f| %>
+
+                              <div class="row">
+                                    <div class="input-field col s12">
+                                          <%= f.label :name %>
+                                          <%= f.text_field :name,  class: "validate"%>
+                                    </div>
+                              </div>
+
+
+                              <div class="row">
+                                    <div class="input-field col s12">
+                                          <%= f.label :phone %>
+                                          <%= f.phone_field :phone%>
+                                    </div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="input-field col s8">
+                                          <%= f.label :address %>
+                                          <%= f.text_field :address%>
+                                    </div>
+                                     <div class="input-field col s4">
+                                          <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                                          
+                                    </div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="input-field col s12">
+                                          <%= f.label :description %>
+                                          <%= f.text_field :description%>
+                                    </div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="input-field col s12">
+                                          <%= f.label :timeopen %>
+                                          <%= f.text_field :timeopen, class: "timepicker"%>
+                                    </div>
+                              </div>
+
+                              
+                              <div class="row">
+                                    <div class="input-field col s12">
+                                          <%= f.label :timeclose %>
+                                          <%= f.time_field :timeclose, class: "timepicker"%>
+                                    </div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="file-field input-field">
+                                          <div class="btn">
+                                                <span>Hình đại diện</span>
+                                                <%= f.file_field :image %>
+                                          </div>
+                                          <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                          </div>
+                                    </div>
+                              </div>
+
+
+                              <div class="row">
+                                    <%= f.submit "Submit", class: "btn waves-effect waves-light", style: "width: 100%"%>
+                              </div>
+                        <% end %>
+
+                  </div>
+            </div>
+      </div>
+</section>
+
+
+<%= render 'layout_extends/footer' %>

@@ -1,23 +1,35 @@
       <header class="header" style="background-image: none;">
             <div class="header-bar">
                   <nav>
+                        <ul id="dropdown1" class="dropdown-content">
+                              <li>
+                              <%= link_to "Đăng xuất", logout_path, method: :delete%>
+                              </li>
+                              
+                        </ul>
                         <div class="nav-wrapper">
                               <%= link_to 'Logo', root_path, class: 'brand-logo' %>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
                               <ul class="right hide-on-med-and-down">
+                                    <% if logged_in?%>
+
+                                          <% if current_user.role == 1%>           
                                     <li>
-                                          <a href="sass.html">Cửa hàng</a>
+                                          <%= link_to "Tạo Cửa hàng", new_restaurant_path %>
                                     </li>
-                                    <% if logged_in? %>
-                                          <li>
-                                                <%= link_to "Đăng xuất", logout_path, method: :delete%>
-                                          </li>
+                                          <% elsif current_user == 0%>
+                                          <%= link_to "Cửa hàng", restaurants_path%>
+                                          <% end %>
+                                          
+                                    <li>
+                                         <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.username%><i class="material-icons right">arrow_drop_down</i></a>
+                                    </li>
                                     <% else %>
                                           <li>
                                                 <%= link_to "Đăng nhập", login_path %>
-                                          </li>
+                                           </li>
                                     <% end %>
                               </ul>
                         </div>

@@ -1,22 +1,68 @@
-<%= form_for :user do |f| %>
+<%= render 'layout_extends/header' %>
 
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+ <section id="login-form">
+            <div class="container">
+                  <div class="row justify-content-md-center mt-5">
+                        <div class="col m5 s12">
+                              <h1 class="text-login-form">Welcome newbie</h1>
+                        </div>
+                  </div>
+                  <div class="row justify-content-md-center">
+            <%= form_for :user, :html => {:class => 'col s12'} do |f| %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+                  <%# <%= render 'layout_extends/error', object: f.object %>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.text_field :username, class: 'form-control' %>
+                              <%= f.label :username, "Họ và tên" %>
+                        </div>
+                  </div>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.label :phone, "SĐT" %>
-      <%= f.number_field :phone, class: 'form-control' %>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.email_field :email, class: 'form-control' %>
+                              <%= f.label :email, "Email" %>
+                        </div>
+                  </div>
 
-      <%= f.label :address, "Address" %>
-      <%= f.text_field :address, class: 'form-control' %>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.label :password, "Password" %>
+                              <%= f.password_field :password, class: 'form-control' %>
+                        </div>
+                  </div>
+                  
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.label :password_confirmation, "Confirmation" %>
+                              <%= f.password_field :password_confirmation, class: 'form-control' %>
+                        </div>
+                  </div>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-<% end %>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.label :phone, "SĐT" %>
+                              <%= f.number_field :phone, class: 'form-control' %>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.label :address, "Address" %>
+                              <%= f.text_field :address, class: 'form-control' %>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                  <%= f.submit "Tạo tài khoản", class: "btn waves-effect waves-light", style: "width: 100%;"%>
+                  </div>
+            <% end %>
+            <p>Nếu đã có tài khoản, nhấn
+                  <%= link_to "vào đây", login_path%>
+            </p>
+               </div>
+            </div>
+      </section>
+<%= render 'layout_extends/footer' %>

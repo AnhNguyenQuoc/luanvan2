@@ -301,3 +301,12 @@
 .alert-danger {
       background: red;
 }
+
+#error_explanation {
+      background: red;
+}
+
+#error_explanation ul li {
+      text-align: center;
+      color: white;
+}

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
             flash.now[:success] = "Đã tạo tài khoản thành công"
             redirect_to root_path
       else 
+            render 'new'
             flash.now[:danger] = "Có lỗi xảy ra"
       end 
 
@@ -21,6 +22,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-      params.require(:user).permit(:email, :password, :passwrod_confirmation, :username, :address, :phone)
+      params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :phone)
   end
 end

@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'materializecss'
 gem 'material_icons'
+gem 'custom_error_message'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -9,9 +9,9 @@
                         </div>
                   </div>
                   <div class="row justify-content-md-center">
-            <%= form_for :user, :html => {:class => 'col s12'} do |f| %>
+            <%= form_for(@user, url: signup_path, :html => {:class => 'col s12'}) do |f| %>
 
-                  <%# <%= render 'layout_extends/error', object: f.object %>
+                  <%= render 'layout_extends/error', object: f.object %>
                   <div class="row">
                         <div class="input-field col s12">
                               <%= f.text_field :username, class: 'form-control' %>

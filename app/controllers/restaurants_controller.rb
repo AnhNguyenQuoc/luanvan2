@@ -1,5 +1,7 @@
 class RestaurantsController < ApplicationController
 
+   before_action :current_cart, only: [:show]
+
   def index
       @restaurants = Restaurant.all
   end
@@ -7,6 +9,12 @@ class RestaurantsController < ApplicationController
   def show
       @restaurant = Restaurant.find(params[:id])
       @products = @restaurant.products
+      if session[:store_id] != params[:id]
+            session[:store_id] = params[:id]
+            @current_cart.destroy 
+            @current_cart = Cart.create 
+            session[:cart_id] = @current_cart.id
+      end
   end 
 
   def new

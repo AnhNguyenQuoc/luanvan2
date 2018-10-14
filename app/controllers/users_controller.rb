@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
       @user = User.create(user_params)
       if @user.save 
+             log_in(@user)
             flash.now[:success] = "Đã tạo tài khoản thành công"
             redirect_to root_path
       else 

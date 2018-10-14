@@ -60,7 +60,8 @@
                                                 <div class="card-content">
                                                       <span class="card-title activator grey-text text-darken-4"><%= p.name %><i class="material-icons right">more_vert</i></span>
                                                       <span><%= p.price %></span>
-                                                      <p><button class='blue waves-effect waves-light btn'>Đặt Hàng</button></p>
+                                                      <%# <p><button class=''>Đặt Hàng</button></p> %>
+                                                      <p><%= link_to "Đặt hàng",  line_items_path(product_id: p), method: :post, :class => "blue waves-effect waves-light btn"%></p>
                                                 </div>
                                                 <div class="card-reveal">
                                                       <span class="card-title grey-text text-darken-4"><%= p.name %><i class="material-icons right">close</i></span>
@@ -103,31 +104,6 @@
                                                                               <button class="btn red">
                                                                                     <i class="material-icons">delete</i>
                                                                               </button>
-
-                                                                        </div>
-                                                                  </div>
-                                                            </li>
-                                                            <li class="collection-item">
-                                                                  <div class="row">
-                                                                        <div class="col s3 center-align">
-                                                                              <a href="">
-                                                                                    <i class="material-icons">remove_circle</i>
-                                                                              </a>
-                                                                              <span>2</span>
-                                                                              <a href="">
-                                                                                    <i class="material-icons">add_circle</i>
-                                                                              </a>
-                                                                        </div>
-                                                                        <div class="col s3">
-                                                                              <span>Dapibus ac facilisis in</span>
-                                                                        </div>
-                                                                        <div class="col s3">
-                                                                              <span>50.000vnd</span>
-                                                                        </div>
-                                                                        <div class="col s3">
-                                                                              <button class="btn red">
-                                                                                    <i class="material-icons">delete</i>
-                                                                              </button>
                                                                         </div>
                                                                   </div>
                                                             </li>
@@ -143,22 +119,23 @@
                               </div>
                               <div class="list-checkout-item">
                                     <ul class="collection">
+                                    <% @current_cart.line_items.each do |item|%>
                                           <li class="collection-item">
                                                 <div class="row">
                                                       <div class="col s3 center-align">
                                                             <a href="">
                                                                   <i class="material-icons">remove_circle</i>
                                                             </a>
-                                                            <span>2</span>
+                                                            <span><%= item.quantity %></span>
                                                             <a href="">
                                                                   <i class="material-icons">add_circle</i>
                                                             </a>
                                                       </div>
                                                       <div class="col s3">
-                                                            <span>Dapibus ac facilisis in</span>
+                                                            <span><%= item.product.name %></span>
                                                       </div>
                                                       <div class="col s3">
-                                                            <span>50.000vnd</span>
+                                                            <span><%= item.product.price %></span>
                                                       </div>
                                                       <div class="col s3">
                                                             <button class="btn red">
@@ -167,7 +144,9 @@
                                                       </div>
                                                 </div>
                                           </li>
-                   
+                                    
+                                    <% end %>
+                                    
                                     </ul>
                               </div>
                               <div class="list-checkout-total">
@@ -175,7 +154,7 @@
                                           <li class="collection-item">
                                                 <span>Tổng cộng</span>
                                                 <div>
-                                                      <span>500.000vnd</span>
+                                                      <span><%= @current_cart.total_price%></span>
                                                 </div>
                                           </li>
                                     </ul>

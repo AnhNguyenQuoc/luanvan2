@@ -1,6 +1,9 @@
 class RestaurantsController < ApplicationController
 
    before_action :current_cart, only: [:show]
+      rescue_from ActiveRecord::RecordNotFound do |exception|
+            redirect_to restaurants_path
+      end
 
   def index
       @restaurants = Restaurant.all
@@ -8,10 +11,13 @@ class RestaurantsController < ApplicationController
 
   def show
       @restaurant = Restaurant.find(params[:id])
+      
       @products = @restaurant.products
       if session[:store_id] != params[:id]
             session[:store_id] = params[:id]
-            @current_cart.destroy 
+            if(@current_cart)
+                  @current_cart.destroy 
+            end    
             @current_cart = Cart.create 
             session[:cart_id] = @current_cart.id
       end
@@ -46,6 +52,7 @@ class RestaurantsController < ApplicationController
 end
 
   private
+
 
   def restaurant_params
         params.require(:restaurant).permit(:name, :phone, :address, :description, :timeopen, :timeclose, :district_id)

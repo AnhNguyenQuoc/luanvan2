@@ -1,0 +1,20 @@
+<li class="collection-item">
+            <div class="row">
+                  <div class="col s3 center-align">
+                        <%= link_to "<i class='material-icons'>remove_circle</i>".html_safe, line_item_reduce_path(:id => item), method: :post, remote: true %>
+                                                                  
+                         <span><%= item.quantity %></span>
+                         <%= link_to "<i class='material-icons'>add_circle</i>".html_safe, line_item_add_path(:id => item), method: :post, remote: true %>
+                                                            
+                  </div>
+                  <div class="col s3">
+                              <span><%= item.product.name %></span>
+                  </div>
+                   <div class="col s3">
+                              <span><%= number_to_currency_vnd(item.product.price) %></span>
+                  </div>
+                  <div class="col s3">
+                               <%= link_to "<i class='material-icons' style='color: white'>delete</i>".html_safe, line_item_destroy_path(:id => item), method: :delete, :class => "btn red", remote: true, style: "color: white" %>
+                  </div>
+            </div>
+      </li>

@@ -1,0 +1,14 @@
+
+       <ul class="collection">
+            <% @current_cart.line_items.each do |item|%>
+                  <%= render partial: "line_items/cart_item", locals: {item: item}%>
+            <% end%>
+       </ul>
+       <ul class="collection">
+            <li class="collection-item cart-total right-align">
+                  <span >Tổng cộng</span>
+                  <div>
+                        <span><%= number_to_currency_vnd(@current_cart.total_price)%></span>
+                  </div>
+            </li>
+       </ul>

@@ -18,14 +18,44 @@ class LineItemsController < ApplicationController
 
             @line_item.save
       
-    
+            respond_to do |format|
+                  format.js
+            end
       end
 
 
-      def destroy 
 
+
+      def destroy 
+            @line_item = LineItem.find(params[:id])
+            @line_item.destroy
+
+            respond_to do |format|
+                  format.js
+            end
       end 
 
+      def add_quantity
+            @line_item = LineItem.find(params[:id])
+            @line_item.quantity += 1
+            @line_item.save
+
+            respond_to do |format|
+                  format.js
+            end
+      end
+
+      def reduce_quantity
+            @line_item = LineItem.find(params[:id])
+            if @line_item.quantity > 1
+                  @line_item.quantity -= 1
+            end 
+
+            @line_item.save
+             respond_to do |format|
+                  format.js
+            end
+      end
 
       private
 

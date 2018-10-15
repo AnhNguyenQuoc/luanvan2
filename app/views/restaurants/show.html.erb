@@ -61,7 +61,7 @@
                                                       <span class="card-title activator grey-text text-darken-4"><%= p.name %><i class="material-icons right">more_vert</i></span>
                                                       <span><%= number_to_currency_vnd(p.price) %></span>
                                                       <%# <p><button class=''>Đặt Hàng</button></p> %>
-                                                      <p><%= link_to "Đặt hàng",  line_items_path(product_id: p), method: :post, remote: true,  :class => "blue waves-effect waves-light btn"%></p>
+                                                      <p><%= link_to "Đặt hàng",  line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true,  :class => "blue waves-effect waves-light btn"%></p>
                                                 </div>
                                                 <div class="card-reveal">
                                                       <span class="card-title grey-text text-darken-4"><%= p.name %><i class="material-icons right">close</i></span>
@@ -85,13 +85,30 @@
                                                 </div>
 
                                                 <div class='col m6 s12'>
-                                                      
+                                                      <h2 class="flow-text">Hình thức thanh toán</h2>
+                                                      <%= form_for @order do |f| %>
+                                                      <p>
+                                                      <%= f.collection_radio_buttons :payments, [[1, "COD"], [0, "Chuyển khoản"]], :first, :last%>
+                                                      </p>
+
+                                                      <div class="row">
+                                                            <div class="input-field col s12">
+                                                                  <%= f.text_area :note, class: "materialize-textarea"%>
+                                                                  <%= f.label :note, "Ghi chú"%>
+                                                            </div>
+                                                            <small>* Chúng tôi sẽ lấy thông tin giao hàng ở thông tin cá nhân của bạn. Nếu có gì thay đổi vui lòng ghi vào ghi chú</small>
+                                                      </div>
+                                                      <%= f.submit "Đặt hàng", class: "modal-action waves-effect waves-blue btn-flat"%>
+                                                <% end %>
                                                 </div>
                                           </div>
                                     </div>
                                     <div class="modal-footer">
-                                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                                          <a class="modal-action modal-close waves-effect waves-green btn-flat" >Hủy Bỏ</a>
+                                          
                                     </div>
+                              
+                                    
                               </div>   
                               <div class="list-checkout-item cart">
                                           <%= render 'cart' %>

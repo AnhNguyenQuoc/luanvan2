@@ -30,7 +30,7 @@ gem 'material_icons'
 gem 'custom_error_message'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'pry'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,4 +1,4 @@
-      <header class="header" style="background-image: none;">
+<header class="header" style="background-image: none;">
             <div class="header-bar">
                   <nav>
                         <ul id="dropdown1" class="dropdown-content">
@@ -15,12 +15,12 @@
                               <ul class="right hide-on-med-and-down">
                                     <% if logged_in?%>
 
-                                          <% if current_user.role == 1%>           
+                                          <% if current_user.role == 1 && !current_user.restaurant %>           
                                     <li>
                                           <%= link_to "Tạo Cửa hàng", new_restaurant_path %>
                                     </li>
-                                          <% elsif current_user == 0%>
-                                          <%= link_to "Cửa hàng", restaurants_path%>
+                                          <% elsif current_user.role == 0%>
+                                          <li><%= link_to "Cửa hàng", restaurants_path%></li>
                                           <% end %>
                                           
                                     <li>
@@ -34,12 +34,12 @@
                               </ul>
                         </div>
                   </nav>
-
+ 
                   <ul class="side-nav" id="mobile-demo">
                         <li>
                               <a href="sass.html">Cửa hàng</a>
                         </li>
-                        <% if logged_in? %>
+                         <% if logged_in? %>
                               <li>
                                     <%= link_to "Đăng xuất", logout_path, method: :delete%>
                               </li>

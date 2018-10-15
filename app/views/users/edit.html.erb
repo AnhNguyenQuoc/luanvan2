@@ -1,0 +1,90 @@
+<%= render 'layout_extends/header' %>
+
+      <section class="main-profile">
+            <div class="container">
+                  <div class="row">
+                        <div class="col-12">
+                              <nav>
+                                    <div class="nav-wrapper" style="background: #5DC1BF;">
+                                          <div class="col s12">
+                                                <%= link_to "Home", root_path, class: "breadcrumb"%>
+                                                <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "breadcrumb"%>
+                                          </div>
+                                    </div>
+                              </nav>
+                        </div>
+                  </div>
+            </div>
+            <div>
+                  <div class="row">
+                        <div class="s3 col">
+                              <div class="collection list-in-profile ml-1">
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
+                              </div>
+                        </div>
+                        <div class="col s9">
+                              <h2>Cập nhật thông tin</h2>
+                             <%= form_for @user do |f| %>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.text_field :username %>
+                                                <%= f.label :username %>
+                                          </div>
+                                    </div>
+
+                                   <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.email_field :email%>
+                                                <%= f.label :email %>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.password_field :password %>
+                                                <%= f.label :password %>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.password_field :password_confirmation%>
+                                                <%= f.label :password_confirmation, "Confirmation" %>
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.text_field :address%>
+                                                <%= f.label :address, "address" %>
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.phone_field :phone%>
+                                                <%= f.label :phone, "phone" %>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                           <%= f.submit "Cập nhật thông tin" ,class: "btn waves-effect waves-light", style: "width: 100%;" %>
+                                    </div>
+                                   
+                              <% end %>
+                        </div>
+                  </div>
+            </div>
+
+      </section>
+
+
+
+
+
+
+
+
+<%= render 'layout_extends/footer' %>

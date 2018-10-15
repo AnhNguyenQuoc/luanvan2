@@ -11,12 +11,12 @@ class RestaurantsController < ApplicationController
 
   def show
       @restaurant = Restaurant.find(params[:id])
-      
+      @order = Order.new
       @products = @restaurant.products
       if session[:store_id] != params[:id]
             session[:store_id] = params[:id]
             if(@current_cart)
-                  @current_cart.destroy 
+                  @current_cart.destroy
             end    
             @current_cart = Cart.create 
             session[:cart_id] = @current_cart.id

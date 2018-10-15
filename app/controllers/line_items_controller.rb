@@ -7,7 +7,7 @@ class LineItemsController < ApplicationController
             chosen_product = Product.find(params[:product_id])
             current_cart = @current_cart
 
-            if LineItem.exists?(:cart_id => @current_cart.id, :product_id => chosen_product)
+            if LineItem.find_by(cart_id: @current_cart.id, product_id: chosen_product)
                   @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
                   @line_item.quantity += 1
             else  
@@ -15,15 +15,11 @@ class LineItemsController < ApplicationController
                   @line_item.cart = @current_cart
                   @line_item.product = chosen_product
             end
-
             @line_item.save
-      
             respond_to do |format|
                   format.js
             end
       end
-
-
 
 
       def destroy 

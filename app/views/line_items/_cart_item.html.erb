@@ -11,7 +11,7 @@
                               <span><%= item.product.name %></span>
                   </div>
                    <div class="col s3">
-                              <span><%= number_to_currency_vnd(item.product.price) %></span>
+                              <span><%= number_to_currency_vnd(item.total_price) %></span>
                   </div>
                   <div class="col s3">
                                <%= link_to "<i class='material-icons' style='color: white'>delete</i>".html_safe, line_item_destroy_path(:id => item), method: :delete, :class => "btn red", remote: true, style: "color: white" %>

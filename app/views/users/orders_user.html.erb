@@ -1,0 +1,27 @@
+
+
+
+      <table>
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Tổng tiền</th>
+              <th>Hình thức thanh toán</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @orders.each do |order|%>
+          <tr>
+            <td>1</td>
+            <td><%= order.total %></td>
+            <td><%= order.payments %></td>
+          </tr>
+      
+      <% end %>
+      
+          
+        </tbody>
+      </table>
+            
+

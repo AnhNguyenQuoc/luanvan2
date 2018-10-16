@@ -1,7 +1,7 @@
       <header class="header" style="background-image: none;">
             <div class="header-bar">
                   <nav>
-                        <ul id="dropdown1" class="dropdown-content">
+                        <ul id="dropdownnavmenu" class="dropdown-content">
                               <li>
                               <%= link_to "Đăng xuất", logout_path, method: :delete%>
                               </li>
@@ -24,7 +24,7 @@
                                           <% end %>
                                           
                                     <li>
-                                         <a class="dropdown-button" href="#" data-activates="dropdown1"><%= current_user.username%><i class="material-icons right">arrow_drop_down</i></a>
+                                         <a class="dropdown-button" href="#" data-activates="dropdownnavmenu"><%= current_user.username%><i class="material-icons right">arrow_drop_down</i></a>
                                     </li>
                                     <% else %>
                                           <li>
@@ -63,82 +63,82 @@
                               </div>
                               <div class="input-field col s12">
                                     <!-- Dropdown Trigger -->
-                                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Chọn Quận</a>
+                                    <a class='dropdown-button btn'  data-activates='dropdown1'>Chọn Quận</a>
 
                                     <!-- Dropdown Structure -->
                                     <ul id='dropdown1' class='dropdown-content'>
                                           <li>
-                                                <a href="#!">Quận Ninh Kiều</a>
+                                                <a>Quận Ninh Kiều</a>
                                           </li>
                                           <li>
-                                                <a href="#!">Quận Bình Thủy</a>
+                                                <a>Quận Bình Thủy</a>
                                           </li>
                                           <li>
-                                                <a href="#!">Quận Cái Răng</a>
+                                                <a>Quận Cái Răng</a>
                                           </li>
                                           <li>
-                                                <a href="#!">Quận Ô Môn</a>
+                                                <a>Quận Ô Môn</a>
                                           </li>
                                           <li>
-                                                <a href="#!">Quận Thốt Nốt</a>
+                                                <a>Quận Thốt Nốt</a>
                                           </li>
                                     </ul>
                               </div>
                               <div class="row">
                                     <div class="input-field col s12 m4">
-                                          <a class='dropdown-button btn' href='#' data-activates='loaicuahang'>Chọn Loại Cửa Hàng</a>
+                                          <a class='dropdown-button btn' data-activates='loaicuahang'>Chọn Loại Cửa Hàng</a>
 
 
                                           <ul id='loaicuahang' class='dropdown-content'>
                                                 <li>
-                                                      <a href="#!">Quận Ninh Kiều</a>
+                                                      <a>Quận Ninh Kiều</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Bình Thủy</a>
+                                                      <a>Quận Bình Thủy</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Cái Răng</a>
+                                                      <a>Quận Cái Răng</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Ô Môn</a>
+                                                      <a>Quận Ô Môn</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Thốt Nốt</a>
+                                                      <a>Quận Thốt Nốt</a>
                                                 </li>
                                           </ul>
                                     </div>
                                     <div class="input-field col s12 m4">
-                                          <a class='dropdown-button btn' href='#' data-activates='loaithucan'>Chọn Loại Thức ăn</a>
+                                          <a class='dropdown-button btn' data-activates='loaithucan'>Chọn Loại Thức ăn</a>
 
 
                                           <ul id='loaithucan' class='dropdown-content'>
                                                 <li>
-                                                      <a href="#!">Quận Ninh Kiều</a>
+                                                      <a>Quận Ninh Kiều</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Bình Thủy</a>
+                                                      <a>Quận Bình Thủy</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Cái Răng</a>
+                                                      <a>Quận Cái Răng</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Ô Môn</a>
+                                                      <a>Quận Ô Môn</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Quận Thốt Nốt</a>
+                                                      <a>Quận Thốt Nốt</a>
                                                 </li>
                                           </ul>
                                     </div>
                                     <div class="input-field col s12 m4">
-                                          <a class='dropdown-button btn' href='#' data-activates='sapxep'>Sắp xếp</a>
+                                          <a class='dropdown-button btn' data-activates='sapxep'>Sắp xếp</a>
 
 
                                           <ul id='sapxep' class='dropdown-content'>
                                                 <li>
-                                                      <a href="#!">Từ A - Z</a>
+                                                      <a>Từ A - Z</a>
                                                 </li>
                                                 <li>
-                                                      <a href="#!">Theo Nhận Xét</a>
+                                                      <a>Theo Nhận Xét</a>
                                                 </li>
                                           </ul>
                                     </div>
@@ -180,7 +180,7 @@
 
                                     </div>
                                     <div class="card-action">
-                                          <%= link_to "Đi đến cửa hàng", restaurant , class: "btn waves-effect waves-light", style: "width: 100%"%>
+                                          <%= link_to "Đi đến cửa hàng",  restaurant_dat_mon_path(restaurant) , class: "btn waves-effect waves-light", style: "width: 100%"%>
                                     </div>
                               </div>
                         </div>

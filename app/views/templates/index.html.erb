@@ -2,12 +2,14 @@
             <div class="header-bar">
                   <nav>
                         <ul id="dropdown1" class="dropdown-content">
+                        <% if logged_in? %>
                               <li>
                                     <%= link_to "Đăng xuất", logout_path, method: :delete%>
                               </li>
                               <li>
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
                               <li>
+                        <% end %>
                         </ul>
                         <div class="nav-wrapper">
                               <%= link_to 'Logo', root_path, class: 'brand-logo' %>

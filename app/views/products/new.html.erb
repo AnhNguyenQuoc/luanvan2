@@ -1,4 +1,4 @@
-<%= form_for @product, url: products_path do |f| %>
+<%= form_for @product, url: restaurant_products_new_path do |f| %>
 
       <%= f.label :name%>
       <%= f.text_field :name %>
@@ -8,6 +8,8 @@
 
       <%= f.label :price%>
       <%= f.number_field :price %>
+
+      <%= f.collection_select :product_type_id, ProductType.all, :id, :name,  {prompt: "Chọn loại thức ăn"} %>
 
       <%= f.file_field :image%>
 

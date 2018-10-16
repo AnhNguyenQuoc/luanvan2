@@ -1,0 +1,104 @@
+<%= render 'layout_extends/header' %>
+
+   <section class="main-restaurant" style="padding-top: 5%;">
+            <div class="container">
+                  <div class="row">
+                        <div class="col m8 s12">
+                              <nav>
+                                    <div class="nav-wrapper" >
+                                          <div class="col s12">
+                                                <%= link_to "Home", root_path, class: "breadcrumb"%>
+                                                <%= link_to "Cửa hàng", restaurants_path, class: "breadcrumb"%>
+                                                <%= link_to @restaurant.name, @restaurant, class: "breadcrumb"%>
+                                          </div>
+                                    </div>
+                              </nav>
+                              <div class="main-restaurant-text">
+                                    <h1><%= @restaurant.name%></h1>
+
+                                    <div>
+                                          <h6>Địa chỉ </h6><span><%= @restaurant.address %> - <%= @restaurant.district.name %> </span>
+                                          <br />
+                                          <h6>Phone</h6><span><%= @restaurant.phone %></span>
+                                          <br />
+                                          <h6>Loại</h6><span><%= @restaurant.restaurant_type.name %></span>
+                                          <br />
+                                          <h6>Mô tả</h6><span><%= @restaurant.description%></span>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="col m4 s12">
+                              <div class="img-main-restaurant mt-2">
+                                    <%= image_tag @restaurant.image, class: "responsive-img", style: "height: 300px"%>
+                              </div>
+                              <div class="img-main-restaurant-text">
+                                    <span>Mở cửa từ</span>
+                                    <br>
+                                    <span><%= @restaurant.timeopen.strftime('%H:%M') %>  - <%= @restaurant.timeclose.strftime('%H:%M') %></span>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+      <section class="comment">
+            <div class="container">
+                  <div class="row">
+                        <div class="col m6">
+                              <h6 class="comment-text">Nhận xét</h6>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col m8 s12" id="comments">
+                              <%= render 'comment' %>
+                        </div>
+                        <div class="col m4 s12 btn-comment">
+
+                              <a class="waves-effect waves-light btn modal-trigger" style="width: 100%;" href="#nhanxet">Viết nhận xét</a>
+
+                              <!-- Modal Structure -->
+                              <div id="nhanxet" class="modal">
+                                    <div class="row">
+                                          <div class="col s12 center-align" style="padding-top: 2%;">
+                                                <h3 class="flow-text">Nhận xét</h3>
+                                          </div>
+                                          <%= form_for(@comment, url: comments_path(:restaurant_id => @restaurant.id), :html => {class: "col s8 offset-s2"}, remote: true)do |f| %>
+                                                <div class="row">
+                                                      <div class="input-field col s12">
+                                                            <%= f.text_area :description, class: "materialize-textarea"%>
+                                                            <%= f.label :description, "Nội dung" %>
+                                                      </div>
+                                                      <div class="input-field col s12">
+                                                            <%= f.label :rating, "Điểm số"%>
+                                                            <p class="range-field">
+                                                                  <%= f.range_field :rating, :min => 0, :max => 10 %>
+                                                            </p>
+                                                      </div>
+                                                      <div class="file-field input-field col">
+                                                            <div class="btn">
+                                                                  <span>Hình ảnh</span>
+                                                                  <%= f.file_field :images, multiple: true %>
+                                                            </div>
+                                                            <div class="file-path-wrapper">
+                                                                  <input class="file-path validate" type="text">
+                                                            </div>
+                                                      </div>
+
+                                                      <div class="modal-footer">
+                                                            <%= f.submit "Đăng nhận xét", :class => 'modal-close waves-effect waves-green btn-flat'%>
+                                                      </div>
+                                                </div>
+                                          <% end %>
+                                    </div>
+
+                              </div>
+
+
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+
+
+<%= render 'layout_extends/footer' %>

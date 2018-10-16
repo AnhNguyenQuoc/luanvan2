@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_141041) do
+ActiveRecord::Schema.define(version: 2018_10_16_140039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "description", default: ""
+    t.integer "rating", default: 0
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_comments_on_restaurant_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "districts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -59,6 +70,12 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
+  create_table "order_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "total"
     t.string "note"
@@ -66,6 +83,14 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.integer "buyer_id"
     t.integer "shipper_id"
     t.integer "payments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_type_id", default: 1
+    t.index ["order_type_id"], name: "index_orders_on_order_type_id"
+  end
+
+  create_table "product_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,7 +102,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "restaurant_id"
+    t.bigint "product_type_id"
+    t.index ["product_type_id"], name: "index_products_on_product_type_id"
     t.index ["restaurant_id"], name: "index_products_on_restaurant_id"
+  end
+
+  create_table "restaurant_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -91,7 +124,9 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "district_id"
+    t.bigint "restaurant_type_id"
     t.index ["district_id"], name: "index_restaurants_on_district_id"
+    t.index ["restaurant_type_id"], name: "index_restaurants_on_restaurant_type_id"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
@@ -106,10 +141,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_141041) do
     t.integer "role", default: 0
   end
 
+  add_foreign_key "comments", "restaurants"
+  add_foreign_key "comments", "users"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "order_types"
+  add_foreign_key "products", "product_types"
   add_foreign_key "products", "restaurants"
   add_foreign_key "restaurants", "districts"
+  add_foreign_key "restaurants", "restaurant_types"
   add_foreign_key "restaurants", "users"
 end

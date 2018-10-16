@@ -51,11 +51,17 @@ class RestaurantsController < ApplicationController
       end
 end
 
+def show_comment
+      @comment = Comment.new
+      @restaurant = Restaurant.find(params[:id])
+      @comments = @restaurant.comments
+end
+
   private
 
 
   def restaurant_params
-        params.require(:restaurant).permit(:name, :phone, :address, :description, :timeopen, :timeclose, :district_id)
+        params.require(:restaurant).permit(:name, :phone, :address, :description, :timeopen, :timeclose, :district_id, :restaurant_type_id)
   end
   
 end

@@ -17,7 +17,7 @@ class LineItemsController < ApplicationController
             end
             @line_item.save
             respond_to do |format|
-                  format.js
+                  format.js { render  'create.js.erb'}
             end
       end
 
@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
             @line_item.destroy
 
             respond_to do |format|
-                  format.js
+                  format.js { render  'create.js.erb'}
             end
       end 
 
@@ -37,19 +37,22 @@ class LineItemsController < ApplicationController
             @line_item.save
 
             respond_to do |format|
-                  format.js
+                  format.js { render  'create.js.erb'}
             end
       end
 
       def reduce_quantity
             @line_item = LineItem.find(params[:id])
-            if @line_item.quantity > 1
+            if @line_item.quantity == 1
+                  @line_item.destroy 
+            else
                   @line_item.quantity -= 1
+                  @line_item.save
             end 
 
-            @line_item.save
+            
              respond_to do |format|
-                  format.js
+                  format.js { render  'create.js.erb'}
             end
       end
 

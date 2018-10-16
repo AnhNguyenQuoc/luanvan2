@@ -45,6 +45,12 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
+                                          <%= f.collection_select :restaurant_type_id, RestaurantType.all, :id, :name,  {prompt: "Chọn loại cửa hàng"} %>
+                                    </div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="input-field col s12">
                                           <%= f.label :timeopen %>
                                           <%= f.text_field :timeopen, class: "timepicker"%>
                                     </div>

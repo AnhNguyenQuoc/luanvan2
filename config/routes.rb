@@ -22,7 +22,16 @@ Rails.application.routes.draw do
       post 'line_items/:id/reduce' => "line_items#reduce_quantity", as: "line_item_reduce"
       delete 'line_items/:id' => 'line_items#destroy', as: "line_item_destroy"
       post 'line_items' => "line_items#create"
-      resources :restaurants do 
-            resources :products
+      
+      post 'comments' => 'comments#create'
+
+      
+      get '/restaurants/:id/nhan-xet' => 'restaurants#show_comment', as: "restaurant_comment"
+      get '/restaurants/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
+      resources :restaurants, expect: [:show]   do 
+            get 'products/new' => 'products#new'
+            post 'products/new' => 'products#create'
       end
+
+
 end

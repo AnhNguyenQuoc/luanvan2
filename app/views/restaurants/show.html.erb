@@ -21,7 +21,7 @@
                                           <br />
                                           <h6>Phone</h6><span><%= @restaurant.phone %></span>
                                           <br />
-                                          <h6>Loại</h6><span>Nhà hàng</span>
+                                          <h6>Loại</h6><span><%= @restaurant.restaurant_type.name %></span>
                                           <br />
                                           <h6>Mô tả</h6><span><%= @restaurant.description%></span>
                                     </div>
@@ -74,7 +74,8 @@
                               </div>
                         </div>
                         <div class="col m4 s12 checkout">       
-                              <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width: 100%">Đặt hàng</a>        
+                              <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width: 100%" disable="true">Đặt hàng</a>  
+                              <% if @current_cart.line_items.count > 0 %>      
                               <div id="modal1" class="modal" style="width: 80%">
                                     <div class="modal-content">
                                           <h4>Thông tin đặt hàng</h4>
@@ -98,7 +99,7 @@
                                                             </div>
                                                             <small>* Chúng tôi sẽ lấy thông tin giao hàng ở thông tin cá nhân của bạn. Nếu có gì thay đổi vui lòng ghi vào ghi chú</small>
                                                       </div>
-                                                      <%= f.submit "Đặt hàng", class: "modal-action waves-effect waves-blue btn-flat"%>
+                                                      <%= f.submit "Đặt hàng", class: "modal-action waves-effect waves-blue btn center-align", style: "width: 100%"%>
                                                 <% end %>
                                                 </div>
                                           </div>
@@ -107,9 +108,21 @@
                                           <a class="modal-action modal-close waves-effect waves-green btn-flat" >Hủy Bỏ</a>
                                           
                                     </div>
-                              
-                                    
-                              </div>   
+                              </div>  
+                              <% else %> 
+
+                              <div id="modal1" class="modal">
+                                    <div class="modal-content">
+                                          <h4 style="background-color: #5DC1BF; color: white">Thông báo</h4>
+                                          <p>Bạn vui lòng chọn món để đặt</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                          <a class="modal-action modal-close waves-effect waves-green btn-flat">Đồng ý</a>
+                                    </div>
+                              </div>
+                  
+                              <% end %>
+                               
                               <div class="list-checkout-item cart">
                                           <%= render 'cart' %>
                               </div>

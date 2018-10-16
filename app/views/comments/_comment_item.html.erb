@@ -1,0 +1,18 @@
+ <div class="card comment-card mb-2">
+       <div class="card-content" style="height: 250px">
+             <h5 class="card-title">
+                  <%= comment.user.username%>
+             </h5>
+             <a class="btn-floating waves-effect waves-light red center-align">
+                  <span><%= comment.rating %></span>
+             </a>
+             <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y')%></h6>
+             <p class="card-text"><%= comment.description %></p>
+             <br />
+             <div class="img-container">
+             <% comment.images.each do |image| %>
+                        <%= image_tag image, :class => 'materialboxed', :style => 'float: left' %>
+                  <% end %>
+            </div>
+       </div>
+</div>

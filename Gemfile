@@ -28,9 +28,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'materializecss'
 gem 'material_icons'
 gem 'custom_error_message'
+gem 'lightbox2-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'pry'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

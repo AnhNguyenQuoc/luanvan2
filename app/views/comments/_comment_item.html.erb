@@ -1,17 +1,21 @@
  <div class="card comment-card mb-2">
-       <div class="card-content" style="height: 250px">
+       <div class="card-content">
              <h5 class="card-title">
                   <%= comment.user.username%>
+                  <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
              </h5>
-             <a class="btn-floating waves-effect waves-light red center-align">
-                  <span><%= comment.rating %></span>
-             </a>
              <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y')%></h6>
+             <div class="divider"></div>
+            <br>
+            <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
+            <br>
              <p class="card-text"><%= comment.description %></p>
              <br />
              <div class="img-container">
              <% comment.images.each do |image| %>
-                        <%= image_tag image, :class => 'materialboxed', :style => 'float: left' %>
+                       <a href='<%= rails_blob_url(image)%>' data-lightbox='<%= comment.id %>' >
+                              <%= image_tag image, alt: image.filename %>
+                       </a>
                   <% end %>
             </div>
        </div>

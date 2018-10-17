@@ -42,14 +42,20 @@
       </section>
 
       <section class="comment">
-            <div class="container">
+            <div>
                   <div class="row">
-                        <div class="col m6">
+                        <div class="col m6 offset-m2">
                               <h6 class="comment-text">Nhận xét</h6>
                         </div>
                   </div>
                   <div class="row">
-                        <div class="col m8 s12" id="comments">
+                        <div class="col m2">
+                              <div class="collection">
+                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item active"%>
+                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item"%>
+                              </div>
+                        </div>
+                        <div class="col m6 s12" id="comments">
                               <%= render 'comment' %>
                         </div>
                         <div class="col m4 s12 btn-comment">

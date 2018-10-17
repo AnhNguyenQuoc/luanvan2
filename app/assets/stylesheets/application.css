@@ -14,13 +14,14 @@
  *= require_self
  *= require materialize
  *= require material_icons
+ *= require lightbox
  */
 
  .header {
   width: 100%;
   height: 80%;
   background: #5DC1BF;
-  background-image: url("https://cwa.roocdn.com/_next/static/new-brand-burger-desktop@1x.6357da6d.png");
+  background-image: url("background-index.png");
   background-repeat: no-repeat;
   background-size: 58%;
   background-position-x: 70%;

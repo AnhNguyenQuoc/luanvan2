@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
       get '/signup' => 'users#new'
       post '/signup' => 'users#create'
-
       resources :users, only: [:edit, :update]
 
       get 'users/:id/orders' => 'users#orders_user', as: "order_user"

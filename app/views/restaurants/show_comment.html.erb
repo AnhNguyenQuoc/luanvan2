@@ -51,8 +51,8 @@
                   <div class="row">
                         <div class="col m2">
                               <div class="collection">
-                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item active"%>
-                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item"%>
+                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item "%>
+                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item active"%>
                               </div>
                         </div>
                         <div class="col m6 s12" id="comments">
@@ -60,10 +60,9 @@
                         </div>
                         <div class="col m4 s12 btn-comment">
 
-                              <a class="waves-effect waves-light btn modal-trigger" style="width: 100%;" href="#nhanxet">Viết nhận xét</a>
-
+                               <button data-target="nhanxet" class="waves-effect waves-light btn modal-trigger" style="width: 100%;">Viết nhận xét</button>
                               <!-- Modal Structure -->
-                              <div id="nhanxet" class="modal">
+                              <div id="nhanxet" class="modal" style="width: 80%">
                                     <div class="row">
                                           <div class="col s12 center-align" style="padding-top: 2%;">
                                                 <h3 class="flow-text">Nhận xét</h3>
@@ -83,13 +82,16 @@
                                                       <div class="file-field input-field col">
                                                             <div class="btn">
                                                                   <span>Hình ảnh</span>
-                                                                  <%= f.file_field :images, multiple: true %>
+                                                                  <%= f.file_field :images, multiple: true, :onchange => 'previewFiles()' %>
                                                             </div>
                                                             <div class="file-path-wrapper">
                                                                   <input class="file-path validate" type="text">
                                                             </div>
                                                       </div>
-
+                                                      <div class="file-field input-field col">
+                                                             <div id="preview">
+                                                            </div>
+                                                      </div>
                                                       <div class="modal-footer">
                                                             <%= f.submit "Đăng nhận xét", :class => 'modal-close waves-effect waves-green btn-flat'%>
                                                       </div>
@@ -108,3 +110,35 @@
 
 
 <%= render 'layout_extends/footer' %>
+
+<script>
+      function previewFiles() {
+
+  var preview = document.querySelector('#preview');
+  var files   = document.querySelector('input[type=file]').files;
+
+  function readAndPreview(file) {
+
+    // Make sure `file.name` matches our extensions criteria
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      var reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        var image = new Image();
+        image.height = 100;
+        image.title = file.name;
+        image.src = this.result;
+        preview.appendChild( image );
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+
+}
+</script>

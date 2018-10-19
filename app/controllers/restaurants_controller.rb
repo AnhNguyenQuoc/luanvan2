@@ -6,7 +6,12 @@ class RestaurantsController < ApplicationController
       end
 
   def index
+
       @restaurants = Restaurant.all
+      @restaurants = Restaurant.find_district(params[:find_district]) if params[:find_district].present?
+      @restaurants = Restaurant.starts_with(params[:starts_with]) if params[:starts_with].present?
+      @restaurants = Restaurant.order_rating if params[:order_rating].present?
+      @restaurants = Restaurant.order_name if params[:order_name].present?
   end
 
   def show
@@ -54,7 +59,7 @@ end
 def show_comment
       @comment = Comment.new
       @restaurant = Restaurant.find(params[:id])
-      @comments = @restaurant.comments
+      @comments = @restaurant.comments.order(created_at: :desc)
 end
 
   private

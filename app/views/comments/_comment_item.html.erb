@@ -4,19 +4,20 @@
                   <%= comment.user.username%>
                   <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
              </h5>
-             <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y')%></h6>
+             <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y - %Hh:%Mp:%Ss')%></h6>
              <div class="divider"></div>
             <br>
             <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
             <br>
              <p class="card-text"><%= comment.description %></p>
              <br />
-             <div class="img-container">
+            <div class="img-container lightgallery">
              <% comment.images.each do |image| %>
-                       <a href='<%= rails_blob_url(image)%>' data-lightbox='<%= comment.id %>' >
+                       <a href='<%= rails_blob_url(image)%>'>
                               <%= image_tag image, alt: image.filename %>
                        </a>
                   <% end %>
             </div>
        </div>
 </div>
+

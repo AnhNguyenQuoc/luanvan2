@@ -4,11 +4,11 @@
                         <ul id="dropdown1" class="dropdown-content">
                         <% if logged_in? %>
                               <li>
-                                    <%= link_to "Đăng xuất", logout_path, method: :delete%>
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
                               </li>
                               <li>
-                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
-                              <li>
+                                    <%= link_to "Đăng xuất", logout_path, method: :delete%>
+                              </li>
                         <% end %>
                         </ul>
                         <div class="nav-wrapper">

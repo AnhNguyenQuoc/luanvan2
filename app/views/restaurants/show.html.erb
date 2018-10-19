@@ -14,7 +14,7 @@
                                     </div>
                               </nav>
                               <div class="main-restaurant-text">
-                                    <h1><%= @restaurant.name%></h1>
+                                    <h1><%= @restaurant.name%><span style="float: right; background: red; padding: 10px; color: white;"><%= @restaurant.avg_rating %></span></h1>
 
                                     <div>
                                           <h6>Địa chỉ </h6><span><%= @restaurant.address %> - <%= @restaurant.district.name %> </span>
@@ -85,7 +85,7 @@
                               <%= render 'model_order' %>
                         </div>       
                         
-                              <div id="modal1" class="modal" style="width: 80%">
+                              <div id="dathang" class="modal" style="width: 80%">
                         <div class="modal-content">
                               <h4>Thông tin đặt hàng</h4>
                               <div class="row">

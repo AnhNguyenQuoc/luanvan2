@@ -6,7 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        
+          
   </head>
 
   <body>    
@@ -14,12 +16,15 @@
             <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
        <% end %>
     <%= yield %>
-     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-      <script>
+   <script>
+
+
             $(document).ready(function () {
+
+                  $('.dropdown-button').dropdown();
                   $(".button-collapse").sideNav();
                   $('select').material_select();
-                  $('.modal').modal();
+                  $(".lightgallery").lightGallery();
                    $('.timepicker').pickatime({
                         default: 'now', // Set default time: 'now', '1:30AM', '16:30'
                         fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
@@ -32,13 +37,13 @@
                         ampmclickable: true, // make AM PM clickable
                         aftershow: function(){} //Function for after opening timepicker
                   });
+
                           setTimeout(function(){
                               $('#flash').hide('blind');
                         }, 1500);
 
-                   $('.dropdown-button').dropdown();
+                   
             });
       </script>
- 
   </body>
 </html>

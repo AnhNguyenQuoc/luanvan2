@@ -1,0 +1,7 @@
+<% if @restaurants.count == 0%>
+      <h1>Không có cửa hàng </h1>
+<% else %>
+      <% @restaurants.each do |restaurant| %>
+                  <%= render partial: "restaurant_item", locals: {restaurant: restaurant}%>
+      <% end %>
+<%end %>

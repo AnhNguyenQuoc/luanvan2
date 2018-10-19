@@ -87,8 +87,7 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    lightbox2-rails (2.8.2.1)
-      railties (>= 3.1)
+    lightgallery-rails (1.6.11)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -201,7 +200,7 @@ DEPENDENCIES
   custom_error_message
   duktape
   jbuilder (~> 2.5)
-  lightbox2-rails
+  lightgallery-rails
   material_icons
   materializecss
   pg (>= 0.18, < 2.0)

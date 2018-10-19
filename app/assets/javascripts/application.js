@@ -14,6 +14,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require materialize
-//= require lightbox
+//= require lightgallery
+//= require_tree .
+$(document).on('turbolinks:load', function () {
+      $('.modal').modal();
+      $('.modal-trigger').on('click', function () {
+            $('.modal').modal('open');
+      })
+})

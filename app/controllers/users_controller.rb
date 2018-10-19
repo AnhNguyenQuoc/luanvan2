@@ -17,11 +17,11 @@ before_action :check_correct_user, only: [:show, :orders_user]
       @user = User.create(user_params)
       if @user.save 
              log_in(@user)
-            flash.now[:success] = "Đã tạo tài khoản thành công"
+            flash[:success] = "Đã tạo tài khoản thành công"
             redirect_to root_path
       else 
             render 'new'
-            flash.now[:danger] = "Có lỗi xảy ra"
+            flash[:danger] = "Có lỗi xảy ra"
       end 
 
   end 

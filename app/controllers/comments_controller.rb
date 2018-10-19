@@ -8,13 +8,9 @@ class CommentsController < ApplicationController
             @comment.restaurant = @restaurant
             if @comment.save 
                   flash[:success] = "Đăng bình luận thành công"
-                  redirect_back fallback_location: root_path
+                  redirect_to restaurant_comment_path(@restaurant)
             else 
                   flash[:danger] = "Có lỗi xảy ra"
-            end
-
-            respond_to do |format|
-                  format.js
             end
       end
       

@@ -24,10 +24,10 @@ Rails.application.routes.draw do
       
       post 'comments' => 'comments#create'
 
-      
-      get '/restaurants/:id/nhan-xet' => 'restaurants#show_comment', as: "restaurant_comment"
-      get '/restaurants/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
-      resources :restaurants, expect: [:show]   do 
+      get '/cua-hang' => 'restaurants#index', as: "cua_hang"
+      get '/cua-hang/:id/nhan-xet' => 'restaurants#show_comment', as: "restaurant_comment"
+      get '/cua-hang/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
+      resources :restaurants, expect: [:show, :index]   do 
             get 'products/new' => 'products#new'
             post 'products/new' => 'products#create'
       end

@@ -5,6 +5,10 @@ class Cart < ApplicationRecord
             line_items.to_a.sum {|item| item.total_price}
       end
 
+      def total_all_price
+            total_price + total_ship
+      end
+
       def total_ship
             count = line_items.to_a.sum{ |item| item.quantity}
             if(count <= 2 && count > 0)

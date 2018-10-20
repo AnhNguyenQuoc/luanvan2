@@ -29,6 +29,8 @@ gem 'materializecss'
 gem 'material_icons'
 gem 'custom_error_message'
 gem "lightgallery-rails"
+gem 'table_print'
+ gem 'stripe'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

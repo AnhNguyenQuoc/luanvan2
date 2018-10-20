@@ -14,7 +14,7 @@
             <li class="collection-item cart-total right-align">
                   <span >Tổng cộng</span>
                   <div>
-                        <span><%= number_to_currency_vnd(@current_cart.total_price + @current_cart.total_ship)%></span>
+                        <span><%= number_to_currency_vnd(@current_cart.total_all_price)%></span>
                   </div>
             </li>
        </ul>

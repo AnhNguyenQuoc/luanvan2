@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
       include SessionsHelper
 
-
-
-
        private
             def current_cart
                   unless @current_cart

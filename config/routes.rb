@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-      root to: 'templates#index'
+      root "templates#index"
       get '/restaurantinfo' => 'templates#inforestaurant'
       get '/shipper' => 'templates#shipper'
 
@@ -32,5 +31,7 @@ Rails.application.routes.draw do
             post 'products/new' => 'products#create'
       end
 
+
+      get '/admin-res' => 'admin_restaurants#index'
 
 end

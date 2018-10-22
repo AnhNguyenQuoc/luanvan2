@@ -1,12 +1,14 @@
 class Order < ApplicationRecord
 
-      has_many :line_items
-      has_and_belongs_to_many :products
+      has_many :line_items, dependent: :destroy
+      has_many :products, through: :line_items
       
       belongs_to :order_type
       belongs_to :buyer, class_name: "User"
       belongs_to :shipper, class_name: "User", optional: true
-
+      
+      scope :uncheck, -> {where("order_type_id = 1")}
+      scope :check, -> {where("order_type_id = 2")}
 
 
       def add_line_item_from_cart(cart)

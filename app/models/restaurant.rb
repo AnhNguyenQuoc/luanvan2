@@ -12,8 +12,8 @@ class Restaurant < ApplicationRecord
       scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
       scope :order_rating, -> { joins(:comments).group("restaurants.id").order("avg(comments.rating) DESC")}
       scope :order_name, -> {order("name ASC")}
+      scope :order_uncheck, -> {where("order_type.id == 1")}
       # Ex:- scope :active, -> {where(:active => true)}
-
 
       def avg_rating
             comments.average(:rating).to_i

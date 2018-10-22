@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
             if user && user.authenticate(params[:session][:password])
                   log_in(user)
                   flash[:success] = "Đăng nhập thành công"
-                  redirect_to root_path
+                  if user.role == 1
+                     redirect_to admin_res_path
+                  else 
+                     redirect_to root_path
+                  end
             else
                   flash.now[:danger] = 'Mật khẩu hoặc email không đúng.'
                   render 'new'

@@ -104,30 +104,9 @@
                                                 </li>
                                           </ul>
                                     </div>
-                                    <div class="input-field col s12 m4">
-                                          <a class='dropdown-button btn' data-activates='loaithucan'>Chọn Loại Thức ăn</a>
-
-
-                                          <ul id='loaithucan' class='dropdown-content'>
-                                                <li>
-                                                      <a>Quận Ninh Kiều</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Bình Thủy</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Cái Răng</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Ô Môn</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Thốt Nốt</a>
-                                                </li>
-                                          </ul>
-                                    </div>
-                                    <div class="input-field col s12 m4">
-                                          <a class='dropdown-button btn' data-activates='sapxep'>Sắp xếp</a>
+                                    
+                                    <div class="input-field col s12 m4 offset-m4">
+                                          <a class='dropdown-button btn' data-activates='sapxep' style="width: 100%;">Sắp xếp</a>
 
 
                                           <ul id='sapxep' class='dropdown-content'>
@@ -141,7 +120,7 @@
                                     </div>
                               </div>
                               <div class="row">
-                                    <%= form_tag restaurants_path, :method => :get do |f| %> 
+                                    <%= form_tag cua_hang_path,remote: true,method: :get,:id => 'form-search' do |f| %> 
                                           <div class="row">
                                                 
                                                 <div class="input-field col s10">
@@ -150,7 +129,7 @@
                                                       </div>
                                                       <div class="input-field col s2">
                                                        
-                                                            <%= button_tag(class: "btn") do %>
+                                                            <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search") do %>
                                                                   <i class="material-icons">search</i>
                                                             <%end%>
                                                       </div> 
@@ -169,10 +148,10 @@
 
             <section class="list-restaurant">
             <div class="container">
-                  <div class="row" id="restaurants">
-                        
+                  <div class="row" >
+        <div id="restaurants">
                         <%= render 'restaurants' %>
-                        
+                        </div>
                   </div>
             </div>
       </section>

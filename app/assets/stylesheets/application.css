@@ -13,6 +13,7 @@
  *= require materialize
  *= require material_icons
  *= require lightgallery
+ *= require perfect-scrollbar
   *= require_tree .
  *= require_self
  */
@@ -314,7 +315,6 @@
 
 .header {
   width: 100%;
-  height: 80%;
   background-repeat: no-repeat;
   background-size: 58%;
   background-position-x: 70%;
@@ -340,7 +340,7 @@
         background-color: #07c4b4; }
   .header .header-bar .background-list-restaurant {
     width: 100%;
-    height: 50vh;
+    height: 55vh;
     background: #5DC1BF; }
 
 .breadcrumb-show {

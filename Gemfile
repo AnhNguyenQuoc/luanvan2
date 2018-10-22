@@ -31,6 +31,9 @@ gem 'custom_error_message'
 gem "lightgallery-rails"
 gem 'table_print'
  gem 'stripe'
+ gem 'perfect-scrollbar-rails'
+ gem 'groupdate'
+ gem "chartkick"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

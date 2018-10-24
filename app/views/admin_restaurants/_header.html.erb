@@ -1,0 +1,44 @@
+ <header id="header" class="page-topbar">
+            <!-- start header nav-->
+            <div class="navbar-fixed">
+                  <nav class="navbar-color gradient-45deg-light-blue-cyan">
+                        <div class="nav-wrapper">
+                              <ul class="left">
+                                    <li>
+                                          <h1 class="logo-wrapper">
+                                                <a href="/admin-res" class="brand-logo darken-1" target="_blank">
+                                                      <%= image_tag("logo.png")%>
+                                                      <span class="logo-text hide-on-med-and-down">Cần Thơ Food</span>
+                                                </a>
+                                          </h1>
+                                    </li>
+                              </ul>
+                              <ul class="right hide-on-med-and-down">
+                                    <li>
+                                          <a href="javascript:void(0);" class="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+                                                <span class="avatar-status avatar-online">
+                                                      <%= image_tag 'avatar-7.png' %>
+                                                      <i></i>
+                                                </span>
+                                          </a>
+                                    </li>
+                              </ul>
+                              <!-- translation-button -->
+
+                              <!-- notifications-dropdown -->
+
+                              <!-- profile-dropdown -->
+                              <ul id="profile-dropdown" class="dropdown-content">
+                                    <li>
+                                          <a href="#" class="grey-text text-darken-1">
+                                                <i class="material-icons">face</i> Profile</a>
+                                    </li>
+                                    <li>
+                                          <%= link_to "<i class='material-icons'>keyboard_tab</i>Đăng xuất".html_safe, logout_path,class: "grey-text text-darken-1", method: :delete%>
+                                    </li>
+                              </ul>
+                        </div>
+                  </nav>
+            </div>
+            <!-- end header nav-->
+      </header>

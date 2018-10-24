@@ -62,6 +62,26 @@ def show_comment
       @comments = @restaurant.comments.order(created_at: :desc)
 end
 
+def edit 
+      @restaurant = Restaurant.find_by(id: current_user.restaurant.id)
+end 
+
+
+def update 
+      @restaurant = Restaurant.find_by(id: current_user.restaurant.id)
+      if @restaurant.update_attributes(restaurant_params)
+            if params[:restaurant][:image].present?
+                  @restaurant.image.purge
+                  @restaurant.image.attach(params[:restaurant][:image])
+            end
+            redirect_to admin_res_path
+            flash[:success] = "Cập nhật thông tin thành công"
+      else 
+            render 'edit'
+            flash[:danger] = "Có lỗi xảy ra"
+      end
+end
+
   private
 
 

@@ -12,7 +12,7 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :name %>
+                                          <%= f.label :name, "Tên cửa hàng" %>
                                           <%= f.text_field :name,  class: "validate"%>
                                     </div>
                               </div>
@@ -20,14 +20,14 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :phone %>
-                                          <%= f.phone_field :phone%>
+                                          <%= f.label :phone, "Số Điện Thoại" %>
+                                          <%= f.phone_field :phone, class: "validate"%>
                                     </div>
                               </div>
 
                               <div class="row">
                                     <div class="input-field col s8">
-                                          <%= f.label :address %>
+                                          <%= f.label :address, "Địa chỉ" %>
                                           <%= f.text_field :address%>
                                     </div>
                                      <div class="input-field col s4">
@@ -38,7 +38,7 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :description %>
+                                          <%= f.label :description, "Mô tả" %>
                                           <%= f.text_field :description%>
                                     </div>
                               </div>
@@ -51,15 +51,13 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :timeopen %>
-                                          <%= f.text_field :timeopen, class: "timepicker"%>
+                                          <%= f.time_field :timeopen, class: "timepicker"%>
                                     </div>
                               </div>
 
                               
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :timeclose %>
                                           <%= f.time_field :timeclose, class: "timepicker"%>
                                     </div>
                               </div>

@@ -1,0 +1,116 @@
+ 
+ <!-- Start Page Loading -->
+      <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+      </div>
+      <!-- End Page Loading -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START HEADER -->
+     <%= render 'admin_restaurants/header' %>
+      <!-- END HEADER -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START MAIN -->
+      <div id="main">
+            <!-- START WRAPPER -->
+            <div class="wrapper">
+                  <!-- START LEFT SIDEBAR NAV-->
+                  <%= render 'admin_restaurants/sidebar' %>
+                  <!-- END LEFT SIDEBAR NAV-->
+                  <!-- //////////////////////////////////////////////////////////////////////////// -->
+                  <!-- START CONTENT -->
+                  <section id="content" style="margin-bottom: 60px;">
+                        <!--start container-->
+                        <div class="container" style="width: 80%">
+                              <h4> Cập nhật thông tin cửa hàng </h4>
+                              <!--card stats start-->
+                              <div class="col offset-m2 m10">
+                                                <%= form_for @restaurant, :html => {:class => "col s12"} do |f| %>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.label :name, "Tên cửa hàng" %>
+                                                <%= f.text_field :name,  class: "validate"%>
+                                          </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.label :phone, "Sđt" %>
+                                                <%= f.phone_field :phone%>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s8">
+                                                <%= f.label :address, "Địa chỉ" %>
+                                                <%= f.text_field :address%>
+                                          </div>
+                                          <div class="input-field col s4">
+                                                <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                                                
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.label :description, "Mô tả" %>
+                                                <%= f.text_field :description%>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.collection_select :restaurant_type_id, RestaurantType.all, :id, :name,  {prompt: "Chọn loại cửa hàng"} %>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <%= f.label :timeopen, "Mở cửa"%>
+                                          <div class="input-field col s12">
+                                                
+                                                <%= f.time_field :timeopen, class: "timepicker"%>
+                                          </div>
+                                    </div>
+
+                                    
+                                    <div class="row">
+                                     <%= f.label :timeclose, "Đóng cửa"%>
+                                          <div class="input-field col s12">
+                                                <%= f.time_field :timeclose, class: "timepicker"%>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="file-field input-field">
+                                                <div class="btn">
+                                                      <span>Hình đại diện</span>
+                                                      <%= f.file_field :image, :onchange => 'previewFile()'%>
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                      <input class="file-path validate" type="text">
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="row">
+                                          <%= f.submit "Cập nhật thông tin", class: "btn waves-effect waves-light", style: "width: 100%"%>
+                                    </div>
+                              <% end %>
+                              </div>
+                              <!-- //////////////////////////////////////////////////////////////////////////// -->
+                        </div>
+                        <!--end container-->
+                  </section>
+                  <!-- END CONTENT -->
+                  <!-- START RIGHT SIDEBAR NAV-->
+
+                  <!-- END RIGHT SIDEBAR NAV-->
+            </div>
+            <!-- END WRAPPER -->
+      </div>
+      <!-- END MAIN -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START FOOTER -->
+      <%= render 'admin_restaurants/footer' %>

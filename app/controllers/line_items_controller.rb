@@ -5,7 +5,6 @@ class LineItemsController < ApplicationController
 
      def create
             chosen_product = Product.find(params[:product_id])
-            current_cart = @current_cart
 
             if LineItem.find_by(cart_id: @current_cart.id, product_id: chosen_product)
                   @line_item = @current_cart.line_items.find_by(product_id: chosen_product)
@@ -17,7 +16,7 @@ class LineItemsController < ApplicationController
             end
             @line_item.save
             respond_to do |format|
-                  format.js { render  'create.js.erb'}
+                  format.js
             end
       end
 

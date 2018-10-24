@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
                   @order.feeship = @current_cart.total_ship
                   @order.save 
                   flash[:success] = "Đặt hàng thành công"
+                  @current_cart.destroy
                   redirect_to cua_hang_path
             else
                   @order = Order.new(order_params)

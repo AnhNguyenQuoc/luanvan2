@@ -48,8 +48,7 @@
                                                 <i class="material-icons">face</i> Profile</a>
                                     </li>
                                     <li>
-                                          <a href="#" class="grey-text text-darken-1">
-                                                <i class="material-icons">keyboard_tab</i> Logout</a>
+                                          <%= link_to "<i class='material-icons'>keyboard_tab</i>Đăng xuất".html_safe, logout_path,class: "grey-text text-darken-1", method: :delete%>
                                     </li>
                               </ul>
                         </div>
@@ -92,9 +91,15 @@
                               <li class="no-padding">
                                     <ul class="collapsible" data-collapsible="accordion">
                                           <li class="bold">
-                                                <a href="index.html" class="waves-effect waves-cyan">
-                                                      <i class="material-icons">pie_chart_outlined</i>
+                                                <%= link_to admin_res_path, class: "waves-effect waves-cyan" do %>
+                                                       <i class="material-icons">pie_chart_outlined</i>
                                                       <span class="nav-text">Dashboard</span>
+                                                <% end %>
+                                          </li>
+                                          <li class="bold">
+                                                <a href="#" class="waves-effect waves-cyan">
+                                                      <i class="material-icons">local_convenience_store</i>
+                                                      <span class="nav-text">Quản lý cửa hàng</span>
                                                 </a>
                                           </li>
                                           <li class="bold">

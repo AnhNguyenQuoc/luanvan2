@@ -36,10 +36,10 @@
                                                       <span class="nav-text">Quản lý cửa hàng</span>'.html_safe,  admin_res_sua_thong_tin_path,target: "_blank", class: "waves-effect waves-cyan"%>
                                           </li>
                                           <li class="bold">
-                                                <a href="#" class="waves-effect waves-cyan">
+                                                <%= link_to admin_res_danh_sach_don_hang_path,class: "waves-effect waves-cyan", target: "_blank" do %>
                                                       <i class="material-icons">reorder</i>
                                                       <span class="nav-text">Quản lý đơn hàng</span>
-                                                </a>
+                                                <% end %>
                                           </li>
                                           <li class="bold">
                                                 <a href="#" class="waves-effect waves-cyan">

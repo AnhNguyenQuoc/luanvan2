@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get '/admin-res' => 'admin_restaurants#index'
       get '/admin-res/sua-thong-tin' => 'restaurants#edit'
       get '/admin-res/thong-ke-doanh-thu' => 'admin_restaurants#statistic_total'
+      get '/admin-res/danh-sach-don-hang' => 'admin_restaurants#list_order'
 
       resources :restaurants, expect: [:show, :index]   do 
             get 'products/new' => 'products#new'

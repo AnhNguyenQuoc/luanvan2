@@ -1,0 +1,104 @@
+ <%# <meta http-equiv="Refresh" content="30"> %>
+ <!-- Start Page Loading -->
+      <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+      </div>
+      <!-- End Page Loading -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START HEADER -->
+     <%= render 'header' %>
+      <!-- END HEADER -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START MAIN -->
+      <div id="main">
+            <!-- START WRAPPER -->
+            <div class="wrapper">
+                  <!-- START LEFT SIDEBAR NAV-->
+                  <%= render 'sidebar' %>
+                  <!-- END LEFT SIDEBAR NAV-->
+                  <!-- //////////////////////////////////////////////////////////////////////////// -->
+                  <!-- START CONTENT -->
+                  <section id="content">
+                        <!--start container-->
+                        <div class="container">
+                              <!--card stats start-->
+                              <div class="row">
+                                    <div class="col s4">
+                                          <h4>Danh sách đơn hàng</h4>
+                                    </div>
+                              </div>
+                              <div class="row">
+                                    <div class="col s12">
+                                         <table class="bordered highlight centered">
+                                                <thead>
+                                                <tr>
+                                                      <th>#</th>
+                                                      <th>Tên người đặt</th>
+                                                      <th>Tổng tiền</th>
+                                                      <th>Ghi chú</th>
+                                                      <th>Đơn hàng</th>
+                                                      <th style="width: 13%">Tình trạng</th>
+                                                      <th>Xác nhận</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                <% @orders.each do |order| %>
+                                                <tr>
+                                                      <td>#<%= order.id %></td>
+                                                      <td><%= order.buyer.username%></td>
+                                                      <td><%= number_to_currency_vnd(order.total)%></td>
+                                                      <td><%= order.note %></td>
+                                                      <td>
+                                                            
+                                                            <div class="card">
+                                                                  <div class="card-content">
+                                                                        <span class="activator grey-text text-darken-4">Đơn hàng<i class="material-icons right">more_vert</i></span>
+                                                                  </div>
+                                                                  <div class="card-reveal">
+                                                                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                                                        <% order.line_items.each do |item|%>
+                                                                              <p><%= item.product.name %> x <%= item.quantity %></p>
+                                                                        <% end %>
+                                                                  </div>
+                                                            </div>
+                                                      </td>
+                                                      <td>
+                                                            <% if order.order_type.id == 1 %>
+                                                                  <span class="badge red" style="color: white"><%= order.order_type.name%></span>
+                                                            <% elsif order.order_type.id == 2%>
+                                                                  <span class="badge green" style="color: white"><%= order.order_type.name%></span>
+                                                            <% else %>
+                                                                   <span class="badge blue" style="color: white"><%= order.order_type.name%></span>
+                                                            <% end%>
+                                                      </td>
+                                                      <td>
+                                                            <i class="material-icons">send</i>
+                                                            <i class="material-icons">delete_forever</i>
+                                                      </td>
+                                                </tr>
+                                                <% end %>
+                                                </tbody>
+                                          </table>
+                                        
+                                    </div>
+                              </div>
+
+                              <!-- //////////////////////////////////////////////////////////////////////////// -->
+                        </div>
+                        <!--end container-->
+                  </section>
+                  <!-- END CONTENT -->
+                  <!-- START RIGHT SIDEBAR NAV-->
+
+                  <!-- END RIGHT SIDEBAR NAV-->
+            </div>
+            <!-- END WRAPPER -->
+      </div>
+      <!-- END MAIN -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START FOOTER -->
+      <%= render 'footer' %>
+

@@ -14,4 +14,9 @@ class AdminRestaurantsController < ApplicationController
             @total_per_year = Order.joins(:products).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).group_by_year('orders.created_at').sum(:total)
       end
 
+
+      def list_order
+            @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id)
+      end
+
 end

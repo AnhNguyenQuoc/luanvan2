@@ -33,7 +33,7 @@
                                           </li>
                                           <li class="bold">
                                                 <%= link_to '<i class="material-icons">local_convenience_store</i>
-                                                      <span class="nav-text">Quản lý cửa hàng</span>'.html_safe, admin_res_edit_path,target: "_blank", class: "waves-effect waves-cyan"%>
+                                                      <span class="nav-text">Quản lý cửa hàng</span>'.html_safe,  admin_res_sua_thong_tin_path,target: "_blank", class: "waves-effect waves-cyan"%>
                                           </li>
                                           <li class="bold">
                                                 <a href="#" class="waves-effect waves-cyan">
@@ -48,10 +48,10 @@
                                                 </a>
                                           </li>
                                           <li class="bold">
-                                                <a href="#" class="waves-effect waves-cyan">
+                                                <%= link_to  admin_res_thong_ke_doanh_thu_path,class: "waves-effect waves-cyan", target: "_blank" do %>
                                                       <i class="material-icons">insert_chart</i>
                                                       <span class="nav-text">Thông kê thu nhập</span>
-                                                </a>
+                                                <% end %>
                                           </li>
                                     </ul>
                               </li>

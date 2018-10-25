@@ -1,4 +1,6 @@
 class TemplatesController < ApplicationController
+
+
   def index
   end
 
@@ -7,4 +9,9 @@ class TemplatesController < ApplicationController
 
   def inforestaurant
   end
+
+
+
+
+  
 end

@@ -28,8 +28,8 @@ Rails.application.routes.draw do
       get '/cua-hang/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
 
       get '/admin-res' => 'admin_restaurants#index'
-      get '/admin-res/edit' => 'restaurants#edit'
-      
+      get '/admin-res/sua-thong-tin' => 'restaurants#edit'
+      get '/admin-res/thong-ke-doanh-thu' => 'admin_restaurants#statistic_total'
 
       resources :restaurants, expect: [:show, :index]   do 
             get 'products/new' => 'products#new'

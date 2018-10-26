@@ -24,12 +24,12 @@
                               <!--card stats start-->
                               <div class="row">
                                     <div class="col s4">
-                                          <h4>Thêm sản phẩm</h4>
+                                          <h4>Sửa sản phẩm</h4>
                                     </div>
 
                               </div>
                               <div class="row">
-                  <%= form_for @product, url: products_new_path do |f| %>
+                  <%= form_for @product, url: product_edit_path do |f| %>
                               <%= render 'layout_extends/error', object: f.object %>
                         
                         <div class="row">
@@ -71,6 +71,7 @@
                                                             </div>
                                                       </div>
                                                 </div>
+                                          <%= image_tag @product.image, height: '150' %>
                                           <img src="" id="preview-image">
                                           <div class="row">
                                           <%= f.submit  "Xác nhận", class: "btn waves-effect waves-light", style: "float: right"%>

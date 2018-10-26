@@ -1,5 +1,5 @@
 class TemplatesController < ApplicationController
-
+      before_action :check_role_logged, only: [:index]
 
   def index
   end
@@ -11,7 +11,14 @@ class TemplatesController < ApplicationController
   end
 
 
-
+  private 
+  def check_role_logged
+      if logged_in?
+            if current_user.role ==1 
+                  redirect_to admin_res_path
+            end 
+      end 
+  end
 
   
 end

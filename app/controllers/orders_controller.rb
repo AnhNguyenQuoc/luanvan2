@@ -35,7 +35,19 @@ class OrdersController < ApplicationController
             end
       end 
 
+      def change_status
+            @order = Order.find(params[:id])
+            @order.update_attributes(:order_type_id => 2)   
+            redirect_back fallback_location: root_path
+      end
 
+
+      def destroy 
+            @order = Order.find(params[:id])
+            @order.destroy 
+            flash[:success] = "Xóa thành công"
+             redirect_back fallback_location: root_path
+      end
       private
 
       def stripe_params

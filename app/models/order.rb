@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+      paginates_per 10
 
       has_many :line_items, dependent: :destroy
       has_many :products, through: :line_items
@@ -9,12 +10,13 @@ class Order < ApplicationRecord
       
       scope :uncheck, -> {where("order_type_id = 1")}
       scope :check, -> {where("order_type_id = 2")}
-
+      scope :complete, -> {where("order_type_id = 3")}
+      scope :search, -> (name){joins("INNER JOIN users ON orders.buyer_id = users.id").where("users.username LIKE ?", "#{name}%") }
 
       def add_line_item_from_cart(cart)
         cart.line_items.each do |item|
             product = Product.find_by(id: item.product)
-            item.cart_id = nil
+            item.cart_id = nilra
             line_items << item
         end
       end

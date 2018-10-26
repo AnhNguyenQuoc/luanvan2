@@ -31,13 +31,18 @@ Rails.application.routes.draw do
       get '/admin-res/sua-thong-tin' => 'restaurants#edit'
       get '/admin-res/thong-ke-doanh-thu' => 'admin_restaurants#statistic_total'
       get '/admin-res/danh-sach-don-hang' => 'admin_restaurants#list_order'
+      get '/admin-res/danh-sach-mon-an' => 'admin_restaurants#list_product'
 
-      resources :restaurants, expect: [:show, :index]   do 
-            get 'products/new' => 'products#new'
-            post 'products/new' => 'products#create'
-      end
+      resources :restaurants, expect: [:show, :index] 
 
+      get '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#new'
+      get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"
+      delete 'products/:id' => 'products#destroy', as: "product_destroy"
 
-      
+      patch 'products/:id/edit' => 'products#update', as: 'product_edit'
+      post 'products/new' => 'products#create'
+
+      post '/orders/:id/change_status' => 'orders#change_status', as: "orders_change_status"
+      delete '/orders/:id' => 'orders#destroy', as: "order_destroy"
 
 end

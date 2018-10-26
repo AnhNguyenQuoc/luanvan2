@@ -9,12 +9,14 @@ class Product < ApplicationRecord
       belongs_to :restaurant
       belongs_to :product_type
 
+      scope :search, ->(name){ where("name LIKE ?", "#{name}%") }
+      
       #  delegate :uncheck, to: :orders, prefix: true
 
       private
       def ensure_not_referenced_by_any_line_item
             unless line_items.empty?
-                  errors.add(:base, 'Line items present')
+                  errors.add(:base, 'Vẫn tồn tại đơn hàng có sản phẩm này')
                   throw :abort
             end
       end

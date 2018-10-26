@@ -26,24 +26,13 @@
                               <!--card stats start-->
                               <div class="row">
                                     <div class="col s4">
-                                          <h4>Danh sách Sản phẩm</h4>
+                                          <h4>Danh sách đơn hàng</h4>
                                     </div>
 
                               </div>
                               <div class="row">
-                                    <div class="col s4">
-                                         <a class='dropdown-button btn' data-activates='status'>Sắp xếp</a>
-
-                                          <!-- Dropdown Structure -->
-                                          <ul id='status' class='dropdown-content'>
-                                                <li><%= link_to "Tất cả", admin_res_danh_sach_don_hang_path(), remote: true %></li>
-                                                <li><%= link_to "Chưa xác nhận", admin_res_danh_sach_don_hang_path(:uncheck => ''), remote: true %></li>
-                                                <li><%= link_to "Xác nhận", admin_res_danh_sach_don_hang_path(:check => ''), remote: true %></li>
-                                                <li><%= link_to "Hoàn thành", admin_res_danh_sach_don_hang_path(:complete => ''), remote: true %></li>
-                                          </ul>
-                                    </div>
-                                    <div class="col s4">
-                                          <%= form_tag admin_res_danh_sach_don_hang_path,method: :get, remote: true do |f| %> 
+                                     <div class="col s4">
+                                          <%= form_tag admin_res_danh_sach_mon_an_path,method: :get, remote: true do |f| %> 
                                           <div class="row">
                                                 
                                                 <div class="input-field col s10">
@@ -60,6 +49,9 @@
                                                 
                                           </div>
                                     <% end %>
+                                          <div class="col s4 offset-s4">
+                                          <%= link_to "Tạo thức ăn", admin_res_danh_sach_mon_an_them_san_pham_path, class: "btn" %>
+                                    </div>
                                     </div>
                               </div>
                               <div class="row">
@@ -68,20 +60,19 @@
                                                 <thead>
                                                 <tr>
                                                       <th>#</th>
-                                                      <th>Tên người đặt</th>
-                                                      <th>Tổng tiền</th>
-                                                      <th>Ghi chú</th>
-                                                      <th>Đơn hàng</th>
-                                                      <th style="width: 13%">Tình trạng</th>
+                                                      <th>Tên</th>
+                                                      <th>Mô tả</th>
+                                                      <th>Giá tiền</th>
+                                                      <th>Hình ảnh</th>
+                                                      <th>Loại sản phẩm</th>
                                                       <th>Xác nhận</th>
                                                 </tr>
                                                 </thead>
 
-                                                <tbody id="list-order">
-                                                      <%= render partial: 'list_order' %>
+                                                <tbody id="list-product">
+                                                       <%= render partial: 'list_product' %>
                                                 </tbody>
                                           </table>
-                                        <%= paginate @orders %>
                                     </div>
                               </div>
 

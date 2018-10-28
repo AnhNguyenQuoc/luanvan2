@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
       end
 
   def index
-
       @restaurants = Restaurant.all
       @restaurants = Restaurant.find_district(params[:find_district]) if params[:find_district].present?
       @restaurants = Restaurant.starts_with(params[:starts_with]) if params[:starts_with].present?

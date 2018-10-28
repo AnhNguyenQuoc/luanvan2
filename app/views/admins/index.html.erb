@@ -8,7 +8,7 @@
       <!-- End Page Loading -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START HEADER -->
-     <%= render 'header' %>
+     <%= render 'admin_restaurants/header' %>
       <!-- END HEADER -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START MAIN -->
@@ -30,11 +30,11 @@
                                                 <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
                                                       <div class="padding-4">
                                                             <div class="col s7 m7">
-                                                                  <i class="material-icons mt-5">add_shopping_cart</i>
-                                                                  <p>Đơn hàng mới</p>
+                                                                  <i class="material-icons mt-5">local_convenience_store</i>
+                                                                  <p>Cửa hàng</p>
                                                             </div>
                                                             <div class="col s5 m5 right-align">
-                                                                  <h5 class="mb-0"><%= @orders %></h5>
+                                                                  <h5 class="mb-0"><%= @restaurants %></h5>
                                                                   <p class="no-margin">Tổng</p>
                                                             </div>
                                                       </div>
@@ -58,11 +58,11 @@
                                                 <div class="card gradient-45deg-amber-amber gradient-shadow min-height-100 white-text">
                                                       <div class="padding-4">
                                                             <div class="col s7 m7">
-                                                                  <i class="material-icons mt-5">local_dining</i>
-                                                                  <p>Sản phẩm</p>
+                                                                  <i class="material-icons mt-5">verified_user</i>
+                                                                  <p>Người dùng</p>
                                                             </div>
                                                             <div class="col s5 m5 right-align">
-                                                                  <h5 class="mb-0"><%= @products %></h5>
+                                                                  <h5 class="mb-0"><%= @total_users %></h5>
                                                                   <p class="no-margin">Tổng</p>
                                                             </div>
                                                       </div>
@@ -83,7 +83,7 @@
                                                                   <a class="active" href="#test4">Theo Ngày</a>
                                                             </li>
                                                             <li class="tab">
-                                                                  <a  href="#test5">Theo Tháng</a>
+                                                                  <a href="#test5">Theo Tháng</a>
                                                             </li>
                                                             <li class="tab">
                                                                   <a href="#test6">Theo Năm</a>
@@ -98,7 +98,38 @@
                                           </div>
                                     </div>
                               </div>
+                              <div class="row">
+                                    <div class="col s12">
+                                          <div class="card">
+                                                <div class="card-content">
+                                                       <span class="card-title">Danh sách người dùng mới</span>
+                                                        <table>
+                                                            <thead>
+                                                            <tr>
+                                                                  <th>Tên</th>
+                                                                  <th>Email</th>
+                                                                  <th>Địa chỉ</th>
+                                                                  <th>Số điện thoại</th>
+                                                                  <th>Chức danh</th>
+                                                            </tr>
+                                                            </thead>
 
+                                                            <tbody>
+                                                            <% @users.each do |user| %>
+                                                            <tr>
+                                                                  <td><%= user.username%></td>
+                                                                  <td><%= user.email %></td>
+                                                                  <td><%= user.address %></td>
+                                                                  <td><%= user.phone %></td>
+                                                                  <td><%= user.role.name %></td>
+                                                            </tr>
+                                                            <% end %>
+                                                            </tbody>
+                                                      </table>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
                               <!-- //////////////////////////////////////////////////////////////////////////// -->
                         </div>
                         <!--end container-->
@@ -113,5 +144,5 @@
       <!-- END MAIN -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START FOOTER -->
-      <%= render 'footer' %>
+      <%= render 'admin_restaurants/footer' %>
 

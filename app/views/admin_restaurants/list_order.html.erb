@@ -26,7 +26,7 @@
                               <!--card stats start-->
                               <div class="row">
                                     <div class="col s4">
-                                          <h4>Danh sách Sản phẩm</h4>
+                                          <h4>Danh sách đơn hàng</h4>
                                     </div>
 
                               </div>
@@ -36,10 +36,10 @@
 
                                           <!-- Dropdown Structure -->
                                           <ul id='status' class='dropdown-content'>
-                                                <li><%= link_to "Tất cả", admin_res_danh_sach_don_hang_path(), remote: true %></li>
-                                                <li><%= link_to "Chưa xác nhận", admin_res_danh_sach_don_hang_path(:uncheck => ''), remote: true %></li>
-                                                <li><%= link_to "Xác nhận", admin_res_danh_sach_don_hang_path(:check => ''), remote: true %></li>
-                                                <li><%= link_to "Hoàn thành", admin_res_danh_sach_don_hang_path(:complete => ''), remote: true %></li>
+                                                <li><%= link_to "Tất cả", admin_res_danh_sach_don_hang_path(), remote: true, data: {disable_with: "Loading...."} %></li>
+                                                <li><%= link_to "Chưa xác nhận", admin_res_danh_sach_don_hang_path(:uncheck => ''), remote: true, data: {disable_with: "Loading...."} %></li>
+                                                <li><%= link_to "Xác nhận", admin_res_danh_sach_don_hang_path(:check => ''), remote: true, data: {disable_with: "Loading...."} %></li>
+                                                <li><%= link_to "Hoàn thành", admin_res_danh_sach_don_hang_path(:complete => ''), remote: true, data: {disable_with: "Loading...."} %></li>
                                           </ul>
                                     </div>
                                     <div class="col s4">

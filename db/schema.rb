@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_062113) do
+ActiveRecord::Schema.define(version: 2018_10_28_031222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,12 @@ ActiveRecord::Schema.define(version: 2018_10_20_062113) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "password_digest"
@@ -139,7 +145,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_062113) do
     t.integer "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "comments", "restaurants"
@@ -153,4 +160,5 @@ ActiveRecord::Schema.define(version: 2018_10_20_062113) do
   add_foreign_key "restaurants", "districts"
   add_foreign_key "restaurants", "restaurant_types"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "users", "roles"
 end

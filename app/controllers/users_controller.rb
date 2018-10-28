@@ -55,6 +55,6 @@ before_action :check_correct_user, only: [:show, :orders_user]
   end
 
   def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :phone)
+      params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :phone, :role_id)
   end
 end

@@ -14,7 +14,7 @@ class TemplatesController < ApplicationController
   private 
   def check_role_logged
       if logged_in?
-            if current_user.role ==1 
+            if current_user.role.id == 2
                   redirect_to admin_res_path
             end 
       end 

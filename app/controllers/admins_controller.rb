@@ -18,7 +18,7 @@ class AdminsController < ApplicationController
       end 
 
       def list_restaurants
-
+           @restaurants = Restaurant.all
       end
 
       

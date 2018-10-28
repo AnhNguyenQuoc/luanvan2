@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       get '/admin/thong-ke-doanh-thu' => 'admins#statistic_total'
       get '/admin/danh-sach-cua-hang' => 'admins#list_restaurants'
       
-      resources :restaurants, expect: [:show, :index] 
+      delete 'restaurants/:id' => 'restaurants#destroy', as: "restaurant_destroy"
 
       get '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#new'
       get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"

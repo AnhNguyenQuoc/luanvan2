@@ -1,0 +1,11 @@
+<% @restaurants.each do |res| %>
+                                                            <tr>
+                                                                  <td><%= res.name %></td>
+                                                                  <td><%= res.address%></td>
+                                                                  <td><%= res.phone %></td>
+                                                                  <td><%=image_tag res.image, height: '150', width: '150' %></td>
+                                                                  <td>
+                                                                        <%= link_to "<i class='material-icons'>delete</i>".html_safe, restaurant_destroy_path(res), method: :delete, data: {confirm: "Bạn chắc chắn muốn xóa chứ?"} %>           
+                                                                  </td>
+                                                            </tr>
+                                                            <% end %>

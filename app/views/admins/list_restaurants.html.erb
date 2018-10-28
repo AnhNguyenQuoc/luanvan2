@@ -29,31 +29,19 @@
                                           <div class="card blue-grey darken-1">
                                                 <div class="card-content white-text">
                                                 <span class="card-title">Danh sách cửa hàng</span>
-                                                 <table>
+                                                 <table class="centered" id="table-res">
                                                             <thead>
                                                             <tr>
-                                                                  <th>Name</th>
-                                                                  <th>Item Name</th>
-                                                                  <th>Item Price</th>
+                                                                  <th>Tên cửa hàng</th>
+                                                                  <th>Địa chỉ</th>
+                                                                  <th>Phone</th>
+                                                                  <th>Hình ảnh</th>
+                                                                  <th>Hành động</th>
                                                             </tr>
                                                             </thead>
 
-                                                            <tbody>
-                                                            <tr>
-                                                                  <td>Alvin</td>
-                                                                  <td>Eclair</td>
-                                                                  <td>$0.87</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td>Alan</td>
-                                                                  <td>Jellybean</td>
-                                                                  <td>$3.76</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td>Jonathan</td>
-                                                                  <td>Lollipop</td>
-                                                                  <td>$7.00</td>
-                                                            </tr>
+                                                            <tbody id="restaurant">
+                                                                  <%= render 'list_restaurant' %>
                                                             </tbody>
                                                             </table>
             
@@ -77,3 +65,18 @@
       <!-- START FOOTER -->
       <%= render 'admin_restaurants/footer' %>
 
+
+<script>
+$(document).ready(function() {
+  $("#table-res").dataTable({
+        pagingType: "simple",
+        language: {
+            paginate: {
+                previous: "<",
+                next: ">"
+            }
+        },
+        responsive: true
+  });
+});
+</script>

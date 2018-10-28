@@ -35,6 +35,7 @@ gem 'table_print'
  gem 'groupdate'
  gem "chartkick"
  gem 'kaminari'
+ gem 'jquery-datatables'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

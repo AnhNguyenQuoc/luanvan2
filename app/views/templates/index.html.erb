@@ -23,7 +23,7 @@
                                     <li>
                                           <%= link_to "Tạo Cửa hàng", new_restaurant_path %>
                                     </li>
-                                          <% elsif current_user.role == 1%>
+                                          <% elsif current_user.role.id == 1%>
                                           <li><%= link_to "Cửa hàng", cua_hang_path%></li>
                                           <% end %>
                                           

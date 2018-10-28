@@ -1,3 +1,9 @@
+      <script>
+            $(document).ready(function(){
+                  $('.dropdown-button').dropdown();
+            })
+      </script>
+      
       <header class="header" style="background-image: none; height: 55%">
             <div class="header-bar">
                   <nav>
@@ -19,13 +25,10 @@
                               <ul class="right hide-on-med-and-down">
                                     <% if logged_in?%>
 
-                                          <% if current_user.role.id == 2 && !current_user.restaurant %>           
-                                    <li>
-                                          <%= link_to "Tạo Cửa hàng", new_restaurant_path %>
-                                    </li>
-                                          <% elsif current_user.role.id == 1%>
-                                          <li><%= link_to "Cửa hàng", restaurants_path%></li>
-                                          <% end %>
+                                          
+                                          
+                                          <li><%= link_to "Cửa hàng", cua_hang_path%></li>
+                                          
                                           
                                     <li>
                                          <a class="dropdown-button" href="#" data-activates="dropdownnavmenu"><%= current_user.username%><i class="material-icons right">arrow_drop_down</i></a>
@@ -60,7 +63,7 @@
                                           <div class="nav-wrapper">
                                                 <div class="col s12">
                                                       <%= link_to "Home",root_path, class: "breadcrumb"%>
-                                                      <%= link_to "Cửa hàng",restaurants_path, class: "breadcrumb"%>
+                                                      <%= link_to "Cửa hàng",cua_hang_path, class: "breadcrumb"%>
                                                 </div>
                                           </div>
                                     </nav>
@@ -76,7 +79,7 @@
                                           </li>
                                           <% District.all.each do |district|%>
                                           <li>
-                                                <%= link_to district.name, restaurants_path(:find_district => district.id)%>
+                                                <%= link_to district.name, cua_hang_path(:find_district => district.id)%>
                                           </li>
                                           <% end %>
                                     </ul>
@@ -111,10 +114,10 @@
 
                                           <ul id='sapxep' class='dropdown-content'>
                                                 <li>
-                                                      <%= link_to "Theo nhận xét", restaurants_path(:order_rating => "Theo nhận xét")%>
+                                                      <%= link_to "Theo nhận xét", cua_hang_path(:order_rating => "Theo nhận xét")%>
                                                 </li>
                                                 <li>
-                                                     <%= link_to "Từ A - Z", restaurants_path(:order_name => "Từ A - Z")%>
+                                                     <%= link_to "Từ A - Z", cua_hang_path(:order_name => "Từ A - Z")%>
                                                 </li>
                                           </ul>
                                     </div>

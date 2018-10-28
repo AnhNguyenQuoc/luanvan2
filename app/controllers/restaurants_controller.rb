@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.find(params[:id])
       if @restaurant.destroy 
             flash[:success] = "Xóa thành công"
-            redirect_to root_path
+            redirect_to admin_path
       else 
             flash[:danger] = "Có lỗi xảy ra"
       end

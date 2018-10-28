@@ -92,6 +92,7 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-datatables (1.10.19.1)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -225,6 +226,7 @@ DEPENDENCIES
   duktape
   groupdate
   jbuilder (~> 2.5)
+  jquery-datatables
   kaminari
   lightgallery-rails
   material_icons

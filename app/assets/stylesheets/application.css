@@ -15,6 +15,7 @@
  *= require lightgallery
  *= require perfect-scrollbar
   *= require_tree .
+*= require datatables
  *= require_self
  */
 

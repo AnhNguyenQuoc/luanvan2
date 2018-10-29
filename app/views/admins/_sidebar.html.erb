@@ -32,7 +32,7 @@
                                                 <% end %>
                                           </li>
                                           <li class="bold">
-                                                <%= link_to '<i class="material-icons">local_convenience_store</i>
+                                                <%= link_to '<i class="material-icons">store</i>
                                                       <span class="nav-text">Quản lý cửa hàng</span>'.html_safe,  admin_danh_sach_cua_hang_path ,method: :get, class: "waves-effect waves-cyan"%>
                                           </li>
                                           <li class="bold">
@@ -42,9 +42,15 @@
                                                 <% end %>
                                           </li>
                                           <li class="bold">
-                                                <%= link_to root_path, class: "waves-effect waves-cyan", method: :get do %>
-                                                      <i class="material-icons">local_dining</i>
-                                                      <span class="nav-text">Quản lý Sản phẩm</span>
+                                                <%= link_to admin_loai_cua_hang_path, class: "waves-effect waves-cyan", method: :get do %>
+                                                      <i class="material-icons">branding_watermark</i>
+                                                      <span class="nav-text">Quản lý loại cửa hàng</span>
+                                                <% end %>
+                                          </li>
+                                          <li class="bold">
+                                                <%= link_to admin_loai_thuc_an_path, class: "waves-effect waves-cyan", method: :get do %>
+                                                      <i class="material-icons">branding_watermark</i>
+                                                      <span class="nav-text">Quản lý loại sản phẩm</span>
                                                 <% end %>
                                           </li>
                                           <li class="bold">

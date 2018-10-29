@@ -37,6 +37,25 @@ Rails.application.routes.draw do
       get '/admin' => 'admins#index'
       get '/admin/thong-ke-doanh-thu' => 'admins#statistic_total'
       get '/admin/danh-sach-cua-hang' => 'admins#list_restaurants'
+
+      get '/admin/loai-thuc-an' => 'product_types#index'
+      get '/admin/loai-thuc-an/tao-moi' => 'product_types#new'
+      post '/admin/loai-thuc-an/tao-moi' => 'product_types#create'
+
+      get '/admin/loai-thuc-an/:id/sua' => 'product_types#edit', as: "product_type_edit"
+      patch '/admin/loai-thuc-an/:id/sua' => 'product_types#update'
+
+      delete '/admin/loai-thuc-an/:id' => 'product_types#destroy', as: 'product_types_destroy'
+
+      get '/admin/loai-cua-hang' => 'restaurant_types#index'
+
+      get '/admin/loai-cua-hang/tao-moi' => 'restaurant_types#new'
+      post '/admin/loai-cua-hang/tao-moi' => 'restaurant_types#create'
+
+      get '/admin/loai-cua-hang/:id/sua' => 'restaurant_types#edit', as: "restaurant_type_edit"
+      patch '/admin/loai-cua-hang/:id/sua' => 'restaurant_types#update'
+
+      delete '/admin/loai-cua-hang/:id' => 'restaurant_types#destroy', as: 'restaurant_type_destroy'
       
       delete 'restaurants/:id' => 'restaurants#destroy', as: "restaurant_destroy"
 

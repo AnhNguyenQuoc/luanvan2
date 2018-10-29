@@ -1,8 +1,9 @@
-  <style>
+ <style>
       select {
             display: block !important;
       }
- </style>   
+ </style>
+ 
  <%# <meta http-equiv="Refresh" content="30"> %>
  <!-- Start Page Loading -->
       <div id="loader-wrapper">
@@ -21,7 +22,7 @@
             <!-- START WRAPPER -->
             <div class="wrapper">
                   <!-- START LEFT SIDEBAR NAV-->
-                  <%= render 'sidebar' %>
+                  <%= render 'admins/sidebar' %>
                   <!-- END LEFT SIDEBAR NAV-->
                   <!-- //////////////////////////////////////////////////////////////////////////// -->
                   <!-- START CONTENT -->
@@ -33,20 +34,21 @@
                                     <div class="col s12">   
                                           <div class="card blue-grey darken-1">
                                                 <div class="card-content white-text">
-                                                <span class="card-title">Danh sách cửa hàng</span>
-                                                 <table class="centered" id="table-res">
+                                                <span class="card-title">Danh sách loại thức ăn</span>
+                                                <%= link_to admin_loai_thuc_an_tao_moi_path, class: "waves-effect waves-light btn", method: :get do %>
+                                                      <i class="material-icons left">add_box</i>Tạo
+                                                <% end %>
+                                                 <table class="centered" id="table-product-type">
                                                             <thead>
                                                             <tr>
-                                                                  <th>Tên cửa hàng</th>
-                                                                  <th>Địa chỉ</th>
-                                                                  <th>Phone</th>
-                                                                  <th>Hình ảnh</th>
+                                                                  <th>#</th>
+                                                                  <th>Tên</th>
                                                                   <th>Hành động</th>
                                                             </tr>
                                                             </thead>
 
-                                                            <tbody id="restaurant">
-                                                                  <%= render 'list_restaurant'%>
+                                                            <tbody id="product-type">
+                                                                  <%= render partial: 'list_product_types' %>
                                                             </tbody>
                                                             </table>
             
@@ -73,7 +75,7 @@
 
 <script>
 $(document).ready(function() {
-  $("#table-res").dataTable({
+  $("#table-product-type").dataTable({
         pagingType: "simple",
         language: {
             paginate: {
@@ -83,10 +85,10 @@ $(document).ready(function() {
         },
         responsive: true,
         language: {
-              lengthMenu: "Hiển thị _MENU_ cửa hàng mỗi trang",
-              zeroRecords: "Không có cửa hàng nào",
+              lengthMenu: "Hiển thị _MENU_ loại thức ăn mỗi trang",
+              zeroRecords: "Không có loại thức ăn nào",
               info: "Đang hiện _PAGE_ trang trên _PAGES_",
-              infoEmpty: "Không có cửa hàng",
+              infoEmpty: "Không có loại thức ăn",
               search: "Tìm Kiếm:",
               paginate: {
                     first: "Đầu tiên",

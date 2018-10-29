@@ -1,0 +1,10 @@
+                                                                  <tr>
+                                                                        <th style="text-align: center"><%= t.id %></th>
+                                                                        <th style="text-align: center"><%= t.name %></th>
+                                                                        <th style="text-align: center">
+                                                                              <%= link_to "<i class='material-icons'>edit</i>".html_safe, product_type_edit_path(t), method: :get %>
+                                                                               
+                                                                               <%= link_to "<i class='material-icons'>delete</i>".html_safe, product_types_destroy_path(t), method: :delete, remote: true, data: {confirm: "Bạn chắc chắn chứ?"} %>
+                                                                                
+                                                                        </th>
+                                                                  </tr>

@@ -1,0 +1,16 @@
+ <% @orders.each do |order| %>
+                                                                  <tr>
+                                                                        <th style="text-align: center"><%= order.buyer.username %></th>
+                                                                        <th style="text-align: center"><%= order.total_all_price %></th>
+                                                                        <th style="text-align: center"><%= order.shipper.username unless order.shipper.nil? %></th>
+                                                                        <th style="text-align: center"><%= order.order_type.name %></th>
+                                                                        <th style="text-align: center">
+                                                                              <% if order.order_type.id == 2%>
+                                                                              <%= link_to "Chọn shipper", shipper_edit_path(order), method: :get %>
+                                                                             <% end %>
+                                                                        </th>
+                                                                        <th style="text-align: center">
+                                                                              <%= link_to " <i class='material-icons'>delete</i>".html_safe, order_destroy_path(order), method: :delete, data: {confirm: "Bạn có chắc chứ?" }%>
+                                                                        </th>
+                                                                  </tr>
+                                                                  <% end %>

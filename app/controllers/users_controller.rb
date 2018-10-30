@@ -26,6 +26,19 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   end 
 
+  def admin_create
+      @user = User.create(user_params)
+      if @user.save 
+            flash[:success] = "Đã tạo tài khoản thành công"
+            redirect_to admin_danh_sach_nguoi_dung_path
+      else 
+            redirect_back(fallback_location: admin_danh_sach_nguoi_dung_path)
+            flash[:danger] = "Có lỗi xảy ra"
+      end 
+
+  end 
+
+
   def edit 
       @user = User.find(params[:id])
   end 
@@ -46,6 +59,12 @@ before_action :check_correct_user, only: [:show, :orders_user]
       @orders = @user.buyer_order
    end
    
+
+   def destroy 
+      @users = User.where.not(id: current_user.id)
+      @user = User.find(params[:id])
+      @user.destroy
+   end
 
   private
 

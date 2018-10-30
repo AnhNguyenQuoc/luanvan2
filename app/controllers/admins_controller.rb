@@ -10,6 +10,23 @@ class AdminsController < ApplicationController
             @users = User.order('created_at DESC').limit(5)
       end
 
+      def list_user
+            @users = User.where.not(id: current_user.id)
+      end
+
+      def update_shipper
+            @order = Order.find(params[:id])
+      end
+      
+      def list_order
+
+            @orders = Order.where.not(order_type_id: 1)
+      end
+
+      def user_create
+            @user = User.new 
+      end
+
 
       def statistic_total
             @total_per_day = Order.where("orders.order_type_id = 3").group_by_day('orders.created_at').sum(:feeship)

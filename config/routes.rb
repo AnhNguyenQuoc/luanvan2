@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post '/signup' => 'users#create'
       resources :users, only: [:edit, :update]
 
+
       get 'users/:id/orders' => 'users#orders_user', as: "order_user"
 
       get '/login', to: 'sessions#new'
@@ -33,10 +34,21 @@ Rails.application.routes.draw do
       get '/admin-res/danh-sach-don-hang' => 'admin_restaurants#list_order'
       get '/admin-res/danh-sach-mon-an' => 'admin_restaurants#list_product'
 
+      get '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#new'
+      get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"
+
 
       get '/admin' => 'admins#index'
       get '/admin/thong-ke-doanh-thu' => 'admins#statistic_total'
       get '/admin/danh-sach-cua-hang' => 'admins#list_restaurants'
+      get '/admin/danh-sach-nguoi-dung' => 'admins#list_user'
+      get '/admin/danh-sach-nguoi-dung/tao-moi' => 'admins#user_create'
+      get '/admin/danh-sach-don-hang' => 'admins#list_order'
+      get '/admin/danh-sach-don-hang/:id' => 'admins#update_shipper', as: "shipper_edit"
+      patch 'admin/danh-sach-don-hang/:id' => 'orders#update_shipper', as: "update_shipper"
+
+      post '/admin/danh-sach-nguoi-dung/tao-moi' => 'users#admin_create'
+      delete 'admin/danh-sach-nguoi-dung/:id' => 'users#destroy', as: "admin_user_destroy"
 
       get '/admin/loai-thuc-an' => 'product_types#index'
       get '/admin/loai-thuc-an/tao-moi' => 'product_types#new'
@@ -57,10 +69,12 @@ Rails.application.routes.draw do
 
       delete '/admin/loai-cua-hang/:id' => 'restaurant_types#destroy', as: 'restaurant_type_destroy'
       
+    
+      
       delete 'restaurants/:id' => 'restaurants#destroy', as: "restaurant_destroy"
+      
 
-      get '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#new'
-      get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"
+
       delete 'products/:id' => 'products#destroy', as: "product_destroy"
 
       patch 'products/:id/edit' => 'products#update', as: 'product_edit'

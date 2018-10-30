@@ -1,0 +1,12 @@
+<% @users.each do |user| %>
+                                                                        <tr>
+                                                                              <th style="text-align: center"><%= user.username%></th>
+                                                                              <th style="text-align: center"><%= user.email %></th>
+                                                                              <th style="text-align: center"><%= user.address%></th> 
+                                                                              <th style="text-align: center"><%= user.phone %></th>
+                                                                              <th style="text-align: center"><%= user.role.name %></th>
+                                                                              <th style="text-align: center">
+                                                                                    <%= link_to "<i class='material-icons'>delete</i>".html_safe, admin_user_destroy_path(user), method: :delete, remote: true,  data: {confirm: "Bạn có chắc chắn chứ?"}%>
+                                                                              </th>
+                                                                        </tr>
+                                                                  <% end %>

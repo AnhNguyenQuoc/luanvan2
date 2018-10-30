@@ -20,4 +20,8 @@ class Order < ApplicationRecord
             line_items << item
         end
       end
+
+      def total_all_price
+            total + feeship
+      end
 end

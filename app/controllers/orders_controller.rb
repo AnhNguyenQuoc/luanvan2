@@ -48,6 +48,14 @@ class OrdersController < ApplicationController
             flash[:success] = "Xóa thành công"
              redirect_back fallback_location: root_path
       end
+
+      def update_shipper
+            @order = Order.find(params[:id])
+            @order.update_attribute(:shipper_id, params[:order][:shipper_id])
+            flash[:success] = "Cập nhật Shipper thành công"
+            redirect_to  admin_danh_sach_don_hang_path
+      end
+
       private
 
       def stripe_params

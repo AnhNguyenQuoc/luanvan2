@@ -9,7 +9,15 @@
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      
-     <script>
+     
+  </head>
+
+  <body>    
+     <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
+       <% end %>
+    <%= yield %>
+   <script>
 
 
             $(document).ready(function () {
@@ -38,13 +46,5 @@
                    
             });
       </script>
-  </head>
-
-  <body>    
-     <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
-       <% end %>
-    <%= yield %>
-   
   </body>
 </html>

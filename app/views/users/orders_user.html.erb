@@ -1,27 +1,64 @@
+<%= render 'layout_extends/header' %>
 
+      <section class="main-profile">
+            <div class="container">
+                  <div class="row">
+                        <div class="col-12">
+                              <nav>
+                                    <div class="nav-wrapper" style="background: #5DC1BF;">
+                                          <div class="col s12">
+                                                <%= link_to "Home", root_path, class: "breadcrumb"%>
+                                                <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "breadcrumb"%>
+                                          </div>
+                                    </div>
+                              </nav>
+                        </div>
+                  </div>
+            </div>
+            <div>
+                  <div class="row">
+                        <div class="s3 col">
+                              <div class="collection list-in-profile ml-1">
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
+                              </div>
+                        </div>
+                        <div class="col s9">
+                              <table>
+                                    <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>Tổng tiền</th>
+                                          <th>Hình thức thanh toán</th>
+                                    </tr>
+                                    </thead>
 
-
-      <table>
-        <thead>
-          <tr>
-              <th>#</th>
-              <th>Tổng tiền</th>
-              <th>Hình thức thanh toán</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        <% @orders.each do |order|%>
-          <tr>
-            <td>1</td>
-            <td><%= order.total %></td>
-            <td><%= order.payments %></td>
-          </tr>
-      
-      <% end %>
+                                    <tbody>
+                                    <% @orders.each do |order|%>
+                                    <tr>
+                                          <td>1</td>
+                                          <td><%= number_to_currency_vnd(order.total) %></td>
+                                          <td><%= order.order_type.name %></td>
+                                    </tr>
+                              
+                              <% end %>
       
           
-        </tbody>
-      </table>
-            
+                              </tbody>
+                        </table>
+             </div>
+                  </div>
+            </div>
+
+      </section>
+
+
+
+
+
+
+
+
+<%= render 'layout_extends/footer' %>
+
 

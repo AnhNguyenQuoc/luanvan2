@@ -3,6 +3,14 @@
                   $('.dropdown-button').dropdown();
             })
       </script>
+      <style>
+            #loading{
+                  margin-left: 30%;
+                  margin-top: 10%;
+                  width: 50%;
+            }
+
+      </style>
       
       <header class="header" style="background-image: none; height: 55%">
             <div class="header-bar">
@@ -75,11 +83,11 @@
                                     <!-- Dropdown Structure -->
                                     <ul id='dropdown1' class='dropdown-content'>
                                           <li>
-                                                <a>Tất cả</a>
+                                                <%= link_to "Tất cả", cua_hang_path(:find_district => ""), remote: true, data: {disable_with: "Loading ....."}%>
                                           </li>
                                           <% District.all.each do |district|%>
                                           <li>
-                                                <%= link_to district.name, cua_hang_path(:find_district => district.id)%>
+                                                <%= link_to district.name, cua_hang_path(:find_district => district.id), remote: true, data: {disable_with: "Loading ....."}%>
                                           </li>
                                           <% end %>
                                     </ul>
@@ -89,22 +97,15 @@
                                           <a class='dropdown-button btn' data-activates='loaicuahang' style="width: 100%;">Chọn Loại Cửa Hàng</a>
 
 
-                                          <ul id='loaicuahang' class='dropdown-content'>
+                                          <ul id='loaicuahang' class='dropdown-content' style="width: 90%">
                                                 <li>
-                                                      <a>Quận Ninh Kiều</a>
+                                                      <%= link_to "Tất cả", cua_hang_path(:find_district => ""), remote: true, data: {disable_with: "Loading ....."}%>
                                                 </li>
-                                                <li>
-                                                      <a>Quận Bình Thủy</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Cái Răng</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Ô Môn</a>
-                                                </li>
-                                                <li>
-                                                      <a>Quận Thốt Nốt</a>
-                                                </li>
+                                                <% RestaurantType.all.each do |r| %>
+                                               <li>
+                                                     <%= link_to r.name, cua_hang_path(:find_type => r.id), remote: true, data: {disable_with: "Loading ....."}%>
+                                               </li>
+                                               <% end %>
                                           </ul>
                                     </div>
                                     
@@ -112,18 +113,18 @@
                                           <a class='dropdown-button btn' data-activates='sapxep' style="width: 100%;">Sắp xếp</a>
 
 
-                                          <ul id='sapxep' class='dropdown-content'>
+                                          <ul id='sapxep' class='dropdown-content' style="width: 90%">
                                                 <li>
-                                                      <%= link_to "Theo nhận xét", cua_hang_path(:order_rating => "Theo nhận xét")%>
+                                                      <%= link_to "Theo nhận xét", cua_hang_path(:order_rating => "Theo nhận xét"), remote: true, data: {disable_with: "Loading ....."}%>
                                                 </li>
                                                 <li>
-                                                     <%= link_to "Từ A - Z", cua_hang_path(:order_name => "Từ A - Z")%>
+                                                     <%= link_to "Từ A - Z", cua_hang_path(:order_name => "Từ A - Z"), remote: true, data: {disable_with: "Loading ....."}, id: "atoz"%>
                                                 </li>
                                           </ul>
                                     </div>
                               </div>
                               <div class="row">
-                                    <%= form_tag cua_hang_path,remote: true,method: :get,:id => 'form-search' do |f| %> 
+                                    <%= form_tag cua_hang_path,remote: true,method: :get,:id => 'form-search', remote: true, id: "search" do |f| %> 
                                           <div class="row">
                                                 
                                                 <div class="input-field col s10">
@@ -132,7 +133,7 @@
                                                       </div>
                                                       <div class="input-field col s2">
                                                        
-                                                            <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search") do %>
+                                                            <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search", data: {disable_with: "Loading ....."}) do %>
                                                                   <i class="material-icons">search</i>
                                                             <%end%>
                                                       </div> 
@@ -149,11 +150,14 @@
 
 
 
-            <section class="list-restaurant">
+      <section class="list-restaurant">
             <div class="container" style="width: 80%">
                   <div class="row" >
-        <div id="restaurants">
-                        <%= render 'restaurants' %>
+                        <div class="progress" id="loading">
+                                    <div class="indeterminate"></div>
+                        </div>
+                        <div id="restaurants">
+                              <%= render 'restaurants' %>
                         </div>
                   </div>
             </div>

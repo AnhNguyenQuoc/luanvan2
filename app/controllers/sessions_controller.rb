@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
                      redirect_to admin_res_path
                   elsif user.role.id == 4
                         redirect_to admin_path
-                  else 
+                  elsif user.role.id == 1 
                      redirect_to root_path
                   end
             else

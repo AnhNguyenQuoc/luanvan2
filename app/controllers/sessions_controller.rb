@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
                      redirect_to admin_res_path
                   elsif user.role.id == 4
                         redirect_to admin_path
+                  elsif user.role.id == 3
+                        redirect_to admin_shipper_path
                   elsif user.role.id == 1 
                      redirect_to root_path
                   end

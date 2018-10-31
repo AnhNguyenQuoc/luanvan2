@@ -6,12 +6,13 @@ class RestaurantsController < ApplicationController
       end
 
   def index
-      @restaurants = Restaurant.all if params[:all].present?
-      @restaurants = Restaurant.find_district(params[:find_district]) if params[:find_district].present?
-      @restaurants = Restaurant.starts_with(params[:starts_with]) if params[:starts_with].present?
-      @restaurants = Restaurant.order_rating if params[:order_rating].present?
-      @restaurants = Restaurant.order_name if params[:order_name].present?
-      @restaurants = Restaurant.find_type(params[:find_type]) if params[:find_type].present?
+      @restaurants = Restaurant.all.page(params[:page])
+      @restaurants = Restaurant.all.page(params[:page]) if params[:all].present?
+      @restaurants = Restaurant.find_district(params[:find_district]).page(params[:page]) if params[:find_district].present?
+      @restaurants = Restaurant.starts_with(params[:starts_with]).page(params[:page]) if params[:starts_with].present?
+      @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
+      @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
+      @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
   end
 
   def show

@@ -33,7 +33,7 @@ $(window).on("load", function () { setTimeout(function () { $("body").addClass("
 
 $(document).ready(function () {
       $('#loading').hide();
-      //form id
+      // //form id
       $('#search')
             .bind('ajax:before', function (evt, data, status, xhr) {
                   //function called on status: 200 (for ex.)

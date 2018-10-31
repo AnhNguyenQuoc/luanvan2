@@ -55,6 +55,13 @@ class OrdersController < ApplicationController
             flash[:success] = "Cập nhật Shipper thành công"
             redirect_to  admin_danh_sach_don_hang_path
       end
+      
+      def update_complete
+            @order = Order.find(params[:id])
+            @order.update_attribute(:order_type_id, 3)
+            flash[:success] = "Hoàn tất đơn hàng"
+            redirect_to admin_shipper_path
+      end
 
       private
 

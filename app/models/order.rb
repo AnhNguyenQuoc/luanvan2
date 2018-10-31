@@ -16,7 +16,7 @@ class Order < ApplicationRecord
       def add_line_item_from_cart(cart)
         cart.line_items.each do |item|
             product = Product.find_by(id: item.product)
-            item.cart_id = nilra
+            item.cart_id = nil
             line_items << item
         end
       end

@@ -1,0 +1,2 @@
+module AdminShippersHelper
+end

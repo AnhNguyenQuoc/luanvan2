@@ -29,9 +29,9 @@ class AdminsController < ApplicationController
 
 
       def statistic_total
-            @total_per_day = Order.where("orders.order_type_id = 3").group_by_day('orders.created_at').sum(:feeship)
-            @total_per_month =  Order.where("orders.order_type_id = 3").group_by_month('orders.created_at').sum(:feeship)
-            @total_per_year =  Order.where("orders.order_type_id = 3").group_by_year('orders.created_at').sum(:feeship)
+            @total_per_day = Order.where("orders.order_type_id = 3").group_by_day('orders.updated_at').sum(:feeship)
+            @total_per_month =  Order.where("orders.order_type_id = 3").group_by_month('orders.updated_at').sum(:feeship)
+            @total_per_year =  Order.where("orders.order_type_id = 3").group_by_year('orders.updated_at').sum(:feeship)
       end 
 
       def list_restaurants

@@ -1,0 +1,103 @@
+ <%# <meta http-equiv="Refresh" content="30"> %>
+ <!-- Start Page Loading -->
+      <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+      </div>
+      <!-- End Page Loading -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START HEADER -->
+     <%= render 'admin_restaurants/header' %>
+      <!-- END HEADER -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START MAIN -->
+      <div id="main">
+            <!-- START WRAPPER -->
+            <div class="wrapper">
+                  <!-- START LEFT SIDEBAR NAV-->
+                  <%= render 'sidebar' %>
+                  <!-- END LEFT SIDEBAR NAV-->
+                  <!-- //////////////////////////////////////////////////////////////////////////// -->
+                  <!-- START CONTENT -->
+                  <section id="content">
+                        <!--start container-->
+                        <div class="container">
+                              <!--card stats start-->
+                                          <div id="card-widgets">
+              <div class="row">
+                <% if @orders.count == 0 %>
+                  <p class="text-flow"> Hiện tại không có đơn hàng nào </p>
+                  <% else%>
+                <% @orders.each do |order|%>
+                <div class="col s12 m4 l4">
+                  <div id="profile-card" class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <%= image_tag "33.png", class: "activator", alt: "user bg"%>
+                    </div>
+                    <div class="card-content">
+                      <%= image_tag 'avatar-7.png', class: "circle responsive-img activator card-profile-image cyan lighten-1 padding-2", alt: ""%>
+                      <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
+                        <i class="material-icons">local_dining</i>
+                      </a>
+                      <span class="card-title activator grey-text text-darken-4"><%= order.buyer.username %></span>
+                      <p>
+                        
+                        <i class="material-icons">perm_phone_msg</i> <%= order.buyer.phone%></p>
+                      <p>
+                        <i class="material-icons">arrow_forward</i> <%= order.buyer.address %></p>
+                      <p>
+                        <i class="material-icons">label</i> <%= number_to_currency_vnd(order.total_all_price) %></p>
+                        <p>
+                        <i class="material-icons">payment</i> 
+                        <% if order.payments == 1%>
+                              COD 
+                        <% else %>
+                              Chuyển khoản ( hoàn tất )
+                        <% end %>
+                        </p>
+                        <p><%= link_to "Hoàn tất",order_update_complete_path(order), method: :post, class: 'btn' %></p>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4"><%= order.products.first.restaurant.name%>
+                        <i class="material-icons right">close</i>
+                      </span>
+                      <p>
+                        <i class="material-icons">arrow_forward</i> <%= order.products.first.restaurant.address %></p>
+                      <p>
+                      <p>Danh sách đơn hàng.</p>
+                      <% order.line_items.each do |item|%>
+                      <p>
+                        <i class="material-icons">room_service</i> <%= item.product.name%> x <%= item.quantity %></p>
+                        
+                        <% end %>
+                        
+                      <p>
+                        Tổng cộng : <%= number_to_currency_vnd(order.total)%>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <% end %>
+            <% end %>
+              </div>
+              
+            </div>
+            
+                              <!-- //////////////////////////////////////////////////////////////////////////// -->
+                        </div>
+                        <!--end container-->
+                  </section>
+                  <!-- END CONTENT -->
+                  <!-- START RIGHT SIDEBAR NAV-->
+
+                  <!-- END RIGHT SIDEBAR NAV-->
+            </div>
+            <!-- END WRAPPER -->
+      </div>
+      <!-- END MAIN -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START FOOTER -->
+      <%= render 'admin_restaurants/footer' %>
+

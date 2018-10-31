@@ -50,7 +50,7 @@
                                           </div>
                                     <% end %>
                                           <div class="col s4 offset-s4">
-                                          <%= link_to "Tạo thức ăn", admin_res_danh_sach_mon_an_them_san_pham_path, class: "btn" %>
+                                          <%= link_to "Tạo thức ăn", admin_res_danh_sach_mon_an_them_san_pham_path, class: "btn", method: :get %>
                                     </div>
                                     </div>
                               </div>
@@ -73,6 +73,7 @@
                                                        <%= render partial: 'list_product' %>
                                                 </tbody>
                                           </table>
+                                          <%= paginate @products %>
                                     </div>
                               </div>
 

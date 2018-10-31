@@ -26,7 +26,7 @@
                               <h4> Cập nhật thông tin cửa hàng </h4>
                               <!--card stats start-->
                               <div class="col offset-m2 m10">
-                                    <%= form_for :restaurant, :html => {:class => "col s12"} do |f| %>
+                                    <%= form_for @restaurant, url: res_edit_path, method: :patch, :html => {:class => "col s12"} do |f| %>
 
                                     <div class="row">
                                           <div class="input-field col s12">

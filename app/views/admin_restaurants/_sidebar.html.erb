@@ -33,7 +33,7 @@
                                           </li>
                                           <li class="bold">
                                                 <%= link_to '<i class="material-icons">local_convenience_store</i>
-                                                      <span class="nav-text">Quản lý cửa hàng</span>'.html_safe,  admin_res_sua_thong_tin_path, method: :get, class: "waves-effect waves-cyan"%>
+                                                      <span class="nav-text">Quản lý cửa hàng</span>'.html_safe, admin_res_edit_path(current_user.restaurant), method: :get, class: "waves-effect waves-cyan"%>
                                           </li>
                                           <li class="bold">
                                                 <%= link_to admin_res_danh_sach_don_hang_path,class: "waves-effect waves-cyan", method: :get do %>

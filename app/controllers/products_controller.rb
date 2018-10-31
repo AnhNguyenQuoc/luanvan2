@@ -17,10 +17,8 @@ class ProductsController < ApplicationController
             @product.image.attach(params[:product][:image])
             @product.restaurant_id = current_user.restaurant.id 
             if @product.save 
-                  flash[:success] = "Tạo sản phẩm thành công"
-                  if current_user.role == 1
-                        redirect_to admin_res_danh_sach_mon_an_path
-                  end
+                  flash[:success] = "Tạo sản phẩm thành công"  
+                  redirect_to admin_res_danh_sach_mon_an_path
             else 
                   flash[:danger] = 'Lỗi xảy ra'
                   render 'new'

@@ -31,9 +31,9 @@ class AdminRestaurantsController < ApplicationController
       
       def list_product
             if params[:search]
-                  @products = current_user.restaurant.products.search(params[:search])
+                  @products = current_user.restaurant.products.search(params[:search]).page params[:page]
             else
-                  @products = current_user.restaurant.products
+                  @products = current_user.restaurant.products.page params[:page]
             end
       end
 

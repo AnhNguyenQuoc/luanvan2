@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       get '/cua-hang/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
 
       get '/admin-res' => 'admin_restaurants#index'
-      get '/admin-res/sua-thong-tin' => 'restaurants#edit'
+      get '/admin-res/:id/sua-thong-tin/' => 'restaurants#edit',as: "admin_res_edit"
+      patch '/admin-res/:id/sua-thong-tin' => 'restaurants#update', as: "res_edit"
       get '/admin-res/thong-ke-doanh-thu' => 'admin_restaurants#statistic_total'
       get '/admin-res/danh-sach-don-hang' => 'admin_restaurants#list_order'
       get '/admin-res/danh-sach-mon-an' => 'admin_restaurants#list_product'
@@ -74,7 +75,9 @@ Rails.application.routes.draw do
       
       get '/admin-shipper/danh-sach-don-hang' => 'admin_shippers#list_order'
       
-      
+      get '/tao-cua-hang' => 'restaurants#new'
+      post '/tao-cua-hang' => 'restaurants#create', as: 'restaurant_create'
+
       delete 'restaurants/:id' => 'restaurants#destroy', as: "restaurant_destroy"
       
       
@@ -86,4 +89,5 @@ Rails.application.routes.draw do
       post '/orders/:id/change_status' => 'orders#change_status', as: "orders_change_status"
       delete '/orders/:id' => 'orders#destroy', as: "order_destroy"
 
+      delete '/comments/:id' => 'comments#destroy', as: "comment_destroy"
 end

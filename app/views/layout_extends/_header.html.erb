@@ -17,7 +17,7 @@
                                     <i class="material-icons">menu</i>
                               </a>
                               <ul class="right hide-on-med-and-down">
-                                    <% if logged_in?%>
+                                    <% if logged_in? && current_user.role.id == 1%>
 
 
                                           <li><%= link_to "Cửa hàng", cua_hang_path%></li>

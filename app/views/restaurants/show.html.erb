@@ -59,16 +59,19 @@
                               <div class="menu-item mt-3">
                               <% @products.each do |p|%>
                                     <div class="col s6 m4">
-                                          <div class="card">
+                                          <div class="card" style="height: 350px">
                                                 <div class="card-image waves-effect waves-block waves-light">
                                                       <%= image_tag p.image, class: "activator", style: "height: 100px"%>
                                                 </div>
                                                 <div class="card-content">
-                                                      <span class="card-title activator grey-text text-darken-4"><%= p.name %><i class="material-icons right">more_vert</i></span>
+                                                      <span class="card-title activator grey-text text-darken-4" style="font-size: 80%"><%= p.name %><i class="material-icons right">more_vert</i></span>
                                                       <div class="divider"></div>
                                                       <span><%= number_to_currency_vnd(p.price) %></span>
                                                       <%# <p><button class=''>Đặt Hàng</button></p> %>
-                                                      <p><%= link_to "Đặt hàng",  line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true,  :class => "blue waves-effect waves-light btn"%></p>
+                                                      
+                                                </div>
+                                                <div class="card-action">
+                                                <p><%= link_to "Đặt hàng",  line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true,  :class => "blue waves-effect waves-light btn"%></p>
                                                 </div>
                                                 <div class="card-reveal">
                                                       <span class="card-title grey-text text-darken-4"><%= p.name %><i class="material-icons right">close</i></span>

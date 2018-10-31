@@ -40,7 +40,7 @@ class RestaurantsController < ApplicationController
       @restaurant.user_id = current_user.id
       if @restaurant.save
             flash[:success] = "Tạo cửa hàng thành công"
-            redirect_to root_path
+            redirect_to admin_res_path
       else 
             flash[:danger] = "Có lỗi xảy ra"
             render 'new'

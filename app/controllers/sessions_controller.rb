@@ -11,12 +11,16 @@ class SessionsController < ApplicationController
                   log_in(user)
                   flash[:success] = "Đăng nhập thành công"
                   if user.role.id == 2
-                     redirect_to admin_res_path
+                        if user.restaurant.nil?
+                              redirect_to tao_cua_hang_path
+                        else 
+                              redirect_to admin_res_path
+                        end
                   elsif user.role.id == 4
                         redirect_to admin_path
                   elsif user.role.id == 3
                         redirect_to admin_shipper_path
-                  elsif user.role.id == 1 
+                  else
                      redirect_to root_path
                   end
             else

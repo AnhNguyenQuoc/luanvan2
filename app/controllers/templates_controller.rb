@@ -16,6 +16,10 @@ class TemplatesController < ApplicationController
       if logged_in?
             if current_user.role.id == 2
                   redirect_to admin_res_path
+            elsif current_user.role.id == 3
+                  redirect_to admin_shipper_path
+            elsif current_user.role.id == 4
+                  redirect_to admin_path
             end 
       end 
   end

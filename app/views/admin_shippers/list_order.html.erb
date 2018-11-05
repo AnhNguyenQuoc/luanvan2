@@ -39,6 +39,7 @@
                                                                   <th>Tổng tiền</th>
                                                                   <th>Cửa hàng</th>
                                                                   <th>Danh sách sản phẩm</th>
+                                                                  <th>Ngày hoàn thành</th>
                                                             </tr>
                                                             </thead>
 
@@ -46,7 +47,7 @@
                                                                 <% @orders.each do |order|%>
                                                                   <tr>
                                                                         <th style="text-align: center"><%= order.buyer.username %></th>
-                                                                        <th style="text-align: center"><%= order.buyer.phone %></th>
+                                                                        <th style="text-align: center"><%= number_to_phone_vn(order.buyer.phone) %></th>
                                                                         <th style="text-align: center"><%= number_to_currency_vnd(order.total_all_price) %></th>
                                                                         <th style="text-align: center"><%= order.products.first.restaurant.name %></th>
                                                                         <th style="text-align: center">
@@ -61,6 +62,9 @@
                                                                                           <% end %>
                                                                                     </div>
                                                                               </div>
+                                                                        </th>
+                                                                        <th style="text-align: center">
+                                                                              <%= order.updated_at.strftime('%e-%m-%C')%>
                                                                         </th>
                                                                   </tr>
                                                                <% end %>

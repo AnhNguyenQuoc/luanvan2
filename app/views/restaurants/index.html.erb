@@ -32,9 +32,6 @@
                               </a>
                               <ul class="right hide-on-med-and-down">
                                     <% if logged_in?%>
-
-                                          
-                                          
                                           <li><%= link_to "Cửa hàng", cua_hang_path%></li>
                                           
                                           
@@ -157,7 +154,7 @@
                                     <div class="indeterminate"></div>
                         </div>
                         <div id="restaurants">
-                              <%= render 'restaurants' %>
+                              <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
                               <%= paginate @restaurants %>
                         </div>
                   </div>

@@ -1,8 +1,10 @@
 class RestaurantsController < ApplicationController
 
+   before_action :check_logged
+
    before_action :current_cart, only: [:show]
       rescue_from ActiveRecord::RecordNotFound do |exception|
-            redirect_to restaurants_path
+            redirect_to cua_hang_path
       end
 
   def index
@@ -85,6 +87,13 @@ end
 
   private
 
+  def check_logged
+      unless logged_in?
+        flash.now[:info] = "Vui lòng đăng nhập để đặt hàng"
+        redirect_to login_path 
+      end
+  end
+  
 
   def restaurant_params
         params.require(:restaurant).permit(:name, :phone, :address, :description, :timeopen, :timeclose, :district_id, :restaurant_type_id)

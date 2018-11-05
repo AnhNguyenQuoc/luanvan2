@@ -16,17 +16,7 @@ class AdminRestaurantsController < ApplicationController
 
 
       def list_order
-            if params[:uncheck]
-                  @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).order('updated_at DESC').uncheck.page(params[:page])
-            elsif params[:check]
-                  @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).order('updated_at DESC').check.page(params[:page])
-            elsif params[:complete]
-                  @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).order('updated_at DESC').complete.page(params[:page])
-            elsif params[:search]
-                  @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).order('updated_at DESC').search(params[:search]).page(params[:page])
-            else 
-                  @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).order('updated_at DESC').page(params[:page])
-            end
+            @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group("orders.id").order('updated_at DESC')
       end
       
       def list_product

@@ -59,10 +59,11 @@
             <div class="container background">
                   <div class="row">
                         <div class="col s6 left-background">
-                              <h1>Your favourite restaurants, delivered fast to your door.</h1>
+                              <h1>Chọn cửa hàng, đồ ăn sẽ đến bên bạn ngay.</h1>
                               <div>
-                                    <a class="waves-effect waves-light btn">
-                                          <i class="material-icons left">local_dining</i>Cửa hàng</a>
+                                    <%= link_to cua_hang_path, class: "waves-effect waves-light btn" do %>
+                                          <i class="material-icons left">local_dining</i>Cửa hàng
+                                    <% end %>
                               </div>
                         </div>
                   </div>
@@ -73,7 +74,7 @@
             <div class="container mt-5" style="width: 80%">
                   <div class="row">
                         <div class="col s12 m5">
-                              <h1>Có gì trong menu?</h1>
+                              <div class="blockHead"><span class="blocktext">Chúng tôi có những gì</span></div>
                         </div>
                   </div>
             </div>
@@ -146,75 +147,63 @@
       </section>
 
 <%# Section 2%>
-   <section class="menu2 mt-5 mb-5">
-            <div class="container mb-5" style="width: 80%">
-                  <div class="row">
-                        <div class="col m6 s12 text-menu2">
-                              <h3>Loved by you, delivered by us</h3>
-                        </div>
-                  </div>
+   <section class="menu3">
+        <div class="container" style="width: 80%">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="blockHead"><span class="blocktext">Cần thêm lựa chọn?</span></div>
+                </div>
             </div>
-            <div class="container main-menu2 section" style="width: 80%">
-                  <div class="row">
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                    <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                   <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                    <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                    <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                    <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                        <div class="col m4 s12">
-                              <div class='image-menu2'>
-                                    <%= image_tag "menu6.jpg", class: "responsive-img"%>
-                                    <h4 class="font-weight-bold">Mì cay</h4>
-                                    <span>Pure indulgence that can turn an ordinary day into an unforgettable one. Comfort food
-                                          its very best.</span>
-                              </div>
-                        </div>
-                  </div>
-            </div>
-      </section>
+            <ul class="list-inline">
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">Chinese</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">italian</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">greek</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">thai</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">pizza</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">dessert</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">breakfast</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">american</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">mexican</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">lebanese</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">sushi</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">vegetarian</a>
+                </li>
+                <li class="list-inline-item text-menu3 mt-3 mb-3">
+                    <a target="_blank" href="#">halal</a>
+                </li>
+            </ul>
+        </div>
+    </section>
 <%# Section 3 %>
 
       <section class="menu4 mb-5">
             <div class="container" style="width: 80%">
                   <div class="row mb-5">
-                        <div class="col m6 s12 text-menu2 mt-5">
-
-                              <h3>Work with DeliverFoo</h3>
+                        <div class="col m6 s12 mt-5">
+                              <div class="blockHead"><span class="blocktext">Làm việc với chúng tôi</span></div>
                         </div>
                   </div>
                   <div class="row">
@@ -222,11 +211,11 @@
                               <div class="card">
                                     <div class="card-image">
                                           <%= image_tag "deliveryman.jpg", class: "responsive-img", alt: "deliveryman"%>
-                                          <span class="card-title">Shipper</span>
+                                          <span class="card-title">Người giao hàng</span>
                                     </div>
                                     <div class="card-content">
-                                          <p>Become a rider and enjoy the freedom to fit work around your life. Plus great fees,
-                                                perks and discounts.
+                                          <p>
+                                                Trở thành một người giao hàng để tận hưởng môi trường làm việc thoải mái xung quanh cuộc sống của bạn.
                                           </p>
                                     </div>
                                     <div class="card-action">
@@ -238,12 +227,11 @@
                               <div class="card">
                                     <div class="card-image">
                                           <%= image_tag "restaurant.jpg", class: "responsive-img", alt: "restaurant"%>
-                                          <span class="card-title">Restaurants</span>
+                                          <span class="card-title">Doanh nghiệp</span>
                                     </div>
 
                                     <div class="card-content">
-                                          <p class="card-text">Partner with Deliveroo and reach more customers than ever. We handle delivery,
-                                                so you can focus on the food.
+                                          <p class="card-text">Cộng tác với chúng tôi để tiếp cận nhiều khách hàng hơn. Bạn chỉ việc lo thức ăn, việc vận chuyển hãy để chúng tôi.
                                           </p>
 
                                     </div>

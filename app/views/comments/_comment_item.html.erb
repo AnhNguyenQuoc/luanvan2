@@ -17,7 +17,7 @@
             <div class="img-container lightgallery">
              <% comment.images.each do |image| %>
                        <a href='<%= rails_blob_url(image)%>'>
-                              <%= image_tag image, alt: image.filename %>
+                              <%= image_tag image, alt: image.filename, height: "150", weight: "150" %>
                        </a>
                   <% end %>
             </div>

@@ -1,0 +1,182 @@
+     <%= render 'layout_extends/header' %>
+     
+      <section class="main-restaurant" style="padding-top: 5%;">
+            <div class="container" style="width: 80%">
+                  <div class="row">
+                        <div class="col m8 s12">
+                              <nav>
+                                    <div class="nav-wrapper" >
+                                          <div class="col s12">
+                                                <%= link_to "Home", root_path, class: "breadcrumb"%>
+                                                <%= link_to "Cửa hàng", cua_hang_path, class: "breadcrumb"%>
+                                                <a class="breadcrumb"><%= @restaurant.name %></a>
+                                          </div>
+                                    </div>
+                              </nav>
+                              <div class="main-restaurant-text">
+                                    <h1><%= @restaurant.name%><span style="float: right; background: red; padding: 10px; color: white;"><%= @restaurant.avg_rating %></span></h1>
+
+                                    <div>
+                                          <h6>Địa chỉ </h6><span><%= @restaurant.address %> - <%= @restaurant.district.name %> </span>
+                                          <br />
+                                          <h6>Phone</h6><span><%= number_to_phone(@restaurant.phone) %></span>
+                                          <br />
+                                          <h6>Loại</h6><span><%= @restaurant.restaurant_type.name %></span>
+                                          <br />
+                                          <% unless @restaurant.description.blank? %>
+                                                <h6>Mô tả</h6><span><%= @restaurant.description%></span>
+                                          <% end %>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="col m4 s12">
+                              <div class="img-main-restaurant mt-2">
+                                    <%= image_tag @restaurant.image, class: "responsive-img", style: "height: 300px"%>
+                              </div>
+                              <div class="img-main-restaurant-text">
+                                    <span>Mở cửa từ</span>
+                                    <br>
+                                    <span><%= @restaurant.timeopen.strftime('%H:%M') %>  - <%= @restaurant.timeclose.strftime('%H:%M') %></span>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+            <section class="main-menu">
+            <div>
+                  <div class="row">
+                        <div class="col s12 m6 offset-m1 ">
+                              <h3>Menu</h3>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col m2 s12">
+                              <div class="collection fixed" id="main-menu">
+                                    <%= link_to "Trang chủ", restaurant_trang_chu_path(@restaurant), class: "collection-item"%>
+                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item active"%>
+                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item"%>
+                              </div>
+                        </div>
+                        <div class="col m6 s12">
+                              <div class="menu-item mt-3">
+                                    <div class="col s12 m12">
+                                          <ul class="collection">
+                                          <% @products.each do |p| %>
+                                                <li class="collection-item avatar">
+                                                      <%= image_tag p.image, class: "circle" %>
+                                                      <span class="title"><%= p.name %></span>
+                                                      <p><%= number_to_currency_vnd(p.price) %> <br>
+                                                      <blockquote>
+                                                      <%= p.description.truncate(100) %>
+                                                      </blockquote>
+                                                      </p>
+                                                      <%= link_to line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true, class: "secondary-content" do %>
+                                                            <i class="material-icons">add_shopping_cart</i>
+                                                      <% end %>
+                                                </li>
+
+                                          <% end %>
+                                          
+                                          </ul>
+
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="col m4 s12 checkout">
+                              <div id="checkout">
+                                    <%= render 'model_order' %>
+                              </div>       
+                        
+                              <div id="dathang" class="modal" style="width: 80%">
+                                    <div class="modal-content">
+                                          <h4>Thông tin đặt hàng</h4>
+                                          <div class="row">
+                                                <div class='col m6 s12 cart'>
+                                                      <%= render 'restaurants/cart' %>                           
+                                                </div>
+                                                <div class='col m6 s12'>
+                                                      <h2 class="flow-text">Hình thức thanh toán</h2>
+                                                      <p>
+                                                            <input class="with-gap" name="group1" type="radio" id="cod" value="0" />
+                                                            <label for="cod">COD</label>
+                                                      </p>
+                                                      <p>
+                                                            <input class="with-gap" name="group1" type="radio" id="payments" value="1"  />
+                                                            <label for="payments">Stripe</label>
+                                                      </p>
+                                                      <%= form_for @order, html: {id: "formcod"} do |f|%>
+                                                            <%= f.hidden_field :order_type_id, value: 1%>
+                                                            <%= f.hidden_field :payments, value: 1%>
+                                                            <div class="row">
+                                                                  <div class="input-field col s12">
+                                                                        <%= f.text_area :note, class: "materialize-textarea"%>
+                                                                        <%= f.label :note, "Ghi chú"%>
+                                                                  </div>
+                                                                        <small>* Chúng tôi sẽ lấy thông tin giao hàng ở thông tin cá nhân của bạn. Nếu có gì thay đổi vui lòng ghi vào ghi chú</small>
+                                                            </div>
+                                                            <%= f.submit "Đặt hàng", class: "modal-action waves-effect waves-blue btn center-align", style: "width: 100%"%>
+                                                      <% end %>
+                                                      <%= form_for @order, html: {id: "formpayments"} do |f|%>
+                                                            <%= f.hidden_field :order_type_id, value: 1%>
+                                                            <%= f.hidden_field :payments, value: 2%>
+                                                            <div class="row">
+                                                                  <div class="input-field col s12">
+                                                                        <%= f.text_area :note, class: "materialize-textarea"%>
+                                                                        <%= f.label :note, "Ghi chú"%>
+                                                                  </div>
+                                                                        <small>* Chúng tôi sẽ lấy thông tin giao hàng ở thông tin cá nhân của bạn. Nếu có gì thay đổi vui lòng ghi vào ghi chú</small>
+                                                            </div>
+                                                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                                        data-key="<%= Rails.application.secrets.stripe_publishable_key %>"
+                                                                        data-description= "Mã đơn hàng #<%= Order.last.id + 1 if Order.count > 0%>"
+                                                                        data-amount= <%= @current_cart.total_all_price %>
+                                                                        data-currency="vnd"
+                                                                        data-locale="auto"
+                                                                        data-email=<%= @current_user.email%>
+                                                                        data-label="Thanh toán"
+                                                                        ></script>
+                                                      <% end %>
+                                                </div>
+                                          </div>
+                                    </div>  
+                                    <div class="modal-footer">
+                                          <a class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                                    </div>
+                              </div>
+                              <div class="list-checkout-item cart">
+                                    <%= render 'cart' %>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+
+
+           <%= render 'layout_extends/footer' %>
+
+
+<script>
+       $('#formcod').hide();
+      $('#formpayments').hide();
+      $('input[type=radio][name=group1]').change(function(){
+            if(this.value == '0' ){
+                  $('#formcod').show();
+                  $('#formpayments').hide();
+            } else {
+                   $('#formcod').hide();
+                  $('#formpayments').show();
+            }
+      })
+                  $(document).ready(function(){
+                        if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+            }
+      })
+            $(window).resize(function(){
+             if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+             }
+      })
+</script>

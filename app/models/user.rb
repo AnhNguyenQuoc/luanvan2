@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
       has_many :buyer, through: :buyer_order, source: :buyer
       has_many :shipper, through: :shipper_order, source: :shipper
+
+      has_many :comments
       
       belongs_to :role
       belongs_to :district

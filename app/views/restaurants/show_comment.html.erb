@@ -30,7 +30,9 @@
                                           <br />
                                           <h6>Loại</h6><span><%= @restaurant.restaurant_type.name %></span>
                                           <br />
+                                          <% unless @restaurant.description.blank? %>
                                           <h6>Mô tả</h6><span><%= @restaurant.description%></span>
+                                          <% end %>
                                     </div>
                               </div>
                         </div>
@@ -56,16 +58,34 @@
                         </div>
                   </div>
                   <div class="row">
-                        <div class="col m2">
-                              <div class="collection">
+                        <div class="col m2 s12">
+                              <div class="collection fixed" id="main-menu">
+                                    <%= link_to "Trang chủ", restaurant_trang_chu_path(@restaurant), class: "collection-item"%>
                                     <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item "%>
                                     <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item active"%>
                               </div>
                         </div>
-                        <div class="col m6 s12" id="comments">
-                              <%= render 'comment' %>
+                        <div class="col m8 s12" id="comments">
+                                <div class="row">
+                                    <div class="col s12">
+                                          <ul class="tabs">
+                                          <li class="tab col s3"><a class="active" href="#test1">Tất cả</a></li>
+                                          <li class="tab col s3"><a  href="#test2">Của bạn</a></li>
+                                          </ul>
+                                    </div>
+                                    <div id="test1" class="col s12">
+                                          <%= render 'comment' %>
+                                    </div>
+                                    <div id="test2" class="col s12">
+                                          <%if @your_comments.count > 0%>
+                                          <%= render partial: "comments/comment_item", collection: @your_comments, as: :comment%>
+                                          <% else %>
+                                          <p class="text-flow">Bạn chưa có bất kỳ nhận xét nào!!</p>
+                                          <% end %>
+                                    </div>
+                              </div>
                         </div>
-                        <div class="col m4 s12 btn-comment">
+                        <div class="col m2 s12 btn-comment">
 
                                <button data-target="nhanxet" class="waves-effect waves-light btn modal-trigger" style="width: 100%;">Viết nhận xét</button>
                               <!-- Modal Structure -->
@@ -149,4 +169,16 @@
   }
 
 }
+
+             $(document).ready(function(){
+                        if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+            }
+      })
+            $(window).resize(function(){
+             if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+             }
+      })
+      
 </script>

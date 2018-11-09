@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
    before_action :check_logged
 
-   before_action :current_cart, only: [:show]
+   before_action :current_cart, only: [:show_order]
       rescue_from ActiveRecord::RecordNotFound do |exception|
             redirect_to cua_hang_path
       end
@@ -18,6 +18,12 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+      @restaurant = Restaurant.find(params[:id])
+      @products = @restaurant.products.limit(6)
+      @comments = @restaurant.comments.limit(6)
+  end
+
+  def show_order
       @restaurant = Restaurant.find(params[:id])
       @order = Order.new
       @products = @restaurant.products
@@ -63,6 +69,7 @@ def show_comment
       @comment = Comment.new
       @restaurant = Restaurant.find(params[:id])
       @comments = @restaurant.comments.order(created_at: :desc)
+      @your_comments = @restaurant.comments.where('user_id = ?', current_user.id)
 end
 
 def edit 

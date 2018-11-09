@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
       get '/cua-hang' => 'restaurants#index', as: "cua_hang"
       get '/cua-hang/:id/nhan-xet' => 'restaurants#show_comment', as: "restaurant_comment"
-      get '/cua-hang/:id/dat-mon' => 'restaurants#show', as: "restaurant_dat_mon"
+      get '/cua-hang/:id/dat-mon' => 'restaurants#show_order', as: "restaurant_dat_mon"
+      get '/cua-hang/:id' => 'restaurants#show', as: "restaurant_trang_chu"
 
       get '/admin-res' => 'admin_restaurants#index'
       get '/admin-res/:id/sua-thong-tin/' => 'restaurants#edit',as: "admin_res_edit"

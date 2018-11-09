@@ -6,9 +6,10 @@ class OrdersController < ApplicationController
             if stripe_params["stripeEmail"] && stripe_params["stripeToken"]
                   @order = Order.new order_params
                   customer = Stripe::Customer.create email: stripe_params["stripeEmail"], card: stripe_params["stripeToken"]
+                  order = Order.last.id + 1 if Order.count > 0
                   Stripe::Charge.create customer: customer.id,
                                                 amount: @current_cart.total_all_price,
-                                                description: "Mã đơn hàng #{Order.last.id + 1}",
+                                                description: "Mã đơn hàng #{order}",
                                                 currency: 'vnd'
                   @order.add_line_item_from_cart(@current_cart)
                   @order.buyer = current_user

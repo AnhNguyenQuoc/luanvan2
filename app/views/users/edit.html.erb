@@ -61,6 +61,12 @@
                                                 <%= f.label :address, "address" %>
                                           </div>
                                     </div>
+
+                                    <div class="row">
+                                          <div class="input-field col s12">
+                                                <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                                          </div>
+                                    </div>      
                                     
                                     <div class="row">
                                           <div class="input-field col s12">

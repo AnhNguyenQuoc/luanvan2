@@ -51,19 +51,21 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.time_field :timeopen, class: "timepicker"%>
+                                          <%= f.text_field :timeopen, class: "timepicker"%>
+                                          <%= f.label :timeopen, "Thời gian mở cửa"%>
                                     </div>
                               </div>
 
                               
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.time_field :timeclose, class: "timepicker"%>
+                                          <%= f.text_field :timeclose, class: "timepicker"%>
+                                          <%= f.label :timeclose, "Thời gian đóng cửa"%>
                                     </div>
                               </div>
 
                               <div class="row">
-                                    <div class="file-field input-field">
+                                    <div class="file-field input-field col s8">
                                           <div class="btn">
                                                 <span>Hình đại diện</span>
                                                 <%= f.file_field :image, :onchange => 'previewFile()'%>
@@ -72,11 +74,14 @@
                                                 <input class="file-path validate" type="text">
                                           </div>
                                     </div>
+                                    <div class="input-field col s8">
+                                         <img src="" id="preview-image">
+                                    </div>
                               </div>
-                              <img src="" id="preview-image">
+                              
 
                               <div class="row">
-                                    <%= f.submit "Submit", class: "btn waves-effect waves-light", style: "width: 100%"%>
+                                    <%= f.submit "Tạo cửa hàng", class: "btn waves-effect waves-light", style: "width: 100%"%>
                               </div>
                         <% end %>
 

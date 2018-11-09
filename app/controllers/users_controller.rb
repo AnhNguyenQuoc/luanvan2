@@ -16,7 +16,7 @@ before_action :check_correct_user, only: [:show, :orders_user]
   def create
       @user = User.create(user_params)
       if @user.save 
-             log_in(@user)
+            log_in(@user)
             flash[:success] = "Đã tạo tài khoản thành công"
             redirect_to root_path
       else 
@@ -74,6 +74,6 @@ before_action :check_correct_user, only: [:show, :orders_user]
   end
 
   def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :phone, :role_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :phone, :role_id, :district_id)
   end
 end

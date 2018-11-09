@@ -4,7 +4,7 @@
                                                                   <td><%= product.name %></td>
                                                                   <td><%= product.description %></td>
                                                                   <td><%= number_to_currency_vnd(product.price) %></td>
-                                                                  <td><%=image_tag product.image, class: "responsive-img", style: "height: 100px; width: 300px" %></td>
+                                                                  <td><%=image_tag product.image, class: "responsive-img", style: "height: 100px; width: 100px" %></td>
                                                                   <td><%= product.product_type.name %></td>
                                                                   <td>
                                                                          <%= link_to "<i class='material-icons pull-left'>edit</i>".html_safe, products_sua_path(product), target: "_blank" %>

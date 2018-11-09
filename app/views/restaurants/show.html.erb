@@ -61,7 +61,6 @@
                                           <ul class="collection">
                                           <% @products.each do |p| %>
                                                 <li class="collection-item avatar">
-                                                      <img src="images/yuna.jpg" alt="" class="circle">
                                                       <%= image_tag p.image, class: "circle" %>
                                                       <span class="title"><%= p.name %></span>
                                                       <p><%= number_to_currency_vnd(p.price) %> <br>
@@ -116,7 +115,7 @@
                                                             <%= f.submit "Đặt hàng", class: "modal-action waves-effect waves-blue btn center-align", style: "width: 100%"%>
                                                       <% end %>
                                                       <%= form_for @order, html: {id: "formpayments"} do |f|%>
-                                                            <%= f.hidden_field :order_type_id, value: 2%>
+                                                            <%= f.hidden_field :order_type_id, value: 1%>
                                                             <%= f.hidden_field :payments, value: 2%>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
@@ -127,7 +126,7 @@
                                                             </div>
                                                             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                                         data-key="<%= Rails.application.secrets.stripe_publishable_key %>"
-                                                                        data-description= "Mã đơn hàng #<%= Order.last.id + 1 %>"
+                                                                        data-description= "Mã đơn hàng #<%= Order.last.id + 1 if Order.count > 0%>"
                                                                         data-amount= <%= @current_cart.total_all_price %>
                                                                         data-currency="vnd"
                                                                         data-locale="auto"

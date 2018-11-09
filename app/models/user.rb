@@ -15,6 +15,7 @@ class User < ApplicationRecord
       has_many :shipper, through: :shipper_order, source: :shipper
       
       belongs_to :role
+      belongs_to :district
 
       validates :username, presence: {message: "^Họ và tên không được để trống"}, length: {maximum: 50}
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

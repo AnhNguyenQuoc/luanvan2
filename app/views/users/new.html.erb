@@ -30,14 +30,14 @@
 
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.label :password, "Password" %>
+                              <%= f.label :password, "Mật khẩu" %>
                               <%= f.password_field :password, class: 'form-control' %>
                         </div>
                   </div>
                   
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.label :password_confirmation, "Confirmation" %>
+                              <%= f.label :password_confirmation, "Xác nhận mật khẩu" %>
                               <%= f.password_field :password_confirmation, class: 'form-control' %>
                         </div>
                   </div>
@@ -51,11 +51,16 @@
 
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.label :address, "Address" %>
+                              <%= f.label :address, "Địa chỉ" %>
                               <%= f.text_field :address, class: 'form-control' %>
                         </div>
                   </div>
-                  <%= f.hidden_field :role_id, value: '1' %>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                        </div>
+                  </div>
+                  <%= f.hidden_field :role_id, value: 1 %>
                   <div class="row">
                   <%= f.submit "Tạo tài khoản", class: "btn waves-effect waves-light", style: "width: 100%;"%>
                   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_031222) do
+ActiveRecord::Schema.define(version: 2018_11_09_073734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,10 +142,12 @@ ActiveRecord::Schema.define(version: 2018_10_28_031222) do
     t.string "password_digest"
     t.string "username", default: "", null: false
     t.string "address", default: "", null: false
-    t.integer "phone", null: false
+    t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
+    t.bigint "district_id"
+    t.index ["district_id"], name: "index_users_on_district_id"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
@@ -160,5 +162,6 @@ ActiveRecord::Schema.define(version: 2018_10_28_031222) do
   add_foreign_key "restaurants", "districts"
   add_foreign_key "restaurants", "restaurant_types"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "users", "districts"
   add_foreign_key "users", "roles"
 end

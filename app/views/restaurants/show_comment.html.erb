@@ -77,17 +77,51 @@
                                           <%= render 'comment' %>
                                     </div>
                                     <div id="test2" class="col s12">
+                                    <% if logged_in? %>
                                           <%if @your_comments.count > 0%>
-                                          <%= render partial: "comments/comment_item", collection: @your_comments, as: :comment%>
+                                                <% @your_comments.each do |comment| %>
+                                                      <div class="card comment-card mb-2">
+                                                            <div class="card-content">
+                                                                  <h5 class="card-title">
+                                                                        <%= comment.user.username%>
+                                                                        <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
+                                                                        <% if logged_in?%>
+                                                                              <% if comment.user_id == current_user.id %>
+                                                                              <span><%= link_to "<i class='material-icons'>delete</i>".html_safe, comment_destroy_path(comment), method: :delete, data: {confirm: "Bạn có chắc chắn chứ?"}%></span>
+                                                                              <% end %>
+                                                                        <% end %>
+                                                                  </h5>
+                                                                  <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y - %Hh:%Mp:%Ss')%></h6>
+                                                                  <div class="divider"></div>
+                                                                  <br>
+                                                                  <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
+                                                                  <br>
+                                                                  <p class="card-text"><%= comment.description %></p>
+                                                                  <br />
+                                                                  <div class="img-container lightgallery">
+                                                                  <% comment.images.each do |image| %>
+                                                                        <a href='<%= rails_blob_url(image)%>'>
+                                                                                    <%= image_tag image, alt: image.filename, height: "150", weight: "150" %>
+                                                                        </a>
+                                                                        <% end %>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                <% end %>
                                           <% else %>
                                           <p class="text-flow">Bạn chưa có bất kỳ nhận xét nào!!</p>
                                           <% end %>
+                                    <% end %>
                                     </div>
                               </div>
                         </div>
                         <div class="col m2 s12 btn-comment">
-
+                              <% if logged_in? %>
                                <button data-target="nhanxet" class="waves-effect waves-light btn modal-trigger" style="width: 100%;">Viết nhận xét</button>
+                               <% else %>
+                              <a class="tooltipped secondary-content waves-effect waves-light btn " data-position="bottom" data-tooltip="Bạn vui lòng đăng nhập">Viết nhận xét</a>
+                              <% end %>
+                        
                               <!-- Modal Structure -->
                               <div id="nhanxet" class="modal" style="width: 80%">
                                     <div class="row">
@@ -95,6 +129,7 @@
                                                 <h3 class="flow-text">Nhận xét</h3>
                                           </div>
                                           <%= form_for(@comment, url: comments_path(:restaurant_id => @restaurant.id), :html => {class: "col s8 offset-s2"}, remote: true)do |f| %>
+                                                
                                                 <div class="row">
                                                       <div class="input-field col s12">
                                                             <%= f.text_area :description, class: "materialize-textarea"%>
@@ -120,7 +155,7 @@
                                                             </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                            <%= f.submit "Đăng nhận xét", :class => 'modal-close waves-effect waves-green btn-flat'%>
+                                                            <%= f.submit "Đăng nhận xét", :class => 'waves-effect waves-green btn-flat'%>
                                                       </div>
                                                 </div>
                                           <% end %>

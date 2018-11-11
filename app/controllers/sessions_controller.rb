@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
                   elsif user.role.id == 3
                         redirect_to admin_shipper_path
                   else
-                     redirect_to root_path
+                        redirect_back_or root_path
                   end
             else
                   flash.now[:danger] = 'Mật khẩu hoặc email không đúng.'

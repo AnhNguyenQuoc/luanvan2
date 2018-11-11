@@ -1,7 +1,5 @@
 class RestaurantsController < ApplicationController
 
-   before_action :check_logged
-
    before_action :current_cart, only: [:show_order]
       rescue_from ActiveRecord::RecordNotFound do |exception|
             redirect_to cua_hang_path
@@ -15,12 +13,14 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
+      store_location
   end
 
   def show
       @restaurant = Restaurant.find(params[:id])
       @products = @restaurant.products.limit(6)
       @comments = @restaurant.comments.limit(6)
+      store_location
   end
 
   def show_order
@@ -35,6 +35,7 @@ class RestaurantsController < ApplicationController
             @current_cart = Cart.create 
             session[:cart_id] = @current_cart.id
       end
+      store_location
   end 
 
   def new
@@ -69,7 +70,8 @@ def show_comment
       @comment = Comment.new
       @restaurant = Restaurant.find(params[:id])
       @comments = @restaurant.comments.order(created_at: :desc)
-      @your_comments = @restaurant.comments.where('user_id = ?', current_user.id)
+      @your_comments = @restaurant.comments.where('user_id = ?', current_user.id).order(created_at: :desc) if logged_in?
+      store_location
 end
 
 def edit 
@@ -94,12 +96,7 @@ end
 
   private
 
-  def check_logged
-      unless logged_in?
-        flash.now[:info] = "Vui lòng đăng nhập để đặt hàng"
-        redirect_to login_path 
-      end
-  end
+
   
 
   def restaurant_params

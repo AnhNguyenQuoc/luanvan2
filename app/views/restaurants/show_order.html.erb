@@ -71,8 +71,14 @@
                                                       <%= p.description.truncate(100) %>
                                                       </blockquote>
                                                       </p>
-                                                      <%= link_to line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true, class: "secondary-content" do %>
-                                                            <i class="material-icons">add_shopping_cart</i>
+                                                      <% if logged_in? %>
+                                                            <%= link_to line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true, class: "secondary-content" do %>
+                                                                  <i class="material-icons">add_shopping_cart</i>
+                                                            <% end %>
+                                                      <% else %>
+                                                            <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng đăng nhập">
+                                                                 <i class="material-icons">add_shopping_cart</i> 
+                                                             </a>
                                                       <% end %>
                                                 </li>
 
@@ -133,7 +139,7 @@
                                                                         data-amount= <%= @current_cart.total_all_price %>
                                                                         data-currency="vnd"
                                                                         data-locale="auto"
-                                                                        data-email=<%= @current_user.email%>
+                                                                        data-email=<%= @current_user.email if logged_in?%>
                                                                         data-label="Thanh toán"
                                                                         ></script>
                                                       <% end %>

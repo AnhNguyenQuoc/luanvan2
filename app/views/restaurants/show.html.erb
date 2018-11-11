@@ -1,3 +1,4 @@
+<body onload='showModal()'>   
      <%= render 'layout_extends/header' %>
      
       <section class="main-restaurant" style="padding-top: 5%;">
@@ -72,14 +73,21 @@
                                                       <%= p.description.truncate(100) %>
                                                       </blockquote>
                                                       </p>
-                                                      <%= link_to restaurant_dat_mon_path(@restaurant),class: "secondary-content" do %>
-                                                            <i class="material-icons">add_shopping_cart</i>
+                                                      <% if logged_in? %>
+                                                            <%= link_to restaurant_dat_mon_path(@restaurant),class: "secondary-content" do %>
+                                                                  <i class="material-icons">add_shopping_cart</i>
+                                                            <% end %>
+                                                      <% else %>
+                                                             <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng đăng nhập">
+                                                                 <i class="material-icons">add_shopping_cart</i> 
+                                                             </a>
+        
                                                       <% end %>
                                                 </li>
 
                                           <% end %>
                                           <li>
-                                          <%= link_to "Xem thêm và đặt hàng", restaurant_dat_mon_path(@restaurant), class: "btn", style: "width: 100%"%>
+                                          <%= link_to "Xem thêm và đặt hàng", restaurant_dat_mon_path(@restaurant), class: "btn", style: "width: 100%", method: :get%>
                                           </li>
                                           </ul>
 
@@ -127,14 +135,43 @@
                   </div>
             </div>
       </section>
-
+      <div id="modal1" class="modal">
+      <div class="modal-content">
+            <h4>Thông báo</h4>
+            <p>Cửa hàng hiện đang đóng cửa. Chỉ mở cửa từ <%= @restaurant.timeopen.strftime('%H:%M') %>  - <%= @restaurant.timeclose.strftime('%H:%M') %></p>
+      </div>
+      <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn-flat" style="width: 100%; text-align: center">Đặt hàng trước để giao hàng vào hôm sau</a>
+      </div>
+      </div>
 
 
 <%= render 'layout_extends/footer' %>
 <script>
-      $(document).ready(function(){
+      $(function(){
             if(screen.width < 1360){
                   $('#main-menu').removeClass('fixed');
             }
       })
+
+      function showModal(){
+            var currentTime = new Date();
+            var timeCurrent = currentTime.getHours() + ':' + currentTime.getMinutes();
+            var openPart = new Date('<%= @restaurant.timeopen %>');
+            var timeOpen = openPart.getHours() + ':' + openPart.getMinutes();
+            var closePart = new Date('<%= @restaurant.timeclose %>');
+            var timeClose = closePart.getHours() + ':' + closePart.getMinutes();
+            if(timeCurrent > timeClose || timeCurrent < timeOpen){
+                  $('.modal').modal('open');
+            }
+            
+            
+      }
+
+      $(window).resize(function(){
+             if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+             }
+      })
 </script>
+</body>

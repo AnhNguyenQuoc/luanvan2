@@ -1,10 +1,7 @@
-<% if object.errors.any? %>
+<% if @comment.errors.any? %>
   <div id="error_explanation">
-    <div class="alert alert-danger">
-      Bao gồm <%= object.errors.count%> lỗi.
-    </div>
     <ul>
-    <% object.errors.full_messages.each do |msg| %>
+    <% @comment.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

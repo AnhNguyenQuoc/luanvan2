@@ -14,7 +14,35 @@
             <li class="collection-item cart-total right-align">
                   <span >Tổng cộng</span>
                   <div>
-                        <span><%= number_to_currency_vnd(@current_cart.total_all_price)%></span>
+                        <span id="total"><%= number_to_currency_vnd(@current_cart.total_all_price)%></span>
                   </div>
             </li>
        </ul>
+        <%= text_field_tag :code, params[:code] %>
+        <%= submit_tag "Apply code", id: "coupon-apply" %>
+      <p id="coupon-msg"></p>
+
+      <script>
+            $('#coupon-apply').click(function(e){
+            e.preventDefault();
+            let total  = $('#total').text();
+            let newTotal = parseFloat(total.slice(0, total.length-1).replace(/,/g, ''));
+            let code = $('#code').val();
+            $.get('/coupons/' + code + '/validate', function(data){
+                  if(data.valid == true){
+                        $('#code').css('border-color', 'green');
+                        $('#coupon-apply').attr('disabled', 'disabled');
+                        $('#coupon-msg').text("Coupon applied").css("color", "green");
+                        let totalCul = newTotal - ((newTotal* data.amount)/100);
+                        let format = totalCul.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,") + "đ";
+                        $('#total').html(format);
+                        $('#order_code').val(data.amount);
+
+                  } else {
+                        $('#code').css('border-color', 'red');
+                        $('#coupon-msg').text("Coupon error").css("color", "green");
+                  }     
+            })      
+      })
+
+      </script>

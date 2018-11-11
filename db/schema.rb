@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_073734) do
+ActiveRecord::Schema.define(version: 2018_11_11_135444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 2018_11_09_073734) do
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_comments_on_restaurant_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "code"
+    t.integer "amount", default: 0
+    t.date "expiration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "districts", force: :cascade do |t|

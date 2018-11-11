@@ -91,4 +91,10 @@ Rails.application.routes.draw do
       delete '/orders/:id' => 'orders#destroy', as: "order_destroy"
 
       delete '/comments/:id' => 'comments#destroy', as: "comment_destroy"
+
+      #Coupons
+      get '/admin/coupons' => 'coupons#index'
+      get '/admin/coupons/tao-moi' => 'coupons#new'
+      post '/admin/coupons/tao-moi' => 'coupons#create'
+      delete '/admin/coupons/:id' => 'coupons#destroy', as: "coupon_destroy"
 end

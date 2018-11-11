@@ -24,6 +24,13 @@
   position: fixed;
   margin-top: -150px;
 }
+.w-80{
+  width: 80%;
+}
+
+.stripe-button-el{
+  width: 100%;
+}
 
 .blockHead:after {
   color: #5DC1BF;

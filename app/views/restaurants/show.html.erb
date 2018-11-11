@@ -1,3 +1,9 @@
+
+<script>
+      $(document).ready(function(){
+            $('.modal').modal();
+      })
+</script>
 <body onload='showModal()'>   
      <%= render 'layout_extends/header' %>
      
@@ -157,8 +163,9 @@
       function showModal(){
             var currentTime = new Date();
             var openPart = new Date('<%= @restaurant.timeopen %>');
-            var closePart = new Date('<%= @restaurant.timeclose %>');     
-            if((currentTime.getHours() < openPart.getHours() && currentTime.getMinutes() < openPart.getMinutes()) || (currentTime.getHours() < closePart.getHours() && currentTime.getMinutes() < closePart.getMinutes())){
+            var closePart = new Date('<%= @restaurant.timeclose %>');  
+            console.log(currentTime.getHours() < openPart.getHours())   
+            if((currentTime.getHours() < openPart.getHours() && currentTime.getMinutes() < openPart.getMinutes()) || (currentTime.getHours() > closePart.getHours() && currentTime.getMinutes() > closePart.getMinutes())){
                   $('.modal').modal('open');
                   // console.log("true");
             }

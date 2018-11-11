@@ -1,3 +1,8 @@
+     <script>
+      $(document).ready(function(){
+            $('.modal').modal();
+      })
+</script>
      <%= render 'layout_extends/header' %>
      
       <section class="main-restaurant" style="padding-top: 5%;">
@@ -94,14 +99,17 @@
                                     <%= render 'model_order' %>
                               </div>       
                         
-                              <div id="dathang" class="modal" style="width: 80%">
+                              <div id="dathang" class="modal w-80">
                                     <div class="modal-content">
                                           <h4>Thông tin đặt hàng</h4>
                                           <div class="row">
                                                 <div class='col m6 s12 cart'>
-                                                      <%= render 'restaurants/cart' %>                           
+                                                      <%= render 'restaurants/cart' %>    
+
+
                                                 </div>
                                                 <div class='col m6 s12'>
+
                                                       <h2 class="flow-text">Hình thức thanh toán</h2>
                                                       <p>
                                                             <input class="with-gap" name="group1" type="radio" id="cod" value="0" />
@@ -114,6 +122,7 @@
                                                       <%= form_for @order, html: {id: "formcod"} do |f|%>
                                                             <%= f.hidden_field :order_type_id, value: 1%>
                                                             <%= f.hidden_field :payments, value: 1%>
+                                                            <%= f.hidden_field :code, value: 0 %>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
                                                                         <%= f.text_area :note, class: "materialize-textarea"%>
@@ -133,6 +142,7 @@
                                                                   </div>
                                                                         <small>* Chúng tôi sẽ lấy thông tin giao hàng ở thông tin cá nhân của bạn. Nếu có gì thay đổi vui lòng ghi vào ghi chú</small>
                                                             </div>
+                                                            
                                                             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                                         data-key="<%= Rails.application.secrets.stripe_publishable_key %>"
                                                                         data-description= "Mã đơn hàng #<%= Order.last.id + 1 if Order.count > 0%>"
@@ -140,14 +150,14 @@
                                                                         data-currency="vnd"
                                                                         data-locale="auto"
                                                                         data-email=<%= @current_user.email if logged_in?%>
-                                                                        data-label="Thanh toán"
+                                                                        data-label="Đặt hàng"
                                                                         ></script>
                                                       <% end %>
                                                 </div>
                                           </div>
                                     </div>  
                                     <div class="modal-footer">
-                                          <a class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                                          <a class="modal-action modal-close waves-effect waves-green btn-flat ">Trờ về</a>
                                     </div>
                               </div>
                               <div class="list-checkout-item cart">

@@ -23,7 +23,13 @@ class OrdersController < ApplicationController
                   @order = Order.new(order_params)
                   @order.add_line_item_from_cart(@current_cart)
                   @order.buyer = current_user
-                  @order.total = @current_cart.total_price 
+                  if params[:order][:code].present?
+                        total = @current_cart.total_price - ((@current_cart.total_price * params[:order][:code].to_i)/100)
+                        @order.total = total
+                  else 
+                        @order.total = @current_cart.total_price
+                  end
+                   
                   @order.feeship = @current_cart.total_ship
                   if @order.save
                         flash[:success] = "Đặt hàng thành công"

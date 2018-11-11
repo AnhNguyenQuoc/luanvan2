@@ -47,4 +47,25 @@ $(document).ready(function () {
 
             })
 
+      
+      // $('#coupon-apply').click(function(e){
+      //       e.preventDefault();
+      //       let total  = $('#total').text();
+      //       let newTotal = parseFloat(total.slice(0, total.length-1).replace(/,/g, ''));
+      //       let code = $('#code').val();
+      //       $.get('/coupons/' + code + '/validate', function(data){
+      //             if(data.valid == true){
+      //                   $('#code').css('border-color', 'green');
+      //                   $('#coupon-apply').attr('disabled', 'disabled');
+      //                   $('#coupon-msg').text("Coupon applied").css("color", "green");
+      //                   let totalCul = newTotal - ((newTotal* data.amount)/100);
+      //                   let format = totalCul.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,") + "đ";
+      //                   $('#total').html(format);
+      //             } else {
+      //                   $('#code').css('border-color', 'red');
+      //                   $('#coupon-msg').text("Coupon error").css("color", "green");
+      //             }     
+      //       })      
+      // })
+
 });

@@ -9,20 +9,6 @@
                                                                               <%= link_to "Chọn shipper", shipper_edit_path(order), method: :get %>
                                                                              <% end %>
                                                                         </th>
-                                                                        <th>
-                                                                               <div class="card">
-                                                                                    <div class="card-content">
-                                                                                          <span class="activator grey-text text-darken-4">Đơn hàng #<%= order.id %><i class="material-icons right">more_vert</i></span>
-                                                                                    </div>
-                                                                                    <div class="card-reveal">
-
-                                                                                          <span class="card-title grey-text text-darken-4"><%= order.products.first.restaurant.name %><i class="material-icons right">close</i></span>
-                                                                                          <% order.line_items.each do |item|%>
-                                                                                                <p style="color: black"><%= item.product.name %> x <%= item.quantity %></p>
-                                                                                          <% end %>
-                                                                                    </div>
-                                                                              </div>
-                                                                        </th>
                                                                         <th style="text-align: center">
                                                                               <%= link_to " <i class='material-icons'>delete</i>".html_safe, order_destroy_path(order), method: :delete, data: {confirm: "Bạn có chắc chứ?" }%>
                                                                         </th>

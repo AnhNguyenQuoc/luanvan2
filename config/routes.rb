@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       get '/admin-res/danh-sach-mon-an' => 'admin_restaurants#list_product'
 
       get '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#new'
+      post '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#create'
       get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"
 
 
@@ -85,9 +86,10 @@ Rails.application.routes.draw do
       delete 'products/:id' => 'products#destroy', as: "product_destroy"
 
       patch 'products/:id/edit' => 'products#update', as: 'product_edit'
-      post 'products/new' => 'products#create'
+      
 
       post '/orders/:id/change_status' => 'orders#change_status', as: "orders_change_status"
+      post '/orders/:id/change_status_destroy' => 'orders#change_status_destroy', as: "order_change_status_destroy"
       delete '/orders/:id' => 'orders#destroy', as: "order_destroy"
 
       delete '/comments/:id' => 'comments#destroy', as: "comment_destroy"

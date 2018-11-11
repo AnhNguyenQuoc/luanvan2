@@ -29,8 +29,8 @@
 
                               </div>
                               <div class="row">
-                  <%= form_for @product, url: products_new_path do |f| %>
-                              <%= render 'layout_extends/error', object: f.object %>
+                  <%= form_for :product, remote: true do |f| %>
+                              
                         
                         <div class="row">
                                           <div class="input-field col s12">

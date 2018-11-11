@@ -16,13 +16,16 @@ class ProductsController < ApplicationController
             @product = Product.create(product_params)
             @product.image.attach(params[:product][:image])
             @product.restaurant_id = current_user.restaurant.id 
-            if @product.save 
-                  flash[:success] = "Tạo sản phẩm thành công"  
-                  redirect_to admin_res_danh_sach_mon_an_path
-            else 
-                  flash[:danger] = 'Lỗi xảy ra'
-                  render 'new'
-            end 
+            respond_to do |format|
+                  if @product.save 
+                        flash[:success] = "Tạo sản phẩm thành công"  
+                        
+                        format.html {redirect_to admin_res_danh_sach_mon_an_path} 
+                  else 
+                        flash[:danger] = 'Lỗi xảy ra'
+                        format.js {}
+                  end 
+            end
       end   
 
       def edit 

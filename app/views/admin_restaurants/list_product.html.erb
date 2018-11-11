@@ -24,40 +24,20 @@
                         <!--start container-->
                         <div class="container">
                               <!--card stats start-->
-                              <div class="row">
-                                    <div class="col s4">
-                                          <h4>Danh sách đơn hàng</h4>
-                                    </div>
-
-                              </div>
-                              <div class="row">
-                                     <div class="col s4">
-                                          <%= form_tag admin_res_danh_sach_mon_an_path,method: :get, remote: true do |f| %> 
-                                          <div class="row">
-                                                
-                                                <div class="input-field col s10">
-                                                            <%= text_field_tag :search, params[:search] %>
-                                                            <%= label_tag 'search', 'Tìm kiếm'%>
-                                                      </div>
-                                                      <div class="input-field col s2">
-                                                       
-                                                            <%= button_tag(class: "btn") do %>
-                                                                  <i class="material-icons">search</i>
-                                                            <%end%>
-                                                      </div> 
-                                                </div>
-                                                
-                                          </div>
-                                    <% end %>
-                                          <div class="col s4 offset-s4">
-                                          <%= link_to "Tạo thức ăn", admin_res_danh_sach_mon_an_them_san_pham_path, class: "btn", method: :get %>
-                                    </div>
-                                    </div>
-                              </div>
+                        
                               <div class="row">
                                     <div class="col s12">
-                                         <table class="bordered highlight centered">
-                                                <thead>
+                                         <div id="admin" class="col s12">
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <div class="actions">
+                                                      <%= link_to '<i class="material-icons">add</i>'.html_safe ,admin_res_danh_sach_mon_an_them_san_pham_path, class: "waves-effect btn-flat nopadding", method: :get  %>
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered">
+                                                      <thead>
                                                 <tr>
                                                       <th>#</th>
                                                       <th>Tên</th>
@@ -67,13 +47,14 @@
                                                       <th>Loại sản phẩm</th>
                                                       <th>Xác nhận</th>
                                                 </tr>
-                                                </thead>
-
-                                                <tbody id="list-product">
-                                                       <%= render partial: 'list_product' %>
-                                                </tbody>
-                                          </table>
-                                          <%= paginate @products %>
+                                                      </thead>
+                                                      <tbody>
+                                                      <%= render 'list_product' %>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>
                                     </div>
                               </div>
 
@@ -93,3 +74,30 @@
       <!-- START FOOTER -->
       <%= render 'footer' %>
 
+<script>
+$(document).ready(function() {
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
+  });
+});
+</script>

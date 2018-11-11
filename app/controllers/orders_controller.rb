@@ -48,6 +48,12 @@ class OrdersController < ApplicationController
             redirect_back fallback_location: root_path
       end
 
+      def change_status_destroy
+            @order = Order.find(params[:id])
+            @order.update_attributes(:order_type_id => 4)   
+            redirect_back fallback_location: root_path
+      end
+
 
       def destroy 
             @order = Order.find(params[:id])

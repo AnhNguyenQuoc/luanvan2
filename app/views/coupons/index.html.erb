@@ -26,27 +26,33 @@
                               <!--card stats start-->
                               <div class="row">
                                     <div class="col s12">   
-                                          <div class="card blue-grey darken-1">
-                                                <div class="card-content white-text">
-                                                <span class="card-title">Danh sách mã khuyến mãi</span>
-                                                <%= link_to "Tạo mới", admin_coupons_tao_moi_path, method: :get, class: "btn"%>
-                                                 <table class="centered" id="table-user">
-                                                            <thead>
-                                                            <tr>
-                                                                  <th>#</th>
-                                                                  <th>Code</th>
-                                                                  <th>Phần trăm giảm giá</th>
-                                                                  <th>Thời hạn</th>
-                                                                  <th>Hành động</th>
-                                                            </tr>
-                                                            </thead>
-
-                                                            <tbody id="coupon-table">
-                                                                  <%= render 'list_coupon' %>
-                                                            </tbody>
-                                                            </table>
-            
-                                          </div>
+                                          <div class="row">
+                                                <div id="admin" class="col s12">
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <div class="actions">
+                                                      <%= link_to '<i class="material-icons">add</i>'.html_safe ,admin_coupons_tao_moi_path, class: "waves-effect btn-flat nopadding", method: :get  %>
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered">
+                                                      <thead>
+                                                      <tr>
+                                                            <th>#</th>
+                                                            <th>Mã khuyến mãi</th>
+                                                            <th>Phần trăm khuyễn mãi</th>
+                                                            <th>Thời hạn khuyến mãi</th>
+                                                            <th></th>
+                                                      </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                      <%= render 'list_coupon' %>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>
                                     </div>
                               </div>
                              
@@ -69,28 +75,28 @@
 
 <script>
 $(document).ready(function() {
-  $("#table-user").dataTable({
-        pagingType: "simple",
-        language: {
-            paginate: {
-                previous: "<",
-                next: ">"
-            }
-        },
-        responsive: true,
-        language: {
-              lengthMenu: "Hiển thị _MENU_ cửa hàng mỗi trang",
-              zeroRecords: "Không có cửa hàng nào",
-              info: "Đang hiện _PAGE_ trang trên _PAGES_",
-              infoEmpty: "Không có cửa hàng",
-              search: "Tìm Kiếm:",
-              paginate: {
-                    first: "Đầu tiên",
-                    last: "Cuối cùng",
-                    next: "Tiếp theo",
-                    previous: "Trở lại"
-              }
-        }
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
   });
 });
 </script>

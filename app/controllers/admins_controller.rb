@@ -20,7 +20,7 @@ class AdminsController < ApplicationController
       
       def list_order
 
-            @orders = Order.where.not(order_type_id: 1)
+            @orders = Order.all
       end
 
       def user_create

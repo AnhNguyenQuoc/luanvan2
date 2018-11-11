@@ -25,31 +25,34 @@
                         <div class="container">
                               <!--card stats start-->
                               <div class="row">
-                                    <div class="col s4">
-                                          <h4>Danh sách đơn hàng</h4>
-                                    </div>
-
-                              </div>
-                              <div class="row">
                               <div class="row">
                                     <div class="col s12">
-                                         <table class="bordered highlight centered" id="table-order">
-                                                <thead>
-                                                <tr>
+                                         <div id="admin" class="col s12">
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách đơn hàng</span>
+                                                      <div class="actions">
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered">
+                                                      <thead>
+                                                            <tr>
                                                       <th>Tên người đặt</th>
-                                                      <th>SĐT</th>
                                                       <th>Tổng tiền</th>
                                                       <th>Ghi chú</th>
-                                                      <th>Đơn hàng</th>
+                                                      <th style="width: 35%">Đơn hàng</th>
                                                       <th style="width: 13%">Tình trạng</th>
                                                       <th>Xác nhận</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody id="list-order">
+                                                            </tr>
+                                                      </thead>
+                                                      <tbody>
                                                       <%= render 'list_order' %>
-                                                </tbody>
-                                          </table>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>
 
                                     </div>
                               </div>
@@ -72,28 +75,28 @@
 
 <script>
 $(document).ready(function() {
-  $("#table-order").dataTable({
-        pagingType: "simple",
-        language: {
-            paginate: {
-                previous: "<",
-                next: ">"
-            }
-        },
-        responsive: true,
-        language: {
-              lengthMenu: "Hiển thị _MENU_ cửa hàng mỗi trang",
-              zeroRecords: "Không có cửa hàng nào",
-              info: "Đang hiện _PAGE_ trang trên _PAGES_",
-              infoEmpty: "Không có cửa hàng",
-              search: "Tìm Kiếm:",
-              paginate: {
-                    first: "Đầu tiên",
-                    last: "Cuối cùng",
-                    next: "Tiếp theo",
-                    previous: "Trở lại"
-              }
-        }
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
   });
 });
 </script>

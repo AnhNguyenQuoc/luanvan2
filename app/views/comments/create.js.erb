@@ -1,4 +1,4 @@
 <% if @comment.errors.any? %>
   $("form").prepend(
-    "<%= j render "layout_extends/error" %>")
+    "<%= j render "layout_extends/error", object: @comment %>")
 <% end %>

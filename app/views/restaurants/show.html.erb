@@ -156,13 +156,11 @@
 
       function showModal(){
             var currentTime = new Date();
-            var timeCurrent = currentTime.getHours() + ':' + currentTime.getMinutes();
             var openPart = new Date('<%= @restaurant.timeopen %>');
-            var timeOpen = openPart.getHours() + ':' + openPart.getMinutes();
-            var closePart = new Date('<%= @restaurant.timeclose %>');
-            var timeClose = closePart.getHours() + ':' + closePart.getMinutes();
-            if(timeCurrent > timeClose || timeCurrent < timeOpen){
+            var closePart = new Date('<%= @restaurant.timeclose %>');     
+            if((currentTime.getHours() < openPart.getHours() && currentTime.getMinutes() < openPart.getMinutes()) || (currentTime.getHours() < closePart.getHours() && currentTime.getMinutes() < closePart.getMinutes())){
                   $('.modal').modal('open');
+                  // console.log("true");
             }
             
             

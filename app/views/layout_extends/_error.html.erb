@@ -1,7 +1,7 @@
-<% if @comment.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     <ul>
-    <% @comment.errors.full_messages.each do |msg| %>
+    <% object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

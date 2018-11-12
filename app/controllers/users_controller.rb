@@ -15,14 +15,16 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   def create
       @user = User.create(user_params)
-      if @user.save 
-            log_in(@user)
-            flash[:success] = "Đã tạo tài khoản thành công"
-            redirect_to root_path
-      else 
-            render 'new'
-            flash[:danger] = "Có lỗi xảy ra"
-      end 
+      respond_to do |format|
+        if @user.save 
+                log_in(@user)
+                flash[:success] = "Đã tạo tài khoản thành công"
+                format.html {redirect_to root_path } 
+        else 
+                flash[:danger] = "Có lỗi xảy ra"
+                format.js {}
+        end 
+    end
 
   end 
 
@@ -45,12 +47,15 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   def update 
       @user = User.find(params[:id])
-      if @user.update_attributes(user_params)
-            flash[:success] = "Cập nhật thành công"
-            redirect_to root_path
-      else 
-            render 'edit'
-      end 
+        respond_to do |format|
+            if @user.update_attributes(user_params)
+                    flash[:success] = "Cập nhật thành công"
+                    format.html {redirect_to root_path } 
+            else 
+                    flash[:danger] = "Có lỗi xảy ra"    
+                    format.js {}
+            end 
+        end
    end
 
 

@@ -34,21 +34,21 @@
                         
                         <div class="row">
                                           <div class="input-field col s12">
-                                                <%= f.text_field :name, class: 'form-control' %>
-                                                <%= f.label :name, "Tên" %>
+                                                <%= f.text_field :name, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')" %>
+                                                <%= f.label :name, "Tên", data: {error: "Vui lòng kiểm tra lại"} %>
                                           </div>
                                     </div>
                         <div class="row">
                                           <div class="input-field col s12">
-                                                <%= f.text_field :description, class: 'form-control' %>
+                                                <%= f.text_field :description %>
                                                 <%= f.label :description, "Miêu tả" %>
                                           </div>
                                     </div>
 
                               <div class="row">
                                           <div class="input-field col s12">
-                                                <%= f.number_field :price, class: 'form-control' %>
-                                                <%= f.label :price, "Giá" %>
+                                                <%= f.number_field :price, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')" %>
+                                                <%= f.label :price, "Giá", data: {error: "Vui lòng kiểm tra lại"} %>
                                           </div>
                                     </div>
                                     
@@ -64,10 +64,10 @@
                                                       <div class="file-field input-field">
                                                             <div class="btn">
                                                                   <span>Hình đại diện</span>
-                                                                  <%= f.file_field :image, :onchange => 'previewFile()'%>
+                                                                  <%= f.file_field :image, :onchange => 'previewFile()', class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Chọn hình ở đây')", oninput: "this.setCustomValidity('')"%>
                                                             </div>
                                                             <div class="file-path-wrapper">
-                                                                  <input class="file-path validate" type="text">
+                                                                  <input class="file-path validate" type="text" required aira-require="true" oninvalid="this.setCustomValidity('Chọn hình ở đây')" oninput="this.setCustomValidity('')" >
                                                             </div>
                                                       </div>
                                                 </div>

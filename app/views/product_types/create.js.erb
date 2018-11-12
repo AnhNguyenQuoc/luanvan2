@@ -1,0 +1,4 @@
+<% if @product_type.errors.any? %>
+  $("form").prepend(
+    "<%= j render "layout_extends/error", object: @product_type %>")
+<% end %>

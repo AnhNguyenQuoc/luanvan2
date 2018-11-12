@@ -30,11 +30,11 @@
                                           <div class="card blue-grey darken-1">
                                                 <div class="card-content white-text">
                                                       <span class="card-title">Cập nhật loại cửa hàng</span>
-                                                       <%= form_for @restaurant_type, url: restaurant_type_edit_path do |f| %>
+                                                       <%= form_for @restaurant_type, url: restaurant_type_edit_path, remote: true do |f| %>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.text_field :name %>
-                                                                        <%= f.label :name, "Tên loại cửa hàng"%>
+                                                                        <%= f.text_field :name, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')" %>
+                                                                        <%= f.label :name, "Tên loại cửa hàng", data: {error: "Vui lòng kiểm tra lại"}%>
                                                                   </div>
                                                                   <div class="row">
                                                                   <%= link_to "Trờ về", admin_loai_cua_hang_path, class: "waves-effect waves-teal btn-flat", method: :get %>

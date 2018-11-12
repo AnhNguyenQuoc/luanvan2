@@ -9,12 +9,14 @@ class ProductTypesController < ApplicationController
 
       def create 
             @product_type = ProductType.new(product_type_params)
-            if @product_type.save 
-                  redirect_to admin_loai_thuc_an_path
-                  flash[:success] = "Tạo sản phẩm thành công"
-            else 
-                  render 'new'
-                  flash[:danger] = "Có lỗi xảy ra"
+            respond_to do |format| 
+                  if @product_type.save 
+                        flash[:success] = "Tạo sản phẩm thành công"
+                        format.html {redirect_to admin_loai_thuc_an_path}
+                  else 
+                        format.js {}
+                        flash[:danger] = "Có lỗi xảy ra"
+                  end
             end
       end 
 
@@ -24,13 +26,15 @@ class ProductTypesController < ApplicationController
 
       def update 
             @product_type = ProductType.find(params[:id])
-            if @product_type.update_attributes(product_type_params)
-                  redirect_to admin_loai_thuc_an_path
-                  flash[:success] = "Cập nhật thành công"
-            else 
-                  render 'edit'
-                  flash[:danger] = "Có lỗi xảy ra"
-            end 
+            respond_to do |format|
+                  if @product_type.update_attributes(product_type_params)
+                        format.html {redirect_to admin_loai_thuc_an_path}
+                        flash[:success] = "Cập nhật thành công"
+                  else 
+                        format.js {render 'create.js.erb'}
+                        flash[:danger] = "Có lỗi xảy ra"
+                  end 
+            end
 
       end 
 

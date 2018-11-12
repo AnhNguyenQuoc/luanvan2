@@ -12,26 +12,26 @@
                               <%= render 'layout_extends/error', object: f.object %>
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :name, "Tên cửa hàng" %>
-                                          <%= f.text_field :name,  class: "validate"%>
+                                          <%= f.label :name, "Tên cửa hàng", data: {error: "Vui lòng kiểm tra lại"} %>
+                                          <%= f.text_field :name,  class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')"%>
                                     </div>
                               </div>
 
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.label :phone, "Số Điện Thoại" %>
-                                          <%= f.phone_field :phone, class: "validate"%>
+                                          <%= f.label :phone, "Số Điện Thoại", data: {error: "Vui lòng kiểm tra lại"} %>
+                                          <%= f.phone_field :phone, class: "validate", class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập sđt ở đây')", oninput: "this.setCustomValidity('')"%>
                                     </div>
                               </div>
 
                               <div class="row">
                                     <div class="input-field col s8">
-                                          <%= f.label :address, "Địa chỉ" %>
-                                          <%= f.text_field :address%>
+                                          <%= f.label :address, "Địa chỉ", data: {error: "Vui lòng kiểm tra lại"} %>
+                                          <%= f.text_field :address, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập địa chỉ ở đây')", oninput: "this.setCustomValidity('')"%>
                                     </div>
                                      <div class="input-field col s4">
-                                          <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                                          <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"}, class: 'validate', :required => true,aria: {require: true}  %>
                                           
                                     </div>
                               </div>
@@ -45,22 +45,22 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.collection_select :restaurant_type_id, RestaurantType.all, :id, :name,  {prompt: "Chọn loại cửa hàng"} %>
+                                          <%= f.collection_select :restaurant_type_id, RestaurantType.all, :id, :name,  {prompt: "Chọn loại cửa hàng"}, class: 'validate', :required => true,aria: {require: true} %>
                                     </div>
                               </div>
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.text_field :timeopen, class: "timepicker"%>
-                                          <%= f.label :timeopen, "Thời gian mở cửa"%>
+                                          <%= f.text_field :timeopen, class: "timepicker validate", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập thời gian mở cửa ở đây')", oninput: "this.setCustomValidity('')"%>
+                                          <%= f.label :timeopen, "Thời gian mở cửa", data: {error: "Vui lòng kiểm tra lại"}%>
                                     </div>
                               </div>
 
                               
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.text_field :timeclose, class: "timepicker"%>
-                                          <%= f.label :timeclose, "Thời gian đóng cửa"%>
+                                          <%= f.text_field :timeclose, class: "timepicker validate", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập thời gian đóng cửa ở đây')", oninput: "this.setCustomValidity('')"%>
+                                          <%= f.label :timeclose, "Thời gian đóng cửa", data: {error: "Vui lòng kiểm tra lại"}%>
                                     </div>
                               </div>
 

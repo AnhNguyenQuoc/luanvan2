@@ -26,6 +26,10 @@ class Product < ApplicationRecord
       end
 
       def image?
-            errors.add(:base, 'Vui lòng upload hình ảnh của cửa hàng') unless image.attached?
+            if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
+                  errors.add(:image, 'Cần phải là JPEG hoặc PNG')
+            elsif image.attached? == false 
+                  errors.add(:image, 'Cần phải có ảnh')
+            end 
       end
 end

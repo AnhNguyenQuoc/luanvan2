@@ -34,17 +34,19 @@ class ProductsController < ApplicationController
 
       def update 
             @product = Product.find(params[:id])
-            if @product.update_attributes(product_params)
-                  if params[:product][:image].present?
-                  @product.image.purge
-                  @product.image.attach(params[:restaurant][:image])
+            respond_to do |format|
+                  if @product.update_attributes(product_params)
+                        if params[:product][:image].present?
+                        @product.image.purge
+                        @product.image.attach(params[:restaurant][:image])
+                        end
+                        format.html {redirect_to admin_res_danh_sach_mon_an_path}
+                        flash[:success] = "Cập nhật thông tin thành công"
+                  else 
+                        format.js {render 'create.js.erb'}
+                        flash[:danger] = "Có lỗi xảy ra"
                   end
-            redirect_to admin_res_danh_sach_mon_an_path
-            flash[:success] = "Cập nhật thông tin thành công"
-             else 
-                  render 'edit'
-                  flash[:danger] = "Có lỗi xảy ra"
-             end
+            end
       end
 
       def destroy

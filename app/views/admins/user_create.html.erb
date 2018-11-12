@@ -33,54 +33,54 @@
                                                        <%= form_for :user do |f| %>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.text_field :username, class: 'form-control' %>
-                                                                        <%= f.label :username, "Họ và tên" %>
+                                                                        <%= f.text_field :username, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập họ tên ở đây')", oninput: "this.setCustomValidity('')" %>
+                                                                        <%= f.label :username, "Họ và tên", data: {error: "Vui lòng kiểm tra lại"} %>
                                                                   </div>
                                                             </div>
 
 
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.email_field :email, class: 'form-control' %>
-                                                                        <%= f.label :email, "Email" %>
+                                                                        <%= f.email_field :email, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')"%>
+                                                                        <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
                                                                   </div>
                                                             </div>
 
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.label :password, "Password" %>
-                                                                        <%= f.password_field :password, class: 'form-control' %>
+                                                                        <%= f.password_field :password, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập mật khẩu ở đây')", oninput: "this.setCustomValidity('')" %>
+                                                                        <%= f.label :password, "Mật khẩu",data: {error: "Vui lòng kiểm tra lại"} %>
                                                                   </div>
                                                             </div>
                                                             
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.label :password_confirmation, "Confirmation" %>
-                                                                        <%= f.password_field :password_confirmation, class: 'form-control' %>
+                                                                        <%= f.label :password_confirmation, "Xác nhận mật khẩu",data: {error: "Vui lòng kiểm tra lại"}  %>
+                                                                        <%= f.password_field :password_confirmation, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập mật khẩu ở đây')", oninput: "this.setCustomValidity('')" %>
                                                                   </div>
                                                             </div>
 
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.label :phone, "SĐT" %>
-                                                                        <%= f.phone_field :phone, class: 'form-control' %>
+                                                                        <%= f.label :phone, "SĐT", data: {error: "Vui lòng kiểm tra lại"} %>
+                                                                        <%= f.phone_field :phone,  class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập sđt ở đây')", oninput: "this.setCustomValidity('')" %>
                                                                   </div>
                                                             </div>
 
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.label :address, "Address" %>
-                                                                        <%= f.text_field :address, class: 'form-control' %>
+                                                                        <%= f.label :address, "Địa chỉ", data: {error: "Vui lòng kiểm tra lại"}  %>
+                                                                        <%= f.text_field :address, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập địa chỉ ở đây')", oninput: "this.setCustomValidity('')" %>
                                                                   </div>
                                                             </div>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                        <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"} %>
+                                                                        <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"}, class: 'validate', :required => true, aria: {require: true} %>
                                                                   </div>
                                                             </div>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
-                                                                         <%= f.collection_select :role_id, Role.all, :id, :name,  {prompt: "Chọn chức danh"} %>
+                                                                         <%= f.collection_select :role_id, Role.all, :id, :name,  {prompt: "Chọn chức danh"}, class: 'validate', :required => true, aria: {require: true} %>
                                                                   </div>
                                                             </div>
                                                             

@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
       before_save  {self.email = email.downcase}
 
-      has_secure_password
+      has_secure_password validations: false
       has_one :restaurant, dependent: :destroy
       has_many :buyer_order, class_name: "Order",
                                           foreign_key: "buyer_id",
@@ -17,14 +17,21 @@ class User < ApplicationRecord
       has_many :comments
       
       belongs_to :role
-      belongs_to :district
+      belongs_to :district, optional: true      
 
       validates :username, presence: {message: "^Họ và tên không được để trống"}, length: {maximum: 50}
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-      validates :email, presence: {message: "^Email không được để trống"}, uniqueness: { case_sensitive: false },
+      validates :email, presence: {message: "^Email không được để trống"}, uniqueness: { case_sensitive: false, message: "^Email đã đăng ký " },
                                                       length: {maximum: 255},
-                                                      format: { with: VALID_EMAIL_REGEX }
-      validates :phone, presence: true
-      validates :address, presence: true, length: {maximum: 50}
-      validates :password, presence: true, length: {minimum: 6}, allow_nil: true, on: :create
+                                                      format: { with: VALID_EMAIL_REGEX, message: "^Email không đúng định dạng" }
+      validates :phone, presence: {message: "^Sđt không được để trống"}
+      validates :address, presence: {message: "^Địa chỉ không được để trống"}, length: {maximum: 50}
+      validates :password, length: {minimum: 6, message: "^Mật khẩu phải nhiều hơn 6 kí tự"}, allow_nil: true, confirmation: {message: "^Mật khẩu không trùng khớp"}, if: :should_validate?
+      validates :district_id, presence: {message: "^Phải chọn quận"}
+
+
+      private
+      def should_validate?
+            new_record? || password.present?
+      end
 end

@@ -1,0 +1,4 @@
+<% if @user.errors.any? %>
+  $("form").prepend(
+    "<%= j render "layout_extends/error", object: @user %>")
+<% end %>

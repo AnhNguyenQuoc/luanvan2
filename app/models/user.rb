@@ -5,11 +5,9 @@ class User < ApplicationRecord
       has_secure_password validations: false
       has_one :restaurant, dependent: :destroy
       has_many :buyer_order, class_name: "Order",
-                                          foreign_key: "buyer_id",
-                                          dependent: :destroy 
+                                          foreign_key: "buyer_id"
       has_many :shipper_order, class_name: "Order",
-                                          foreign_key: "shipper_id",
-                                          dependent: :destroy 
+                                          foreign_key: "shipper_id"
 
       has_many :buyer, through: :buyer_order, source: :buyer
       has_many :shipper, through: :shipper_order, source: :shipper
@@ -29,6 +27,16 @@ class User < ApplicationRecord
       validates :password, length: {minimum: 6, message: "^Mật khẩu phải nhiều hơn 6 kí tự"}, allow_nil: true, confirmation: {message: "^Mật khẩu không trùng khớp"}, if: :should_validate?
       validates :district_id, presence: {message: "^Phải chọn quận"}
 
+
+
+      def self.from_omniauth(auth_hash)
+            user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+            user.email = auth_hash['info']['email']
+            user.role_id = 1
+
+            user.save(:validate => false)
+            user 
+      end
 
       private
       def should_validate?

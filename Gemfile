@@ -38,7 +38,8 @@ gem 'table_print'
  gem 'jquery-datatables'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'omniauth'
+gem 'omniauth-facebook'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

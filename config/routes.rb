@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       get '/login', to: 'sessions#new'
       post '/login',  to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
+      #Login facebook
+      get '/auth/:provider/callback', :to => 'sessions#create'
+      get '/auth/failure', :to => 'sessions#failure'
       
       post 'orders' => 'orders#create'
       post 'line_items/:id/add' => "line_items#add_quantity", as: "line_item_add"
@@ -99,4 +102,6 @@ Rails.application.routes.draw do
       get '/admin/coupons/tao-moi' => 'coupons#new'
       post '/admin/coupons/tao-moi' => 'coupons#create'
       delete '/admin/coupons/:id' => 'coupons#destroy', as: "coupon_destroy"
+
+
 end

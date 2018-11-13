@@ -30,12 +30,20 @@ class User < ApplicationRecord
 
 
       def self.from_omniauth(auth_hash)
-            user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
-            user.email = auth_hash['info']['email']
-            user.role_id = 1
+            if self.where(email: auth_hash['info']['email']).exists?
+                  return_user = self.where(email: auth_hash['info']['email']).first 
+                  return_user.provider = auth_hash['provider']
+                  return_user.uid = auth_hash['uid']
+            else 
+                  return_user = self.create do |user|
+                        user.provider = auth_hash['provider']
+                        user.uid = auth_hash['uid']
+                        user.email = auth_hash['info']['email']
+                        user.role_id = 1
+                  end 
+            end
 
-            user.save(:validate => false)
-            user 
+            return_user 
       end
 
       private

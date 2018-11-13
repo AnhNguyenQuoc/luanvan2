@@ -62,16 +62,16 @@
 
        <div class="row">
             <div class="input-field col s12">
-                  <%= f.email_field :email, class: 'validate' %>
-                  <%= f.label :email, "Email" %>
+                  <%= f.email_field :email, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')" %>
+                  <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
             </div>
       </div>
 
       <div class="row">
             <div class="input-field col s12">
 
-            <%= f.password_field :password, class: 'validate' %>
-            <%= f.label :password, "Password" %>
+            <%= f.password_field :password, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập mật khẩu ở đây')", oninput: "this.setCustomValidity('')" %>
+            <%= f.label :password, "Password", data: {error: "Vui lòng kiểm tra lại"} %>
             </div>
       </div>
 
@@ -81,10 +81,15 @@
       <p>Nếu chưa có tài khoản, nhấn 
             <%= link_to "vào đây", signup_path %>
       </p>
-      
+      <%= link_to "/auth/facebook", id: "sign_in", style: "padding: 5px" do%>
+            <%= image_tag 'facebook.svg', height: '50', width: '50'%>
+      <% end %>
+      <%= link_to "/auth/google_oauth2", style: "padding: 5px" do %>
+            <%= image_tag 'search.svg', height: '50', width: '50'%>
+      <% end %>
     <% end %>
       </div>
-<%= link_to "login facebook", "/auth/facebook", id: "sign_in"%>
+
 </div>
 
 </section>

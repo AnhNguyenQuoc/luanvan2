@@ -50,7 +50,7 @@ before_action :check_correct_user, only: [:show, :orders_user]
         respond_to do |format|
             if @user.update_attributes(user_params)
                     flash[:success] = "Cập nhật thành công"
-                    format.html {redirect_to root_path } 
+                    format.html {redirect_back root_path } 
             else 
                     flash[:danger] = "Có lỗi xảy ra"    
                     format.js {}

@@ -41,20 +41,21 @@
                               <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
                         </div>
                   </div>
-
-                  <div class="row">
-                        <div class="input-field col s12">
-                              <%= f.password_field :password%>
-                              <%= f.label :password, "Mật khẩu" %>
+                  <% unless current_user.provider %>
+                        <div class="row">
+                              <div class="input-field col s12">
+                                    <%= f.password_field :password%>
+                                    <%= f.label :password, "Mật khẩu" %>
+                              </div>
                         </div>
-                  </div>
-                  
-                  <div class="row">
-                        <div class="input-field col s12">
-                              <%= f.label :password_confirmation, "Xác nhận mật khẩu"  %>
-                              <%= f.password_field :password_confirmation %>
+                        
+                        <div class="row">
+                              <div class="input-field col s12">
+                                    <%= f.label :password_confirmation, "Xác nhận mật khẩu"  %>
+                                    <%= f.password_field :password_confirmation %>
+                              </div>
                         </div>
-                  </div>
+                  <% end %>                        
 
                   <div class="row">
                         <div class="input-field col s12">

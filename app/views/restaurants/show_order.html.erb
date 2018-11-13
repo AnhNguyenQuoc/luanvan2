@@ -77,13 +77,15 @@
                                                       </blockquote>
                                                       </p>
                                                       <% if logged_in? %>
-                                                            <%= link_to line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true, class: "secondary-content" do %>
-                                                                  <i class="material-icons">add_shopping_cart</i>
-                                                            <% end %>
-                                                      <% elsif current_user.address.blank? || current_user.phone.blank? || current_user.username.blank? %>
-                                                            <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng điền đầy đủ thông tin">
-                                                                 <i class="material-icons">add_shopping_cart</i> 
-                                                             </a>
+                                                            <% if (current_user.address.blank? || current_user.phone.blank? || current_user.username.blank?) %>
+                                                                  <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng điền đầy đủ thông tin">
+                                                                  <i class="material-icons">add_shopping_cart</i> 
+                                                                  </a>
+                                                            <% else %>
+                                                                  <%= link_to line_items_path(cart_id: @current_cart,product_id: p), method: :post, remote: true, class: "secondary-content" do %>
+                                                                        <i class="material-icons">add_shopping_cart</i>
+                                                                  <% end %>
+                                                             <% end %>
                                                       <% else %>
                                                             <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng đăng nhập">
                                                                  <i class="material-icons">add_shopping_cart</i> 

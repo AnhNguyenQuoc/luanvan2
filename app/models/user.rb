@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+      attr_accessor :remember_token, :activation_token, :reset_token
 
       before_save  {self.email = email.downcase}
+      before_create :create_activation_digest
+      
 
       has_secure_password validations: false
       has_one :restaurant, dependent: :destroy
@@ -28,7 +31,58 @@ class User < ApplicationRecord
       validates :district_id, presence: {message: "^Phải chọn quận"}
 
 
+      def self.digest(string)
+            cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine::cost 
 
+            BCrypt::Password.create(string, cost: cost)
+      end 
+
+      #Returns a random token
+      def self.new_token
+            SecureRandom.urlsafe_base64
+      end
+
+
+      def remember
+            self.remember_token = User.new_token 
+            update_attribute(:remember_digest, User.digest(remember_token))
+      end
+
+      def forget 
+            update_attribute(:remember_digest, nil)
+      end
+
+      # Returns true if the given token matches the digest.
+      def authenticated?(attribute, token)
+            digest = send("#{attribute}_digest")
+            return false if digest.nil?
+            BCrypt::Password.new(digest).is_password?(token)
+      end
+
+      def activate
+            update_attribute(:activated,    true)
+            update_attribute(:activated_at, Time.zone.now)
+      end
+
+      def send_activation_email
+            UserMailer.account_activation(self).deliver_now
+      end
+
+      def create_reset_digest
+            self.reset_token = User.new_token 
+            update_attribute(:reset_digest,  User.digest(reset_token))
+            update_attribute(:reset_sent_at, Time.zone.now)
+      end
+
+      def send_password_reset_email
+            UserMailer.password_reset(self).deliver_now
+      end
+
+      def password_reset_expired?
+            reset_sent_at < 2.hours.ago 
+      end
+
+      #Login social
       def self.from_omniauth(auth_hash)
             if self.where(email: auth_hash['info']['email']).exists?
                   return_user = self.where(email: auth_hash['info']['email']).first 
@@ -40,6 +94,7 @@ class User < ApplicationRecord
                         user.uid = auth_hash['uid']
                         user.email = auth_hash['info']['email']
                         user.role_id = 1
+                        user.activated = true
                   end 
             end
 
@@ -49,5 +104,11 @@ class User < ApplicationRecord
       private
       def should_validate?
             new_record? || password.present?
+      end
+
+
+      def create_activation_digest
+            self.activation_token = User.new_token 
+            self.activation_digest = User.digest(activation_token)
       end
 end

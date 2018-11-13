@@ -9,20 +9,29 @@ class SessionsController < ApplicationController
             if params[:session].present?
                   user = User.find_by(email: params[:session][:email].downcase)
                   if user && user.authenticate(params[:session][:password])
-                        log_in(user)
-                        flash[:success] = "Đăng nhập thành công"
-                        if user.role.id == 2
-                              if user.restaurant.nil?
-                                    redirect_to tao_cua_hang_path
-                              else 
-                                    redirect_to admin_res_path
+                        if user.activated?
+                              log_in(user)
+                              params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+                              flash[:success] = "Đăng nhập thành công"
+                        
+                              if user.role.id == 2
+                                    if user.restaurant.nil?
+                                          redirect_to tao_cua_hang_path
+                                    else 
+                                          redirect_to admin_res_path
+                                    end
+                              elsif user.role.id == 4
+                                    redirect_to admin_path
+                              elsif user.role.id == 3
+                                    redirect_to admin_shipper_path
+                              else
+                                    redirect_back_or root_path
                               end
-                        elsif user.role.id == 4
-                              redirect_to admin_path
-                        elsif user.role.id == 3
-                              redirect_to admin_shipper_path
-                        else
-                              redirect_back_or root_path
+                        else 
+                              message  = "Tài khoản chưa kích hoạt. "
+                              message += "Hãy kiểm tra lại email của bạn."
+                              flash[:danger] = message
+                              redirect_to root_path
                         end
                   else
                         flash.now[:danger] = 'Mật khẩu hoặc email không đúng.'
@@ -32,7 +41,7 @@ class SessionsController < ApplicationController
                   begin
                         user = User.from_omniauth(request.env['omniauth.auth'])
                         log_in(user)
-                        
+                        remember(user)
                         
                   rescue
                         flash.now[:danger] = 'Có lỗi xảy ra'

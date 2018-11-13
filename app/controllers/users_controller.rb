@@ -17,8 +17,8 @@ before_action :check_correct_user, only: [:show, :orders_user]
       @user = User.create(user_params)
       respond_to do |format|
         if @user.save 
-                log_in(@user)
-                flash[:success] = "Đã tạo tài khoản thành công"
+                UserMailer.account_activation(@user).deliver_now
+                flash[:success] = "Bạn vui lòng vào email để kích hoạt tài khoản"
                 format.html {redirect_to root_path } 
         else 
                 flash[:danger] = "Có lỗi xảy ra"
@@ -30,6 +30,7 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   def admin_create
       @user = User.create(user_params)
+      @user.activated = true
       if @user.save 
             flash[:success] = "Đã tạo tài khoản thành công"
             redirect_to admin_danh_sach_nguoi_dung_path

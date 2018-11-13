@@ -1,0 +1,10 @@
+<h1>Cần Thơ Food </h1>
+
+<p>Chào <%= @user.username %>,</p>
+
+<p>
+Chào mừng bạn đến với Cần Thơ Food ! Nhấn vào đường link bên dưới để kích hoạt tài khoản của bạn:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

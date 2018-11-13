@@ -1,0 +1,79 @@
+<header class="header" style="background-image: none; height: 60px;">
+            <div class="header-bar">
+                  <nav>
+                        <ul id="dropdownnavmenu" class="dropdown-content">
+                              <% if logged_in? %>
+                                    <li>
+                                          <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
+                                    </li>
+                                    <li>
+                                          <%= link_to "Đăng xuất", logout_path, method: :delete%>
+                                    </li>
+                              <% end %>
+                        </ul>
+                        <div class="nav-wrapper">
+                              <%= link_to 'Logo', root_path, class: 'brand-logo' %>
+                              <a href="#" data-activates="mobile-demo" class="button-collapse">
+                                    <i class="material-icons">menu</i>
+                              </a>
+                              <ul class="right hide-on-med-and-down">
+                                    <li><%= link_to "Cửa hàng", cua_hang_path%></li>
+                                    <% if logged_in? %>
+            
+                                          
+                                    <li>
+                                         <a class="dropdown-button" href="#" data-activates="dropdownnavmenu"><%= current_user.username%><i class="material-icons right">arrow_drop_down</i></a>
+                                    </li>
+                                    <% else %>
+                                          <li>
+                                                <%= link_to "Đăng nhập", login_path %>
+                                           </li>
+                                    <% end %>
+                              </ul>
+                        </div>
+                  </nav>
+                   <ul class="side-nav" id="mobile-demo">
+                        <li>
+                              <a href="sass.html">Cửa hàng</a>
+                        </li>
+                         <% if logged_in? %>
+                              <li>
+                                    <%= link_to "Đăng xuất", logout_path, method: :delete%>
+                              </li>
+                        <% else %>
+                              <li>
+                                    <%= link_to "Đăng nhập", login_path %>
+                              </li>
+                        <% end %>
+                  </ul>
+            </div>
+      </header>
+
+
+      <section id="login-form">
+            <div class="container" style="width: 60%">
+                  <div class="row justify-content-md-center mt-5">
+                        <div class="col m5 s12">
+                              <h1 class="text-login-form">Reset mật khẩu</h1>
+                        </div>
+                  </div>
+                  <div class="row justify-content-md-center">
+    <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+      <%= render 'layout_extends/error', object: f.object %>
+
+      <%= hidden_field_tag :email, @user.email %>
+
+      <%= f.label :password, "Mật khẩu" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Xác nhận mật khẩu"  %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Cập nhật mật khẩu", class: "btn"  %>
+    <% end %>
+ </div>
+
+              </div>
+
+              </section>
+              <%= render 'layout_extends/footer' %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
       root "templates#index"
       get '/restaurantinfo' => 'templates#inforestaurant'
       get '/shipper' => 'templates#shipper'
@@ -8,7 +9,8 @@ Rails.application.routes.draw do
       get '/signup' => 'users#new'
       post '/signup' => 'users#create'
       resources :users, only: [:edit, :update]
-
+      resources :account_activations, only: [:edit]
+      resources :password_resets,     only: [:new, :create, :edit, :update]
 
       get 'users/:id/orders' => 'users#orders_user', as: "order_user"
 

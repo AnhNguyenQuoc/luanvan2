@@ -1,9 +1,4 @@
 
-<script>
-      $(document).ready(function(){
-            $('.modal').modal();
-      })
-</script>
 <body onload='showModal()'>   
      <%= render 'layout_extends/header' %>
      
@@ -147,31 +142,41 @@
             <p>Cửa hàng hiện đang đóng cửa. Chỉ mở cửa từ <%= @restaurant.timeopen.strftime('%H:%M') %>  - <%= @restaurant.timeclose.strftime('%H:%M') %></p>
       </div>
       <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-light btn-flat" style="width: 100%; text-align: center">Đặt hàng trước để giao hàng vào hôm sau</a>
+            <a href="#!" class="modal-close waves-effect waves-light btn" style="width: 100%; text-align: center">Đặt hàng trước để giao hàng vào hôm sau</a>
       </div>
       </div>
 
 
 <%= render 'layout_extends/footer' %>
-<script>
-      $(function(){
-            if(screen.width < 1360){
-                  $('#main-menu').removeClass('fixed');
-            }
-      })
 
+<script>
       function showModal(){
             var currentTime = new Date();
             var openPart = new Date('<%= @restaurant.timeopen %>');
             var closePart = new Date('<%= @restaurant.timeclose %>');  
-            console.log(currentTime.getHours() < openPart.getHours())   
-            if((currentTime.getHours() < openPart.getHours() && currentTime.getMinutes() < openPart.getMinutes()) || (currentTime.getHours() > closePart.getHours() && currentTime.getMinutes() > closePart.getMinutes())){
+            console.log(currentTime.getMinutes());
+            console.log(currentTime.getMinutes() >= closePart.getMinutes());
+            if((currentTime.getHours() >= closePart.getHours() && currentTime.getMinutes() >= closePart.getMinutes()) || (currentTime.getHours() <= openPart.getHours() && currentTime.getMinutes() <= openPart.getMinutes())){
                   $('.modal').modal('open');
                   // console.log("true");
             }
             
             
       }
+
+      $(document).ready(function(){
+            $('.modal').modal();
+
+            
+      })
+
+      $(function(){
+            if(screen.width < 1360){
+                  $('#main-menu').removeClass('fixed');
+            }
+      })
+
+      
 
       $(window).resize(function(){
              if(screen.width < 1360){

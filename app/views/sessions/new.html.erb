@@ -70,11 +70,18 @@
       <div class="row">
             <div class="input-field col s12">
 
-            <%= f.password_field :password, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập mật khẩu ở đây')", oninput: "this.setCustomValidity('')" %>
-            <%= f.label :password, "Password", data: {error: "Vui lòng kiểm tra lại"} %>
+            <%= f.password_field :password %>
+            <%= f.label :password, "Password" %>
+            <%= link_to "Quên mật khẩu", new_password_reset_path %>
             </div>
       </div>
 
+    <p>
+      <p>
+            <input type="checkbox" id="remember_me" name="session[remember_me]" value="1" />
+            <label for="remember_me">Remember me on this computer</label>
+      </p>
+      </p>
       <div class="row ">
       <%= f.submit "Đăng nhập", class: "btn waves-effect waves-light", style: "width: 100%" %>
       </div>

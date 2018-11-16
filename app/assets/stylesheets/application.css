@@ -14,8 +14,9 @@
  *= require material_icons
  *= require lightgallery
  *= require perfect-scrollbar
+ *= require social-share-button
   *= require_tree .
-*= require datatables
+  *= require datatables
  *= require_self
  */
 

@@ -40,6 +40,7 @@ gem 'table_print'
 # gem 'mini_magick', '~> 4.8'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'social-share-button'
 gem 'omniauth-google-oauth2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

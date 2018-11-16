@@ -20,6 +20,7 @@
 //= require perfect-scrollbar
 //= require Chart.bundle
 //= require chartkick
+//= require social-share-button
 //= require_tree .
 $(document).on('turbolinks:load', function () {
       $('.modal').modal();

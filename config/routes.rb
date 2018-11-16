@@ -77,6 +77,8 @@ Rails.application.routes.draw do
 
       delete '/admin/loai-cua-hang/:id' => 'restaurant_types#destroy', as: 'restaurant_type_destroy'
       
+      get '/admin/danh-sach-nhan-xet' => 'admins#list_comments'
+
       get '/admin-shipper' => 'admin_shippers#index'
       post '/orders/:id/update_complete' => 'orders#update_complete', as: "order_update_complete"
       

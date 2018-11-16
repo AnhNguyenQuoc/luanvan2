@@ -24,29 +24,31 @@
                               </div>
                         </div>
                         <div class="col s9">
-                              <table>
-                                    <thead>
-                                    <tr>
-                                          <th>#</th>
-                                          <th>Tổng tiền</th>
-                                          <th>Hình thức thanh toán</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    <% @orders.each do |order|%>
-                                    <tr>
-                                          <td>1</td>
-                                          <td><%= number_to_currency_vnd(order.total) %></td>
-                                          <td><%= order.order_type.name %></td>
-                                    </tr>
-                              
-                              <% end %>
-      
-          
-                              </tbody>
-                        </table>
-             </div>
+                           <div id="admin" class="col s12">
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <div class="actions">
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered">
+                                                      <thead>
+                                                <tr>
+                                                      <th>#</th>
+                                                      <th>Tổng tiền</th>
+                                                      <th>Trạng thái</th>
+                                                      <th></th>
+                                                </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                            <%= render partial: "list_orders_user", collection: @orders, as: :order %>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>   
+                        </div>
                   </div>
             </div>
 
@@ -62,3 +64,30 @@
 <%= render 'layout_extends/footer' %>
 
 
+<script>
+$(document).ready(function() {
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
+  });
+});
+</script>

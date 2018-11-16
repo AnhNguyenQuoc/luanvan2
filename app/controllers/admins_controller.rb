@@ -38,5 +38,9 @@ class AdminsController < ApplicationController
            @restaurants = Restaurant.all
       end
 
+      def list_comments
+            @comments = Comment.all
+      end
+
       
 end

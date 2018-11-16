@@ -149,10 +149,7 @@
 
       <section class="list-restaurant">
             <div class="container" style="width: 80%">
-                  <div class="row" >
-                        <div class="progress" id="loading" style="display: none">
-                                    <div class="indeterminate"></div>
-                        </div>
+                  <div class="row" > 
                         <div id="restaurants">
                               <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
                               <%= paginate @restaurants %>
@@ -161,6 +158,11 @@
             </div>
       </section>
 
-
+      <div id="dbanner" class="change-color">
+  <div class="dcontent">
+    Chương trình đặt biệt khuyến mãi <strong><%= @coupon.amount%>%</strong> Với mã: <code><%= @coupon.code %></code> <span class="dtime">Hết hạn vào ngày:</span><span id="dcountdown"><%= @coupon.expiration.strftime('%d/%m/%Y') %></span>
+  </div>
+  <div id="dclose">close me!</div>
+</div>
 
       <%= render 'layout_extends/footer' %>

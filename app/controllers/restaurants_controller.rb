@@ -13,6 +13,7 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
+      @coupon = Coupon.where("expiration >= ?", Date.today).order("RANDOM()").first
       store_location
   end
 

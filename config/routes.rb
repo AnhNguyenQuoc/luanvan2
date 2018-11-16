@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :password_resets,     only: [:new, :create, :edit, :update]
 
       get 'users/:id/orders' => 'users#orders_user', as: "order_user"
+      get 'users/:id/restaurants' => 'users#list_restaurant_favorite', as: "restaurant_favorite_user"
 
       get '/login', to: 'sessions#new'
       post '/login',  to: 'sessions#create'
@@ -107,5 +108,8 @@ Rails.application.routes.draw do
       post '/admin/coupons/tao-moi' => 'coupons#create'
       delete '/admin/coupons/:id' => 'coupons#destroy', as: "coupon_destroy"
 
+      #Res Favorite
+      resources :restaurant_favorites, only: [:create]
+      delete '/restaurant-favorite/' => 'restaurant_favorites#destroy', as: "res_favorite_destroy"
 
 end

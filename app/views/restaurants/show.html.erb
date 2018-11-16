@@ -58,7 +58,9 @@
                                     <%= link_to "Trang chủ", restaurant_trang_chu_path(@restaurant), class: "collection-item active "%>
                                     <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item"%>
                                     <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item"%>
-                                    <%= social_share_button_tag(@restaurant.name) %>
+                                    <div id="restaurant-favorite" style="text-align: center">
+                                          <%= render partial: "restaurant_favorites/res_favorite"%>
+                                    </div>
                               </div>
                         </div>
                         <div class="col m10 s12">

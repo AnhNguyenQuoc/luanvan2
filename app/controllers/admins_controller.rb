@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+      before_action :check_user
 
       def index
             @restaurants = Restaurant.all.count
@@ -42,5 +43,13 @@ class AdminsController < ApplicationController
             @comments = Comment.all
       end
 
+      private
+      def check_user
+            if logged_in?
+                  unless current_user.role.id == 4
+                        redirect_to root_path
+                  end     
+            end
+      end
       
 end

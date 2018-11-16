@@ -65,6 +65,10 @@ before_action :check_correct_user, only: [:show, :orders_user]
       @orders = @user.buyer_order
    end
    
+   def list_restaurant_favorite
+      @user = current_user
+      @restaurants = @user.restaurants
+   end
 
    def destroy 
       @users = User.where.not(id: current_user.id)

@@ -1,4 +1,7 @@
 class AdminRestaurantsController < ApplicationController
+
+      before_action :check_user
+
       def index
            @orders = Order.joins(:products).where("orders.order_type_id = 1 AND products.restaurant_id = ?", current_user.restaurant.id).count('orders.id')
            @products = current_user.restaurant.products.count
@@ -27,4 +30,13 @@ class AdminRestaurantsController < ApplicationController
             end
       end
 
+
+      private
+      def check_user
+            if logged_in?
+                  unless current_user.role.id == 2
+                        redirect_to root_path
+                  end     
+            end
+      end
 end

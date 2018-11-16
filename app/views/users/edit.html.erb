@@ -21,6 +21,7 @@
                               <div class="collection list-in-profile ml-1">
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
                         <div class="col s9">
@@ -29,8 +30,8 @@
 
                                     <div class="row">
                         <div class="input-field col s12">
-                              <%= f.text_field :username, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập họ tên ở đây')", oninput: "this.setCustomValidity('')" %>
-                              <%= f.label :username, "Họ và tên", data: {error: "Vui lòng kiểm tra lại"} %>
+                              <%= f.text_field :username, class: 'validate', placeholder: "Tên của bạn", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập họ tên ở đây')", oninput: "this.setCustomValidity('')" %>
+                              <%= f.label :username, "Họ và tên", class: "active" ,data: {error: "Vui lòng kiểm tra lại"} %>
                         </div>
                   </div>
 
@@ -38,7 +39,7 @@
                   <div class="row">
                         <div class="input-field col s12">
                               <%= f.email_field :email, class: 'validate',disabled: true, :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')"%>
-                              <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
+                              <%= f.label :email, "Email", class: "active" , data: {error: "Vui lòng kiểm tra lại định dạng"} %>
                         </div>
                   </div>
                   <% unless current_user.provider %>
@@ -59,20 +60,21 @@
 
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.label :phone, "SĐT", data: {error: "Vui lòng kiểm tra lại"} %>
+                              <%= f.label :phone, "SĐT",class: "active" , data: {error: "Vui lòng kiểm tra lại"} %>
                               <%= f.phone_field :phone,  class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập sđt ở đây')", oninput: "this.setCustomValidity('')" %>
                         </div>
                   </div>
 
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.label :address, "Địa chỉ", data: {error: "Vui lòng kiểm tra lại"}  %>
+                              <%= f.label :address, "Địa chỉ",class: "active" , data: {error: "Vui lòng kiểm tra lại"}  %>
                               <%= f.text_field :address, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập địa chỉ ở đây')", oninput: "this.setCustomValidity('')" %>
                         </div>
                   </div>
                   <div class="row">
                         <div class="input-field col s12">
                               <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"}, class: 'validate', :required => true, aria: {require: true} %>
+                              <label>Quận bạn sống</label>
                         </div>
                   </div>
                   <div class="row">

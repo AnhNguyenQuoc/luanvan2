@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
       has_secure_password validations: false
       has_one :restaurant, dependent: :destroy
+
+      has_many :restaurant_favorites, dependent: :destroy
+      has_many :restaurants, through: :restaurant_favorites
       has_many :buyer_order, class_name: "Order",
                                           foreign_key: "buyer_id"
       has_many :shipper_order, class_name: "Order",

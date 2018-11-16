@@ -5,6 +5,8 @@ class Restaurant < ApplicationRecord
       has_many :products, dependent: :destroy
       has_many :comments, dependent: :destroy
 
+      has_many :restaurant_favorites, dependent: :destroy
+      has_many :users, through: :restaurant_favorites
       belongs_to :restaurant_type
 
       belongs_to :district

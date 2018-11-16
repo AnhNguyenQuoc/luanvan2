@@ -1,0 +1,96 @@
+<%= render 'layout_extends/header' %>
+
+      <section class="main-profile">
+            <div class="container">
+                  <div class="row">
+                        <div class="col-12">
+                              <nav>
+                                    <div class="nav-wrapper" style="background: #5DC1BF;">
+                                          <div class="col s12">
+                                                <%= link_to "Home", root_path, class: "breadcrumb"%>
+                                                <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "breadcrumb"%>
+                                          </div>
+                                    </div>
+                              </nav>
+                        </div>
+                  </div>
+            </div>
+            <div>
+                  <div class="row">
+                        <div class="m3 s12 col">
+                              <div class="collection list-in-profile ml-1">
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
+                              </div>
+                        </div>
+                        <div class="col m9 s12">
+                           <div id="admin" class="col s12">
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <div class="actions">
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered">
+                                                      <thead>
+                                                <tr>
+                                                      <th>Tên cửa hàng</th>
+                                                      <th>Địa chỉ</th>
+                                                      <th>Sđt</th>
+                                                      <th>Thời gian mở cửa</th>
+                                                      <th>Thời gian đóng cửa</th>
+                                                      <th></th>
+                                                </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                            <%= render partial: "list_restaurant_favorites", collection: @restaurants, as: :restaurant %>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>   
+                        </div>
+                  </div>
+            </div>
+
+      </section>
+
+
+
+
+
+
+
+
+<%= render 'layout_extends/footer' %>
+
+
+<script>
+$(document).ready(function() {
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
+  });
+});
+</script>

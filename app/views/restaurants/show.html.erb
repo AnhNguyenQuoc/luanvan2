@@ -145,7 +145,7 @@
             <p>Cửa hàng hiện đang đóng cửa. Chỉ mở cửa từ <%= @restaurant.timeopen.strftime('%H:%M') %>  - <%= @restaurant.timeclose.strftime('%H:%M') %></p>
       </div>
       <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-light btn" style="width: 100%; text-align: center">Đặt hàng trước để giao hàng vào hôm sau</a>
+            <a class="modal-close waves-effect waves-light btn" style="width: 100%; text-align: center">Đặt hàng trước để giao hàng vào hôm sau</a>
       </div>
       </div>
 
@@ -157,11 +157,10 @@
             var currentTime = new Date();
             var openPart = new Date('<%= @restaurant.timeopen %>');
             var closePart = new Date('<%= @restaurant.timeclose %>');  
-            console.log(openPart.getHours());
-            console.log(currentTime.getHours() >= closePart.getHours() && currentTime.getMinutes() >= closePart.getMinutes());
-            if((currentTime.getHours() >= closePart.getHours() && currentTime.getMinutes() >= closePart.getMinutes()) || (currentTime.getHours() <= openPart.getHours() && currentTime.getMinutes() <= openPart.getMinutes())){
-                  $('.modal').modal('open');
-                  // console.log("true");
+            console.log(currentTime.getHours());
+            console.log(currentTime.getHours() <= openPart.getHours());
+            if((currentTime.getHours() > closePart.getHours()) || (currentTime.getHours() < openPart.getHours())){
+                        $('.modal').modal('open');
             }
             
             

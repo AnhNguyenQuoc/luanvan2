@@ -29,7 +29,7 @@ class AdminRestaurantsController < ApplicationController
             end   
       end
 
-      def statistic_total_by_day
+      def statistic_orders_by_day
             
             if params[:day].present?
                   @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_day("#{params[:day]}"), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
@@ -38,7 +38,7 @@ class AdminRestaurantsController < ApplicationController
             end
       end
 
-      def statistic_total_by_month
+      def statistic_orders_by_month
             if params[:month].present?
                   @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_month("#{params[:month]}"), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
             else 

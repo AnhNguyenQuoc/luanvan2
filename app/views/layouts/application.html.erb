@@ -13,15 +13,7 @@
             window.location.replace "#{user_session_url()}"
             </script>
 <% end %>
-     
-  </head>
-
-  <body>    
-     <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
-       <% end %>
-    <%= yield %>
-   <script>
+      <script>
             $(document).ready(function () {
                   $('.dropdown-button').dropdown();
                   $(".button-collapse").sideNav();
@@ -40,6 +32,8 @@
                         aftershow: function(){} //Function for after opening timepicker
                   });
 
+          
+
                           setTimeout(function(){
                               $('#flash').hide('blind');
                         }, 2000);
@@ -47,5 +41,14 @@
                    
             });
       </script>
+     
+  </head>
+
+  <body>    
+     <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
+       <% end %>
+    <%= yield %>
+   
   </body>
 </html>

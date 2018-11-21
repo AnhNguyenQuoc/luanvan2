@@ -8,10 +8,11 @@ class Order < ApplicationRecord
       belongs_to :buyer, class_name: "User"
       belongs_to :shipper, class_name: "User", optional: true
       
-      scope :uncheck, -> {where("order_type_id = 1")}
-      scope :check, -> {where("order_type_id = 2")}
-      scope :complete, -> {where("order_type_id = 3")}
-      scope :search, -> (name){joins("INNER JOIN users ON orders.buyer_id = users.id").where("users.username LIKE ?", "#{name}%") }
+      # scope :uncheck, -> {where("order_type_id = 1")}
+      # scope :check, -> {where("order_type_id = 2")}
+      # scope :complete, -> {where("order_type_id = 3")}
+      # scope :search, -> (name){joins("INNER JOIN users ON orders.buyer_id = users.id").where("users.username LIKE ?", "#{name}%") }
+
 
       def add_line_item_from_cart(cart)
         cart.line_items.each do |item|

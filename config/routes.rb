@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       post '/admin-res/danh-sach-mon-an/them-san-pham' => 'products#create'
       get '/admin-res/danh-sach-mon-an/:id/sua-san-pham/' => 'products#edit', as: "products_sua"
 
+      get '/admin-res/thong-ke-don-hang-ngay' => 'admin_restaurants#statistic_total_by_day'
+      get '/admin-res/thong-ke-don-hang-thang' => 'admin_restaurants#statistic_total_by_month'
 
       get '/admin' => 'admins#index'
       get '/admin/thong-ke-doanh-thu' => 'admins#statistic_total'

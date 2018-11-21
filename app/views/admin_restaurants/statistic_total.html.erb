@@ -1,3 +1,6 @@
+ <script>
+      Chartkick.configure({language: "vn"});
+ </script>
  <%# <meta http-equiv="Refresh" content="30"> %>
  <!-- Start Page Loading -->
       <div id="loader-wrapper">
@@ -45,9 +48,9 @@
                                                 </div>
                                                 <div class="card-content grey lighten-4">
                                                       
-                                                      <div id="day"><%= line_chart @total_per_day %></div>
-                                                      <div id="month"><%= line_chart @total_per_month %></div>
-                                                      <div id="year"><%= line_chart @total_per_year %></div>
+                                                      <div id="day"><%= line_chart @total_per_day, download: true %></div>
+                                                      <div id="month"><%= line_chart @total_per_month, download: true %></div>
+                                                      <div id="year"><%= line_chart @total_per_year, download: true %></div>
                                                 </div>
                                           </div>
                                     </div>

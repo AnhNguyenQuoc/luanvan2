@@ -44,7 +44,7 @@ gem 'social-share-button'
 gem 'omniauth-google-oauth2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'delayed_job_active_record'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

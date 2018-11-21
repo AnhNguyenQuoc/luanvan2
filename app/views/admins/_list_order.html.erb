@@ -6,7 +6,9 @@
                                                                         <th style="text-align: center"><%= order.order_type.name %></th>
                                                                         <th style="text-align: center">
                                                                               <% if order.order_type.id == 2%>
-                                                                              <%= link_to "Chọn shipper", shipper_edit_path(order), method: :get %>
+                                                                                    <% if !order.shipper %>
+                                                                                          <%= link_to "Chọn shipper", shipper_edit_path(order), method: :get %>
+                                                                                    <% end %>
                                                                              <% end %>
                                                                         </th>
                                                                         <th style="text-align: center">

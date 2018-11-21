@@ -35,7 +35,7 @@
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="striped centered">
+                                                      <table id="datatable" class="centered">
                                                       <thead>
                                                             <tr>
                                                       <th>Tên người đặt</th>
@@ -47,7 +47,7 @@
                                                             </tr>
                                                       </thead>
                                                       <tbody>
-                                                      <%= render 'list_order' %>
+                                                      <%= render partial: 'list_order', collection: @orders, as: :order %>
                                                       </tbody>
                                                       </table>
                                                 </div>

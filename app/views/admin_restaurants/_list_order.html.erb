@@ -1,4 +1,4 @@
-                                          <% @orders.each do |order| %>
+
                                                 <tr>
                                                       <td><%= order.buyer.username%></td>
                                                       <td><%= number_to_currency_vnd(order.total)%></td>
@@ -18,12 +18,14 @@
                                                             </div>
                                                       </td>
                                                       <td style="text-align: center;">
-                                                            <% if order.order_type.id == 1 || order.order_type.id == 4 %>
-                                                                  <span class="badge red" style="color: white"><%= order.order_type.name%></span>
+                                                            <% if order.order_type.id == 4 %>
+                                                                  <p class="badge red" style="color: white"><%= order.order_type.name%></p>
                                                             <% elsif order.order_type.id == 2%>
-                                                                  <span class="badge green" style="color: white"><%= order.order_type.name%></span>
+                                                                  <p class="badge green" style="color: white"><%= order.order_type.name%></p>
+                                                            <% elsif order.order_type.id == 1%>
+                                                                  <p class="badge yellow" style="color: white"><%= order.order_type.name%></p>
                                                             <% else %>
-                                                                   <span class="badge blue" style="color: white"><%= order.order_type.name%></span>
+                                                                   <p class="badge blue" style="color: white"><%= order.order_type.name%></p>
                                                             <% end%>
                                                       </td>
                                                       <td style="text-align: center">
@@ -32,4 +34,3 @@
                                                            
                                                       </td>
                                                 </tr>
-                                                <% end %>

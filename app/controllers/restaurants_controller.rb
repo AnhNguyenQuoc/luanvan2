@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.all.page(params[:page])
       @restaurants = Restaurant.all.page(params[:page]) if params[:all].present?
       @restaurants = Restaurant.find_district(params[:find_district]).page(params[:page]) if params[:find_district].present?
-      @restaurants = Restaurant.starts_with(params[:starts_with]).page(params[:page]) if params[:starts_with].present?
+      @restaurants = Restaurant.starts_with(params[:starts_with].downcase).page(params[:page]) if params[:starts_with].present?
       @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?

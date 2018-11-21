@@ -3,18 +3,17 @@ class AdminRestaurantsController < ApplicationController
       before_action :check_user
 
       def index
-           @orders = Order.joins(:products).where("orders.order_type_id = 1 AND products.restaurant_id = ?", current_user.restaurant.id).count('orders.id')
+           @orders = Order.joins(:products).where("orders.order_type_id = 1 AND products.restaurant_id = ?", current_user.restaurant.id).group('orders.id').length
            @products = current_user.restaurant.products.count
            @total = Order.joins(:products).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).sum(:total)
-           @order_per_day = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group_by_day('orders.created_at').count
-           @order_per_month = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group_by_month('orders.created_at').count
-           @order_per_year = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group_by_year('orders.created_at').count
+           @order = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group('orders.id').order("updated_at desc").limit(5)
       end
 
       def statistic_total
-            @total_per_day = Order.joins(:products).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).group_by_day('orders.created_at').sum(:total)
-            @total_per_month = Order.joins(:products).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).group_by_month('orders.created_at').sum(:total)
-            @total_per_year = Order.joins(:products).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).group_by_year('orders.created_at').sum(:total)
+            # @orders = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = 1")
+            @total_per_day = Order.select("a.total").from(Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = 1"), :a).group_by_day("a.created_at").sum("a.total")
+            @total_per_month = Order.select("a.total").from(Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = 1"), :a).group_by_month("a.created_at").sum("a.total")
+            @total_per_year = Order.select("a.total").from(Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = 1"), :a).group_by_year("a.created_at").sum("a.total")
       end
 
 
@@ -27,7 +26,7 @@ class AdminRestaurantsController < ApplicationController
                   @products = current_user.restaurant.products.search(params[:search]).page params[:page]
             else
                   @products = current_user.restaurant.products.page params[:page]
-            end
+            end   
       end
 
 

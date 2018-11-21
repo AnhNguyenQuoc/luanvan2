@@ -125,7 +125,7 @@
                                           <div class="row">
                                                 
                                                 <div class="input-field col s10">
-                                                            <%= text_field_tag :starts_with, params[:starts_with] %>
+                                                            <%= text_field_tag :starts_with, params[:starts_with], :autocomplete => :off %>
                                                             <%= label_tag 'starts_with', 'Tìm kiếm'%>
                                                       </div>
                                                       <div class="input-field col s2">
@@ -145,7 +145,7 @@
             </div>
       </header>
 
-
+      <main>
 
       <section class="list-restaurant">
             <div class="container" style="width: 80%">
@@ -164,5 +164,5 @@
   </div>
   <div id="dclose">close me!</div>
 </div>
-
+</main>
       <%= render 'layout_extends/footer' %>

@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
       paginates_per 6
 
+      before_save  {self.name = email.name}
       has_one_attached :image, dependent: :destroy
       has_many :products, dependent: :destroy
       has_many :comments, dependent: :destroy

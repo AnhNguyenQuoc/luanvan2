@@ -1,5 +1,17 @@
 <% if @restaurants.count > 0 %>
-$('#restaurants').html("<%= escape_javascript(render partial: 'restaurant_item', collection: @restaurants, as: :restaurant ) %>")
+$('#restaurants').stop().animate({
+    opacity: 0.0
+}, 500, function(){
+    $(this).html("<%= escape_javascript(render partial: 'restaurant_item', collection: @restaurants, as: :restaurant ) %>").animate({
+        opacity: 1
+    })
+})
 <% else %>
-$('#restaurants').html("Hiện không có cửa hàng bạn tìm kiếm")
+$('#restaurants').stop().animate({
+    opacity: 0.0
+}, 500, function(){
+    $(this).html("Hiện không có cửa hàng bạn tìm kiếm").animate({
+        opacity: 1
+    })
+})
 <% end %>

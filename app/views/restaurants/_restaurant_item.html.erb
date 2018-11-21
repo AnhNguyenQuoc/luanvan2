@@ -2,7 +2,7 @@
                               <div class="restaurant-card card" style="width: 100%;">
                                     <div class="card-image">
                                           <%= image_tag restaurant.image, class: "card-img-top", alt: restaurant.image.filename, style: "height: 200px;" %>
-                                          <span class="card-title"><%= restaurant.name%></span>
+                                          <span class="card-title"><%= restaurant.name.capitalize%></span>
                                           <span style="padding: 10px; background: red; color: black; float: right; color: white;"><%= restaurant.avg_rating %></span>
                                     </div>
 

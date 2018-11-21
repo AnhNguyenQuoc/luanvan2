@@ -75,25 +75,30 @@
                                     <div class="col s12">
                                           <div class="card">
                                                 <div class="card-content">
-                                                      <h5>Thống kê đơn hàng</h5>
-                                                </div>
-                                                <div class="card-tabs">
-                                                      <ul class="tabs tabs-fixed-width">
-                                                            <li class="tab">
-                                                                  <a class="active" href="#test4">Theo Ngày</a>
-                                                            </li>
-                                                            <li class="tab">
-                                                                  <a  href="#test5">Theo Tháng</a>
-                                                            </li>
-                                                            <li class="tab">
-                                                                  <a href="#test6">Theo Năm</a>
-                                                            </li>
-                                                      </ul>
-                                                </div>
-                                                <div class="card-content grey lighten-4">
-                                                      <div id="test4"><%= line_chart @order_per_day %></div>
-                                                      <div id="test5"><%= line_chart @order_per_month %></div>
-                                                      <div id="test6"><%= line_chart @order_per_year %></div>
+                                                       <span class="card-title">Danh sách đơn hàng mới cập nhật</span>
+                                                        <table>
+                                                            <thead>
+                                                            <tr>
+                                                                  <th>#</th>
+                                                                  <th>Tên người mua</th>
+                                                                  <th>Tổng tiền</th>
+                                                                  <th>Tình trạng</th>
+                                                                  <th>Người giao hàng</th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            <% @order.each do |order| %>
+                                                            <tr>
+                                                                  <td><%= order.id%></td>
+                                                                  <td><%= order.buyer.username %></td>
+                                                                  <td><%= order.total %></td>
+                                                                  <td><%= order.order_type.name %></td>
+                                                                  <td><%= order.shipper ? order.shipper.username : "Chưa có người giao hàng" %></td>
+                                                            </tr>
+                                                            <% end %>
+                                                            </tbody>
+                                                      </table>
                                                 </div>
                                           </div>
                                     </div>

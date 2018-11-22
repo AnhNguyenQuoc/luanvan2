@@ -83,6 +83,10 @@ Rails.application.routes.draw do
       
       get '/admin/danh-sach-nhan-xet' => 'admins#list_comments'
 
+      get '/admin/thong-ke-don-hang-ngay' => 'admins#statistic_orders_by_day'
+      get '/admin/thong-ke-don-hang-thang' => 'admins#statistic_orders_by_month'
+      get '/admin/thong-ke-don-hang-nam' => 'admins#statistic_orders_by_year'
+
       get '/admin-shipper' => 'admin_shippers#index'
       post '/orders/:id/update_complete' => 'orders#update_complete', as: "order_update_complete"
       

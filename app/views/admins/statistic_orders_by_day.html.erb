@@ -1,0 +1,84 @@
+
+ <%# <meta http-equiv="Refresh" content="30"> %>
+ <!-- Start Page Loading -->
+      <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+      </div>
+      <!-- End Page Loading -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START HEADER -->
+     <%= render 'admin_restaurants/header' %>
+      <!-- END HEADER -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START MAIN -->
+      <div id="main">
+            <!-- START WRAPPER -->
+            <div class="wrapper">
+                  <!-- START LEFT SIDEBAR NAV-->
+                  <%= render 'sidebar' %>
+                  <!-- END LEFT SIDEBAR NAV-->
+                  <!-- //////////////////////////////////////////////////////////////////////////// -->
+                  <!-- START CONTENT -->
+                  <section id="content">
+                        <!--start container-->
+                        <div class="container">
+                              <!--card stats start-->
+                              <div class="row">
+                                    <div class="col s12">
+                                          <div class="card darken-1" style="height: 500px">
+                                            
+                                            <div class="card-content">
+                                            <span class="card-title">Thông kế đơn hàng theo ngày</span>
+                                            <% if params[:day]%>
+                                                <p><%= params[:day]%></p>
+                                            <% else %>
+                                                <p><%= Date.today.strftime("%d/%m/%Y") %></p>
+                                            <% end%>
+                                             <%= form_tag admin_thong_ke_don_hang_ngay_path,method: :get,:id => 'form-search' do |f| %> 
+                                                <div class="row">
+                                                        
+                                                        <div class="input-field col s10">
+                                                                    <%= text_field_tag :day, params[:day], :autocomplete => :off, class: "datepicker" %>
+                                                                    <%= label_tag 'day', 'Tìm kiếm'%>
+                                                            </div>
+                                                            <div class="input-field col s2">
+                                                                    <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search", data: {disable_with: "Loading ....."}) do %>
+                                                                        <i class="material-icons">search</i>
+                                                                    <%end%>
+                                                            </div> 
+                                                    </div>
+                                                        
+                                                </div>
+                                            <% end %>
+                                            <% if @orders.blank? %>
+                                                <p style="text-align: center">Không có đơn hàng</p>
+                                            <% else%> 
+                                                <%= pie_chart(@orders, colors: ['#0bd', '#afe', '#0b5', '#f44']) %>
+                                            <% end %>
+
+                                           
+                                            </div>
+                                        </div>
+                                          
+                                    </div>
+                              </div>
+
+                              <!-- //////////////////////////////////////////////////////////////////////////// -->
+                        </div>
+                        <!--end container-->
+                  </section>
+                  <!-- END CONTENT -->
+                  <!-- START RIGHT SIDEBAR NAV-->
+
+                  <!-- END RIGHT SIDEBAR NAV-->
+            </div>
+            <!-- END WRAPPER -->
+      </div>
+      <!-- END MAIN -->
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+      <!-- START FOOTER -->
+      <%= render 'admin_restaurants/footer' %>
+
+

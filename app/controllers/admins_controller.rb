@@ -39,6 +39,32 @@ class AdminsController < ApplicationController
            @restaurants = Restaurant.all
       end
 
+      def statistic_orders_by_day
+            
+            if params[:day].present?
+                  @orders = Order.by_day("#{params[:day]}").joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            else 
+                  @orders = Order.by_day(Date.today).joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            end
+      end
+
+      def statistic_orders_by_month
+            if params[:month].present?
+                  @orders = Order.by_month("#{params[:month]["written_on(2i)"]}").joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            else 
+                  @orders = Order.by_month(Date.today).joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            end
+      end
+
+      def statistic_orders_by_year
+            if params[:year].present?
+                  @orders = Order.by_year("#{params[:year]["written_on(1i)"]}").joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            else 
+                  @orders = Order.by_year(Date.today).joins("INNER JOIN order_types ON order_types.id = orders.order_type_id").group("order_types.name").count
+            end
+      end
+
+
       def list_comments
             @comments = Comment.all
       end

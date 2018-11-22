@@ -71,6 +71,34 @@
                                                       <span class="nav-text">Thông kê thu nhập</span>
                                                 <% end %>
                                           </li>
+                                          <li class="bold">
+                                                <a class="collapsible-header waves-effect waves-cyan">
+                                                      <i class="material-icons">insert_chart</i>
+                                                      <span class="nav-test">Thống kê đơn hàng</span>
+                                                </a>
+                                                <div class="collapsible-body" style="display: none;">
+                                                      <ul>
+                                                            <li>
+                                                                  
+                                                                  <%= link_to admin_thong_ke_don_hang_ngay_path, method: :get do %>
+                                                                        <i class="material-icons">date_range</i>Theo ngày
+                                                                  <% end %>
+                                                            </li>
+                                                            <li>
+                                                                  
+                                                                  <%= link_to admin_thong_ke_don_hang_thang_path, method: :get do %>
+                                                                        <i class="material-icons">date_range</i>Theo tháng
+                                                                  <% end %>
+                                                            </li>
+                                                         <li>
+                                                                  
+                                                                  <%= link_to admin_thong_ke_don_hang_nam_path, method: :get do %>
+                                                                        <i class="material-icons">date_range</i>Theo năm
+                                                                  <% end %>
+                                                            </li>
+                                                      </ul>
+                                                </div>
+                                          </li>
                                     </ul>
                               </li>
                         </ul>

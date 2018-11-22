@@ -36,14 +36,7 @@
                                             <% else %>
                                                 <p><%= Date.today.strftime("%d/%m/%Y") %></p>
                                             <% end%>
-                                          
-                                            <% if @orders.blank? %>
-                                                <p>Không có đơn hàng</p>
-                                            <% else%> 
-                                                <%= pie_chart(@orders, colors: ['#0bd', '#afe', '#0b5', '#f44']) %>
-                                            <% end %>
-
-                                            <%= form_tag admin_res_thong_ke_don_hang_ngay_path,method: :get,:id => 'form-search' do |f| %> 
+                                             <%= form_tag admin_res_thong_ke_don_hang_ngay_path,method: :get,:id => 'form-search' do |f| %> 
                                                 <div class="row">
                                                         
                                                         <div class="input-field col s10">
@@ -59,6 +52,13 @@
                                                         
                                                 </div>
                                             <% end %>
+                                            <% if @orders.blank? %>
+                                                <p style="text-align: center">Không có đơn hàng</p>
+                                            <% else%> 
+                                                <%= pie_chart(@orders, colors: ['#0bd', '#afe', '#0b5', '#f44']) %>
+                                            <% end %>
+
+                                           
                                             </div>
                                         </div>
                                           

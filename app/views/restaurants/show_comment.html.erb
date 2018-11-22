@@ -125,13 +125,14 @@
                                                                         <a class="tooltipped secondary-content waves-effect waves-light btn" style="width: 100%;" data-position="bottom" data-tooltip="Bạn vui lòng điền đầy đủ thông tin">
                                                                               Viết nhận xét     
                                                                         </a>
-                                    <% else %>
-                                          <button data-target="nhanxet" class="waves-effect waves-light btn modal-trigger" style="width: 100%;">Viết nhận xét</button>
-                                    <% end %>
-                              <% elsif current_user.address.blank? || current_user.phone.blank? || current_user.username.blank? %>
+                                    <%elsif current_user.address.blank? || current_user.phone.blank? || current_user.username.blank? %>
                                                             <a class="tooltipped secondary-content" data-position="bottom" data-tooltip="Bạn vui lòng điền đầy đủ thông tin">
                                                                  <i class="material-icons">add_shopping_cart</i> 
                                                              </a>
+                                    <% else %>
+                                          <button data-target="nhanxet" class="waves-effect waves-light btn modal-trigger" style="width: 100%;">Viết nhận xét</button>
+                                    <% end %>
+
                                <% else %>
                                     <a class="tooltipped secondary-content waves-effect waves-light btn" style="width: 100%;" data-position="bottom" data-tooltip="Bạn vui lòng đăng nhập">
                                                                               Viết nhận xét     

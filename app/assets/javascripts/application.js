@@ -244,3 +244,9 @@ $(document).ready(function () {
   jQuery.extend( jQuery.fn.pickatime.defaults, {
       clear: 'Xoá'
   });
+
+  jQuery.extend( jQuery.fn.pickatime.defaults, {
+    donetext: 'OK', // text for done-button
+    cleartext: 'Xoá', // text for clear-button
+    canceltext: 'Trở về', // Text for cancel-button,
+});

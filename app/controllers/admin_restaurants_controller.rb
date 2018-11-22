@@ -40,9 +40,17 @@ class AdminRestaurantsController < ApplicationController
 
       def statistic_orders_by_month
             if params[:month].present?
-                  @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_month("#{params[:month]}"), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
+                  @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_month("#{params[:month]["written_on(2i)"]}"), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
             else 
                   @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_month(Date.today), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
+            end
+      end
+
+      def statistic_orders_by_year
+            if params[:year].present?
+                  @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_year("#{params[:year]["written_on(1i)"]}"), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
+            else 
+                  @orders = Order.from(Order.joins(:products).distinct(true).where("products.restaurant_id = ?", current_user.restaurant.id).by_year(Date.today), :a).joins("INNER JOIN order_types ON order_types.id = a.order_type_id").group("order_types.name").count
             end
       end
 

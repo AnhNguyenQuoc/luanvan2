@@ -48,6 +48,7 @@ Rails.application.routes.draw do
 
       get '/admin-res/thong-ke-don-hang-ngay' => 'admin_restaurants#statistic_orders_by_day'
       get '/admin-res/thong-ke-don-hang-thang' => 'admin_restaurants#statistic_orders_by_month'
+      get '/admin-res/thong-ke-don-hang-nam' => 'admin_restaurants#statistic_orders_by_year'
 
       get '/admin' => 'admins#index'
       get '/admin/thong-ke-doanh-thu' => 'admins#statistic_total'

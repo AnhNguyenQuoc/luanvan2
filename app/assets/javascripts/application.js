@@ -15,13 +15,13 @@
 //= require activestorage
 //= require turbolinks
 //= require datatables
-//= require materialize
 //= require lightgallery
 //= require perfect-scrollbar
 //= require Chart.bundle
 //= require chartkick
 //= require social-share-button
 //= require_tree .
+//= require materialize
 $(document).on('turbolinks:load', function () {
       $('.modal').modal();
       $('.modal-trigger').on('click', function () {
@@ -38,6 +38,10 @@ $(document).ready(function () {
       $(this).parent().slideUp();
     });
   });
+
+  $('.select-dropdown').change(function(){
+    alert($(this).val());
+  })
 
 });
 

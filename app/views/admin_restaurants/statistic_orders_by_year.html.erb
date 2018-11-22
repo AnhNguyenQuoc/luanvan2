@@ -30,18 +30,17 @@
                                           <div class="card darken-1" style="height: 600px">
                                             
                                             <div class="card-content">
-                                            <span class="card-title">Thông kế đơn hàng theo tháng<% if params[:month]%>
-                                                <%= params[:month]["written_on(2i)"]%>
+                                            <span class="card-title">Thông kế đơn hàng theo năm<% if params[:year]%>
+                                                <%= params[:year]['written_on(1i)']%>
                                             <% else %>
-                                                <%= Date.today.strftime("%m") %>
+                                                <%= Date.today.strftime("%Y") %>
                                             <% end%>
-                                            <%= form_tag admin_res_thong_ke_don_hang_thang_path,method: :get,:id => 'form-search' do |f| %> 
+                                            <%= form_tag admin_res_thong_ke_don_hang_nam_path,method: :get do |f| %> 
                                                 <div class="row">
                                                         
                                                         <div class="input-field col s10">
-                                                                    <%# <%= text_field_tag :month, params[:month], :autocomplete => :off, class: "datepicker" %>
-                                                                    <%= date_select("month", "written_on", prompt: {month: "Chọn tháng"},discard_day: true, discard_year: true, use_month_numbers: true) %>
-                                                                    <%= label_tag 'month', 'Tìm kiếm', class: "active"%>
+                                                                    <%= date_select("year", "written_on", prompt: {year: "Chọn năm"},discard_day: true, discard_month: true) %>
+                                                                    <%= label_tag 'year', 'Tìm kiếm', class: "active"%>
                                                             </div>
                                                             <div class="input-field col s2">
                                                                     <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search", data: {disable_with: "Loading ....."}) do %>

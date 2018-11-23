@@ -1,0 +1,5 @@
+<% if @restaurant.errors.any? %>
+  $("form").prepend(
+    "<%= j render "layout_extends/error", object: @restaurant %>")
+  $(window).scrollTop(0);
+<% end %>

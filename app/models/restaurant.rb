@@ -1,10 +1,11 @@
 class Restaurant < ApplicationRecord
-      paginates_per 6
+      paginates_per 3
 
-      before_save  {self.name = email.name}
+      before_save  {self.name = self.name}
       has_one_attached :image, dependent: :destroy
       has_many :products, dependent: :destroy
       has_many :comments, dependent: :destroy
+      has_many :product_types, through: :products
 
       has_many :restaurant_favorites, dependent: :destroy
       has_many :users, through: :restaurant_favorites
@@ -37,9 +38,9 @@ class Restaurant < ApplicationRecord
       private
       def correct_image_type
             if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
-                  errors.add(:image, 'Cần phải là JPEG hoặc PNG')
+                  errors.add(:image, '^Cần phải là JPEG hoặc PNG')
             elsif image.attached? == false 
-                  errors.add(:image, 'Cần phải có ảnh')
+                  errors.add(:image, '^Cần phải có ảnh')
             end 
       end
 end

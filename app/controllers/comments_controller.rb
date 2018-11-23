@@ -11,10 +11,11 @@ class CommentsController < ApplicationController
             respond_to do |format|
                   if @comment.save 
                         flash[:success] = "Đăng bình luận thành công"
-                        format.html {redirect_to restaurant_comment_path(@restaurant) } 
+                        @comments = @restaurant.comments.order(created_at: :desc)
+                        format.js {render 'create.js.erb'}
                   else 
                         flash[:danger] = "Có lỗi xảy ra"
-                        format.js {}
+                        format.js {render "error.js.erb"}
                   end
             end
       end
@@ -22,7 +23,10 @@ class CommentsController < ApplicationController
       def destroy
             @comment = Comment.find(params[:id])
             @comment.destroy 
-            redirect_back fallback_location: admin_path
+            
+            respond_to do |format|
+                  format.js {}
+            end
       end
       
 

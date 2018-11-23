@@ -1,3 +1,5 @@
+
+
  <div class="card comment-card mb-2">
        <div class="card-content">
              <h5 class="card-title">
@@ -5,7 +7,8 @@
                   <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
                   <% if logged_in? %>
                         <% if comment.user_id == current_user.id%>
-                        <span><%= link_to "<i class='material-icons'>delete</i>".html_safe, comment_destroy_path(comment), method: :delete, data: {confirm: "Bạn có chắc chắn chứ?"}%></span>
+                        <span><%= link_to "<i class='material-icons'>delete</i>".html_safe, comment_destroy_path(comment), method: :delete, data: {confirm: "Bạn có chắc chắn chứ?"}, class: "destroy-comment", remote: true%></span>
+
                         <% end %>
                   <% end %>
              </h5>

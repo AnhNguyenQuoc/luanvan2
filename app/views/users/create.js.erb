@@ -1,4 +1,5 @@
 <% if @user.errors.any? %>
   $("form").prepend(
     "<%= j render "layout_extends/error", object: @user %>")
+  $(window).scrollTop(0);
 <% end %>

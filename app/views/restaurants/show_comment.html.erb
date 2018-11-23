@@ -76,7 +76,7 @@
                                           <li class="tab col s3"><a  href="#test2">Của bạn</a></li>
                                           </ul>
                                     </div>
-                                    <div id="test1" class="col s12">
+                                    <div id="test1" class="col s12" id="">
                                           <%= render 'comment' %>
                                     </div>
                                     <div id="test2" class="col s12">
@@ -153,7 +153,7 @@
                                                             <%= f.label :description, "Nội dung" %>
                                                       </div>
                                                       <div class="input-field col s12">
-                                                            <%= f.label :rating, "Điểm số"%>
+                                                            <%= f.label :rating, "Điểm đánh giá"%>
                                                             <p class="range-field">
                                                                   <%= f.range_field :rating, :min => 0, :max => 10 %>
                                                             </p>
@@ -172,7 +172,8 @@
                                                             </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                            <%= f.submit "Đăng nhận xét", :class => 'waves-effect waves-green btn-flat'%>
+                                                            <a class="modal-close waves-effect waves-green btn-flat">Hủy bỏ</a>
+                                                            <%= f.submit "Đăng nhận xét", :class => 'waves-effect waves-light btn modal-action modal-close'%>
                                                       </div>
                                                 </div>
                                           <% end %>

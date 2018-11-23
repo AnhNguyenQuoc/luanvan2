@@ -48,12 +48,14 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.create(restaurant_params)
       @restaurant.image.attach(params[:restaurant][:image])
       @restaurant.user_id = current_user.id
-      if @restaurant.save
-            flash[:success] = "Tạo cửa hàng thành công"
-            redirect_to admin_res_path
-      else 
-            flash[:danger] = "Có lỗi xảy ra"
-            render 'new'
+      respond_to do |format|
+            if @restaurant.save
+                  flash[:success] = "Tạo cửa hàng thành công"
+                  format.html {redirect_to admin_res_path}
+            else 
+                  flash[:danger] = "Có lỗi xảy ra"
+                  format.js {}
+            end
       end
   end
 

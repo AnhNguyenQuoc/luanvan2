@@ -8,7 +8,7 @@
                         </div>
                   </div>
                   <div class="row justify-content-md-center">
-                        <%= form_for @restaurant, url: restaurant_create_path, :html => {:class => "col s12"} do |f| %>
+                        <%= form_for @restaurant, url: restaurant_create_path, :html => {:class => "col s12"}, remote: true do |f| %>
                               <%= render 'layout_extends/error', object: f.object %>
                               <div class="row">
                                     <div class="input-field col s12">
@@ -51,16 +51,16 @@
 
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.text_field :timeopen, class: "timepicker validate", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập thời gian mở cửa ở đây')", oninput: "this.setCustomValidity('')"%>
-                                          <%= f.label :timeopen, "Thời gian mở cửa", data: {error: "Vui lòng kiểm tra lại"}%>
+                                          <%= f.text_field :timeopen, class: "timepicker"%>
+                                          <%= f.label :timeopen, "Thời gian mở cửa" %>
                                     </div>
                               </div>
 
                               
                               <div class="row">
                                     <div class="input-field col s12">
-                                          <%= f.text_field :timeclose, class: "timepicker validate", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập thời gian đóng cửa ở đây')", oninput: "this.setCustomValidity('')"%>
-                                          <%= f.label :timeclose, "Thời gian đóng cửa", data: {error: "Vui lòng kiểm tra lại"}%>
+                                          <%= f.text_field :timeclose, class: "timepicker" %>
+                                          <%= f.label :timeclose, "Thời gian đóng cửa"%>
                                     </div>
                               </div>
 

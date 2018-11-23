@@ -152,8 +152,13 @@
                   <div class="row" > 
                         <div id="restaurants">
                               <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
-                              <%= paginate @restaurants %>
+                              
+                              
                         </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12 m3 offset-m5">
+                        <%= paginate @restaurants %>
                   </div>
             </div>
       </section>

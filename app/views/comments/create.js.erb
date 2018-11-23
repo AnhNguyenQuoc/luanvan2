@@ -1,4 +1,8 @@
-<% if @comment.errors.any? %>
-  $("form").prepend(
-    "<%= j render "layout_extends/error", object: @comment %>")
-<% end %>
+
+$('#test1').stop().animate({
+    opacity: 0.0
+}, 500, function(){
+    $(this).html("<%= j render "restaurants/comment" %>").animate({
+        opacity: 1
+    })
+})

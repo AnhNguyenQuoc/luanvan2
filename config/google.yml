@@ -1,3 +1,6 @@
 development: 
   app_id: '148934519360-nq2o6qo9mrf8qjcr2929q0mmg8hckis5.apps.googleusercontent.com'
   secret: '1M8aTeYPK4ThuR0E9373Sp6X'
+production:
+  app_id: '148934519360-nq2o6qo9mrf8qjcr2929q0mmg8hckis5.apps.googleusercontent.com'
+  secret: '1M8aTeYPK4ThuR0E9373Sp6X'

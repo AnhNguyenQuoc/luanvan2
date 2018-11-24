@@ -152,7 +152,7 @@
             <div class="container" style="width: 80%">
                   <div class="row" > 
                         <div id="restaurants">
-                              <% if @restaurant.count > 0 %>
+                              <% if @restaurant.nil? == false %>
                                     <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
                               <% else %>
                                     <p style="text-algin: center">Không có cửa hàng. Vui lòng quay lại sau</p>
@@ -166,7 +166,7 @@
                   </div>
             </div>
       </section>
-      <% if @coupon.count > 0 %>
+      <% if @coupon.nil? == false %>
       <div id="dbanner" class="change-color">
             <div class="dcontent">
             Chương trình đặt biệt khuyến mãi <strong><%= @coupon.amount%>%</strong> Với mã: <code><%= @coupon.code %></code> <span class="dtime">Hết hạn vào ngày:</span><span id="dcountdown"><%= @coupon.expiration.strftime('%d/%m/%Y') %></span>

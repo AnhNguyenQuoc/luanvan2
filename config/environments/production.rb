@@ -61,7 +61,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "LuanVanBackUp_#{Rails.env}"
-
+  config.serve_static_files = true
   config.action_mailer.perform_caching = false
   config.serve_static_assets = true
   config.assets.compile = true

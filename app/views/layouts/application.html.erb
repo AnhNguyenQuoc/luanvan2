@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
      <% begin %>
+            <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
             <%= stylesheet_link_tag 'application', 'data-turbolinks-track' => 'reload', media: 'all' %>
             <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
-                <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
       <% rescue %>
             <script>
             window.location.replace "#{user_session_url()}"

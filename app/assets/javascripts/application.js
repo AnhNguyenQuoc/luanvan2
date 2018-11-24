@@ -20,8 +20,9 @@
 //= require Chart.bundle
 //= require chartkick
 //= require social-share-button
-//= require_tree .
 //= require materialize
+//= require_tree .
+
 $(document).on('turbolinks:load', function () {
       $('.modal').modal();
       $('.modal-trigger').on('click', function () {

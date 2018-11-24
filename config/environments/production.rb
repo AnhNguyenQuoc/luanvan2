@@ -64,7 +64,7 @@ Rails.application.configure do
   config.serve_static_files = true
   config.action_mailer.perform_caching = false
   config.serve_static_assets = true
-  config.assets.compile = true
+  config.assets.compile = false
   config.assets.digest = true
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

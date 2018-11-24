@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
       before_action :check_login, only: [:new, :create]
+      before_action :current_cart, only: [:destroy]
 
       def new
       end
@@ -59,6 +60,7 @@ class SessionsController < ApplicationController
       def destroy
       log_out if logged_in?
       flash.now[:info] = "Bạn đã đăng xuất"
+      @current_cart.destroy
       redirect_to root_path
       end
 

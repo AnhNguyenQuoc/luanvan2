@@ -6,11 +6,12 @@ class RestaurantsController < ApplicationController
       end
 
   def index
+      @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
       @restaurants = Restaurant.all.page(params[:page])
       @restaurants = Restaurant.all.page(params[:page]) if params[:all].present?
       @restaurants = Restaurant.find_district(params[:find_district]).page(params[:page]) if params[:find_district].present?
       @restaurants = Restaurant.starts_with(params[:starts_with].downcase).page(params[:page]) if params[:starts_with].present?
-      @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
+      
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
       @coupon = Coupon.where("expiration >= ?", Date.today).order("RANDOM()").first
@@ -28,13 +29,15 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.find(params[:id])
       @order = Order.new
       @products = @restaurant.products
-      if session[:store_id] != params[:id]
-            session[:store_id] = params[:id]
-            if(@current_cart)
-                  @current_cart.destroy
-            end    
-            @current_cart = Cart.create 
-            session[:cart_id] = @current_cart.id
+      if logged_in?
+            if session[:store_id] != params[:id]
+                  session[:store_id] = params[:id]
+                  if(@current_cart)
+                        @current_cart.destroy
+                  end    
+                  @current_cart = Cart.create 
+                  session[:cart_id] = @current_cart.id
+            end
       end
       store_location
   end 

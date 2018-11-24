@@ -31,8 +31,9 @@
                                     <i class="material-icons">menu</i>
                               </a>
                               <ul class="right hide-on-med-and-down">
+                                    <li><%= link_to "Cửa hàng", cua_hang_path%></li>
                                     <% if logged_in?%>
-                                          <li><%= link_to "Cửa hàng", cua_hang_path%></li>
+                                          
                                           
                                           
                                     <li>
@@ -112,10 +113,10 @@
 
                                           <ul id='sapxep' class='dropdown-content' style="width: 90%">
                                                 <li>
-                                                      <%= link_to "Theo nhận xét", cua_hang_path(:order_rating => "Theo nhận xét"), remote: true, data: {disable_with: "Loading ....."}%>
+                                                      <%= link_to "Theo nhận xét", cua_hang_path(:order_rating => ""), data: {disable_with: "Loading ....."}%>
                                                 </li>
                                                 <li>
-                                                     <%= link_to "Từ A - Z", cua_hang_path(:order_name => "Từ A - Z"), remote: true, data: {disable_with: "Loading ....."}, id: "atoz"%>
+                                                     <%= link_to "Từ A - Z", cua_hang_path(:order_name => ""),remote: true, data: {disable_with: "Loading ....."}, id: "atoz"%>
                                                 </li>
                                           </ul>
                                     </div>
@@ -156,6 +157,7 @@
                               
                         </div>
                   </div>
+                  <br>
                   <div class="row">
                         <div class="col s12 m3 offset-m5">
                         <%= paginate @restaurants %>

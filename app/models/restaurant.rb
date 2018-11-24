@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-      paginates_per 3
+      paginates_per 6
 
       before_save  {self.name = self.name}
       has_one_attached :image, dependent: :destroy
@@ -17,7 +17,7 @@ class Restaurant < ApplicationRecord
       scope :find_district, ->(id) { where("district_id = ?", "#{id}")}
       scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
       scope :find_type, -> (id){where("restaurant_type_id = ?", "#{id}")}
-      scope :order_rating, -> { joins(:comments).group("restaurants.id").order("avg(comments.rating) DESC")}
+      scope :order_rating, -> { joins(:comments).group("restaurants.id").order("avg(comments.rating) ASC")}
       scope :order_name, -> {order("name ASC")}
       scope :order_uncheck, -> {where("order_type.id == 1")}
       # Ex:- scope :active, -> {where(:active => true)}

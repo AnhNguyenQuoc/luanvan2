@@ -1,11 +1,11 @@
 <% if logged_in? %>
     <% if !current_user.restaurants.include?(@restaurant)%>
-         <%= link_to restaurant_favorites_path(restaurant_id: @restaurant.id), method: :post, remote: true, class: "collection-item", :onclick => "Materialize.toast('Đã yêu thích', 3000)" do %>
-            <i class="material-icons">bookmark_border</i>
-        <% end %>
+         <%= link_to restaurant_favorites_path(restaurant_id: @restaurant.id), method: :post, remote: true, class: "collection-item", :onclick => "Materialize.toast('Đã yêu thích', 1500)" do%>
+            <%= image_tag 'unlike.svg', height: "25"%>
+         <% end %>
     <% else %>
-        <%= link_to res_favorite_destroy_path(restaurant_id: @restaurant.id), method: :delete, remote: true, class: "collection-item", :onclick => "Materialize.toast('Đã hủy yêu thích', 3000)" do %>
-            <i class="material-icons">bookmark</i>
+        <%= link_to res_favorite_destroy_path(restaurant_id: @restaurant.id), method: :delete, remote: true, class: "collection-item", :onclick => "Materialize.toast('Đã hủy yêu thích', 1500)" do%>
+            <%= image_tag 'like.svg', height: "25"%>
         <% end %>
     <% end %>
 <% end %>

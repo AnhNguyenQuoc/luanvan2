@@ -152,7 +152,7 @@
             <div class="container" style="width: 80%">
                   <div class="row" > 
                         <div id="restaurants">
-                              <% if @restaurant.nil? == false %>
+                              <% if @restaurant.nil? %>
                                     <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
                               <% else %>
                                     <p style="text-algin: center">Không có cửa hàng. Vui lòng quay lại sau</p>

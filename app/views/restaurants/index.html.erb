@@ -152,9 +152,11 @@
             <div class="container" style="width: 80%">
                   <div class="row" > 
                         <div id="restaurants">
-                              <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
-                              
-                              
+                              <% if @restaurant.count > 0 %>
+                                    <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
+                              <% else %>
+                                    <p style="text-algin: center">Không có cửa hàng. Vui lòng quay lại sau</p>
+                              <% end %>
                         </div>
                   </div>
                   <br>
@@ -164,12 +166,13 @@
                   </div>
             </div>
       </section>
-
+      <% if @coupon.count > 0 %>
       <div id="dbanner" class="change-color">
-  <div class="dcontent">
-    Chương trình đặt biệt khuyến mãi <strong><%= @coupon.amount%>%</strong> Với mã: <code><%= @coupon.code %></code> <span class="dtime">Hết hạn vào ngày:</span><span id="dcountdown"><%= @coupon.expiration.strftime('%d/%m/%Y') %></span>
-  </div>
-  <div id="dclose">close me!</div>
-</div>
+            <div class="dcontent">
+            Chương trình đặt biệt khuyến mãi <strong><%= @coupon.amount%>%</strong> Với mã: <code><%= @coupon.code %></code> <span class="dtime">Hết hạn vào ngày:</span><span id="dcountdown"><%= @coupon.expiration.strftime('%d/%m/%Y') %></span>
+            </div>
+            <div id="dclose">close me!</div>
+      </div>
+      <% end %>
 </main>
       <%= render 'layout_extends/footer' %>

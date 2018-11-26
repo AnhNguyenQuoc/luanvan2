@@ -1,0 +1,23 @@
+<tr>
+                                                                        <th style="text-align: center"><%= order.buyer.username %></th>
+                                                                        <th style="text-align: center"><%= order.buyer.phone %></th>
+                                                                        <th style="text-align: center"><%= number_to_currency_vnd(order.total_all_price) %></th>
+                                                                        <th style="text-align: center"><%= order.products.first.restaurant.name %></th>
+                                                                        <th style="text-align: center">
+                                                                             <div class="card">
+                                                                                    <div class="card-content">
+                                                                                          <span class="activator grey-text text-darken-4">Đơn hàng #<%= order.id %><i class="material-icons right">more_vert</i></span>
+                                                                                    </div>
+                                                                                    <div class="card-reveal">
+                                                                                          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                                                                          <% order.line_items.each do |item|%>
+                                                                                                <p style="color: black"><%= item.product.name %> x <%= item.quantity %></p>
+                                                                                          <% end %>
+                                                                                          <p>Tổng tiền đơn hàng:  <%= number_to_currency_vnd(order.total) %></p>
+                                                                                    </div>
+                                                                              </div>
+                                                                        </th>
+                                                                        <th style="text-align: center">
+                                                                              <%= order.updated_at.strftime('%e-%m-%C')%>
+                                                                        </th>
+                                                                  </tr>

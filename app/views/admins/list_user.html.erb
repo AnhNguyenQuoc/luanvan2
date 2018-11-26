@@ -36,18 +36,18 @@
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="striped centered">
+                                                      <table id="datatable" class="striped centered responsive-table">
                                                       <thead>
                                                       <tr>
                                                             <th>Họ và tên</th>
-                                                            <th>Email</th>
+                                                            <th style="width: 30%">Email</th>
                                                             <th>Địa chỉ</th>
                                                             <th>Sđt</th>
                                                             <th>Chức danh</th>
                                                             <td></td>
                                                       </tr>
                                                       </thead>
-                                                      <tbody>
+                                                      <tbody id="user-table">
                                                       <%= render 'list_user' %>
                                                       </tbody>
                                                       </table>

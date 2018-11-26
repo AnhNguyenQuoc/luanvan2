@@ -1,3 +1,9 @@
+   <script>
+      $(document).ready(function(){
+            $(".button-collapse").sideNav();
+      })
+   </script>
+      <% provide(:title, 'Trang chủ') %>
       <header class="header" style="height: 100% !important">
             <div class="header-bar">
                   <nav>
@@ -12,7 +18,8 @@
                         <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to 'Logo', root_path, class: 'brand-logo' %>
+                              <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
+                                    
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -41,12 +48,16 @@
  
                   <ul class="side-nav" id="mobile-demo">
                         <li>
-                              <%= link_to "Cửa hàng", cua_hang_path%>
+                              <%= link_to "Cửa hàng", cua_hang_path, method: :get%>
                         </li>
                          <% if logged_in? %>
                               <li>
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
+                              </li>
+                              <li>
                                     <%= link_to "Đăng xuất", logout_path, method: :delete%>
                               </li>
+
                         <% else %>
                               <li>
                                     <%= link_to "Đăng nhập", login_path %>

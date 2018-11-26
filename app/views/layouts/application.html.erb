@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cần Thơ Food</title>
+    <title> <%= yield(:title) %> | Cần Thơ Food</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
      <% begin %>
             <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
             <%= stylesheet_link_tag 'application', 'data-turbolinks-track' => 'reload', media: 'all' %>
@@ -39,7 +40,7 @@
           
 
                           setTimeout(function(){
-                              $('#flash').hide('blind');
+                              $('#flash').fadeOut(1000);
                         }, 2000);
 
                    
@@ -50,7 +51,7 @@
 
   <body>    
      <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>" id="flash"><%= message %></div>
+            <div class="alert alert-<%= message_type %>" id="flash" style="z-index:999;"><%= message %></div>
        <% end %>
     <%= yield %>
    

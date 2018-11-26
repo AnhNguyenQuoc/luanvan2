@@ -22,7 +22,7 @@ before_action :check_correct_user, only: [:show, :orders_user]
                 format.html {redirect_to root_path } 
         else 
                 flash[:danger] = "Có lỗi xảy ra"
-                format.js {}
+                format.js
         end 
     end
 

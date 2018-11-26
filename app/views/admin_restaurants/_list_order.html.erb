@@ -4,8 +4,7 @@
                                                       <td><%= number_to_currency_vnd(order.total)%></td>
                                                       <td><%= order.note %></td>
                                                       <td>
-                                                            
-                                                                                                                        <div class="card">
+                                                            <div class="card">
                                                                   <div class="card-content">
                                                                         <span class="activator grey-text text-darken-4">Đơn hàng #<%= order.id %><i class="material-icons right">more_vert</i></span>
                                                                   </div>
@@ -16,6 +15,7 @@
                                                                         <% end %>
                                                                   </div>
                                                             </div>
+                                                                                                                        
                                                       </td>
                                                       <td style="text-align: center;">
                                                             <% if order.order_type.id == 4 %>

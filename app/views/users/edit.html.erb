@@ -17,14 +17,14 @@
             </div>
             <div>
                   <div class="row">
-                        <div class="s3 col">
+                        <div class="s12 m3 l3 col">
                               <div class="collection list-in-profile ml-1">
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
-                        <div class="col s9">
+                        <div class="col m9 s12">
                               <h2>Cập nhật thông tin</h2>
                              <%= form_for @user, remote: true do |f| %>
 

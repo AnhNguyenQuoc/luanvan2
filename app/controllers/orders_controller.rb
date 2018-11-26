@@ -65,6 +65,7 @@ class OrdersController < ApplicationController
       def update_shipper
             @order = Order.find(params[:id])
             @order.update_attribute(:shipper_id, params[:order][:shipper_id])
+            @order.update_attribute(:order_type_id, 5)
             flash[:success] = "Cập nhật Shipper thành công"
             redirect_to  admin_danh_sach_don_hang_path
       end

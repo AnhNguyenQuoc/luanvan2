@@ -6,12 +6,11 @@ class RestaurantsController < ApplicationController
       end
 
   def index
-      @restaurants = Restaurant.order_rating.page(params[:page]) if params[:order_rating].present?
+
       @restaurants = Restaurant.all.page(params[:page])
       @restaurants = Restaurant.all.page(params[:page]) if params[:all].present?
       @restaurants = Restaurant.find_district(params[:find_district]).page(params[:page]) if params[:find_district].present?
       @restaurants = Restaurant.starts_with(params[:starts_with].downcase).page(params[:page]) if params[:starts_with].present?
-      
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
       @coupon = Coupon.where("expiration >= ?", Date.today).order("RANDOM()").first
@@ -75,8 +74,8 @@ end
 def show_comment
       @comment = Comment.new
       @restaurant = Restaurant.find(params[:id])
-      @comments = @restaurant.comments.order(created_at: :desc)
-      @your_comments = @restaurant.comments.where('user_id = ?', current_user.id).order(created_at: :desc) if logged_in?
+      @comments = @restaurant.comments.order(created_at: :desc).page(params[:page])
+      @your_comments = @restaurant.comments.where('user_id = ?', current_user.id).order(created_at: :desc).page(params[:page]) if logged_in?
       store_location
 end
 

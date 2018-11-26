@@ -1,3 +1,9 @@
+<script>
+      $(document).ready(function(){
+            $('select').material_select();
+      })
+</script>
+<% provide(:title, 'Đăng ký') %>
 <header class="header" style="background-image: none; height: 60px;">
             <div class="header-bar">
                   <nav>
@@ -12,7 +18,7 @@
                               <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to 'Logo', root_path, class: 'brand-logo' %>
+                             <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -110,7 +116,7 @@
                   </div>
                   <div class="row">
                         <div class="input-field col s12">
-                              <%= f.collection_select :district_id, District.all, :id, :name,  {prompt: "Chọn Quận"}, class: 'validate', :required => true, aria: {require: true} %>
+                              <%= f.collection_select :district_id, District.all, :id, :name, class: 'validate', :required => true %>
                               <label>Quận bạn sống</label>
                         </div>
                   </div>

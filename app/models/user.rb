@@ -24,10 +24,11 @@ class User < ApplicationRecord
 
       validates :username, presence: {message: "^Họ và tên không được để trống"}, length: {maximum: 50}
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+      VALID_PHONE_REGEX = /\A(09|07|03|08|05)+([0-9]{8})\b\z/i
       validates :email, presence: {message: "^Email không được để trống"}, uniqueness: { case_sensitive: false, message: "^Email đã đăng ký " },
                                                       length: {maximum: 255},
                                                       format: { with: VALID_EMAIL_REGEX, message: "^Email không đúng định dạng" }
-      validates :phone, presence: {message: "^Sđt không được để trống"}
+      validates :phone, presence: {message: "^Sđt không được để trống"}, format: {with: VALID_PHONE_REGEX, message: "^Số điện thoại không đúng định dạng"}
       validates :address, presence: {message: "^Địa chỉ không được để trống"}, length: {maximum: 50}
       validates :password, length: {minimum: 6, message: "^Mật khẩu phải nhiều hơn 6 kí tự"}, allow_nil: true, confirmation: {message: "^Mật khẩu không trùng khớp"}, if: :should_validate?
       validates :district_id, presence: {message: "^Phải chọn quận"}

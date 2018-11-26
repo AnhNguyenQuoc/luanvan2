@@ -1,4 +1,5 @@
 <%= render 'layout_extends/header' %>
+<% provide(:title, 'Danh sách cửa hàng yêu thích') %>
 <main>
       <section class="main-profile">
             <div class="container">
@@ -28,12 +29,12 @@
                            <div id="admin" class="col s12">
                                                 <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <span class="table-title">Danh sách cửa hàng yêu thích</span>
                                                       <div class="actions">
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="striped centered">
+                                                      <table id="datatable" class="striped centered responsive-table">
                                                       <thead>
                                                 <tr>
                                                       <th>Tên cửa hàng</th>

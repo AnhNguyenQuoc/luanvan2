@@ -3,7 +3,7 @@ class AdminShippersController < ApplicationController
       before_action :check_user
 
       def index 
-            @orders = Order.where("shipper_id = ? AND order_type_id = 2", current_user.id).order('updated_at DESC')
+            @orders = Order.where("shipper_id = ? AND order_type_id = 5", current_user.id).order('updated_at DESC')
       end
 
       def list_order

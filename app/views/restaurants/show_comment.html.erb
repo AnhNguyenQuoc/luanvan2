@@ -3,7 +3,7 @@
             $(".lightgallery").lightGallery();
       })
 </script>
-
+            <% provide(:title, @restaurant.name ) %>
 <%= render 'layout_extends/header' %>
 
 
@@ -72,51 +72,14 @@
                                 <div class="row">
                                     <div class="col s12">
                                           <ul class="tabs">
-                                          <li class="tab col s3"><a class="active" href="#test1">Tất cả</a></li>
-                                          <li class="tab col s3"><a  href="#test2">Của bạn</a></li>
+                                          <li class="tab col s3"><a class="active">Tất cả</a></li>
                                           </ul>
                                     </div>
-                                    <div id="test1" class="col s12" id="">
+                                    <div id="test1" class="col s12">
                                           <%= render 'comment' %>
                                     </div>
-                                    <div id="test2" class="col s12">
-                                    <% if logged_in? %>
-                                          <%if @your_comments.count > 0%>
-                                                <% @your_comments.each do |comment| %>
-                                                      <div class="card comment-card mb-2">
-                                                            <div class="card-content">
-                                                                  <h5 class="card-title">
-                                                                        <%= comment.user.username%>
-                                                                        <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
-                                                                        <% if logged_in?%>
-                                                                              <% if comment.user_id == current_user.id %>
-                                                                              <span><%= link_to "<i class='material-icons'>delete</i>".html_safe, comment_destroy_path(comment), method: :delete, data: {confirm: "Bạn có chắc chắn chứ?"}%></span>
-                                                                              <% end %>
-                                                                        <% end %>
-                                                                  </h5>
-                                                                  <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y - %Hh:%Mp:%Ss')%></h6>
-                                                                  <div class="divider"></div>
-                                                                  <br>
-                                                                  <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
-                                                                  <br>
-                                                                  <p class="card-text"><%= comment.description %></p>
-                                                                  <br />
-                                                                  <div class="img-container lightgallery">
-                                                                  <% comment.images.each do |image| %>
-                                                                        <a href='<%= rails_blob_url(image)%>'>
-                                                                                    <%= image_tag image, alt: image.filename, height: "150", weight: "150" %>
-                                                                        </a>
-                                                                        <% end %>
-                                                                  </div>
-                                                            </div>
-                                                      </div>
-                                                <% end %>
-                                          <% else %>
-                                          <p class="text-flow">Bạn chưa có bất kỳ nhận xét nào!!</p>
-                                          <% end %>
-                                    <% end %>
-                                    </div>
                               </div>
+                              
                         </div>
                         <div class="col m2 s12 btn-comment">
                               <% if logged_in? %>

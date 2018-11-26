@@ -1,3 +1,4 @@
+<% provide(:title, 'Đăng nhập') %>
 <header class="header" style="background-image: none; height: 60px;">
             <div class="header-bar">
                   <nav>
@@ -12,7 +13,7 @@
                               <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to 'Logo', root_path, class: 'brand-logo' %>
+                              <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -34,9 +35,13 @@
                   </nav>
                    <ul class="side-nav" id="mobile-demo">
                         <li>
-                              <a href="sass.html">Cửa hàng</a>
+                              
+                              <%= link_to "Cửa hàng", cua_hang_path, method: :get %>
                         </li>
                          <% if logged_in? %>
+                              <li>
+                                    <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user)%>
+                              </li>
                               <li>
                                     <%= link_to "Đăng xuất", logout_path, method: :delete%>
                               </li>

@@ -1,4 +1,5 @@
 <%= render 'layout_extends/header' %>
+<% provide(:title, 'Lịch sử đơn đặt hàng') %>
 <main>
       <section class="main-profile">
             <div class="container">
@@ -17,23 +18,23 @@
             </div>
             <div>
                   <div class="row">
-                        <div class="s3 col">
+                        <div class="s12 m3 l3 col">
                               <div class="collection list-in-profile ml-1">
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
-                        <div class="col s9">
+                        <div class="col s12 m9">
                            <div id="admin" class="col s12">
                                                 <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
+                                                      <span class="table-title">Lịch sử đơn đặt hàng</span>
                                                       <div class="actions">
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="striped centered">
+                                                      <table id="datatable" class="striped centered responsive-table">
                                                       <thead>
                                                 <tr>
                                                       <th>#</th>

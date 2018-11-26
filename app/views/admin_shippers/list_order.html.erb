@@ -28,51 +28,32 @@
                               <!--card stats start-->
                               <div class="row">
                                     <div class="col s12">   
-                                          <div class="card blue-grey darken-1">
-                                                <div class="card-content white-text">
-                                                <span class="card-title">Danh sách đơn hàng đã hoàn tất</span>
-                                                 <table class="centered" id="table">
-                                                            <thead>
-                                                            <tr>
-                                                                  <th>Tên người mua</th>
+                                                <div class="card material-table">
+                                                      <div class="table-header">
+                                                      <span class="table-title">Danh sách loại sản phẩm</span>
+                                                      <div class="actions">
+                                                      <%= link_to '<i class="material-icons">add</i>'.html_safe ,admin_loai_thuc_an_tao_moi_path, class: "waves-effect btn-flat nopadding", method: :get  %>
+                                                      <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                                                      </div>
+                                                      </div>
+                                                      <table id="datatable" class="striped centered responsive-table">
+                                                      <thead>
+                                                      <tr>
+<th>Tên người mua</th>
                                                                   <th>SĐT</th>
                                                                   <th>Tổng tiền</th>
                                                                   <th>Cửa hàng</th>
-                                                                  <th>Danh sách sản phẩm</th>
+                                                                  <th style="width: 30%">Danh sách sản phẩm</th>
                                                                   <th>Ngày hoàn thành</th>
-                                                            </tr>
-                                                            </thead>
-
-                                                            <tbody id="">
-                                                                <% @orders.each do |order|%>
-                                                                  <tr>
-                                                                        <th style="text-align: center"><%= order.buyer.username %></th>
-                                                                        <th style="text-align: center"><%= number_to_phone_vn(order.buyer.phone) %></th>
-                                                                        <th style="text-align: center"><%= number_to_currency_vnd(order.total_all_price) %></th>
-                                                                        <th style="text-align: center"><%= order.products.first.restaurant.name %></th>
-                                                                        <th style="text-align: center">
-                                                                             <div class="card">
-                                                                                    <div class="card-content">
-                                                                                          <span class="activator grey-text text-darken-4">Đơn hàng #<%= order.id %><i class="material-icons right">more_vert</i></span>
-                                                                                    </div>
-                                                                                    <div class="card-reveal">
-                                                                                          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-                                                                                          <% order.line_items.each do |item|%>
-                                                                                                <p style="color: black"><%= item.product.name %> x <%= item.quantity %></p>
-                                                                                          <% end %>
-                                                                                    </div>
-                                                                              </div>
-                                                                        </th>
-                                                                        <th style="text-align: center">
-                                                                              <%= order.updated_at.strftime('%e-%m-%C')%>
-                                                                        </th>
-                                                                  </tr>
-                                                               <% end %>
-                                                                  
-                                                            </tbody>
-                                                            </table>
-            
-                                          </div>
+                                                      </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                      <%= render partial: 'list_order', collection: @orders, as: :order %>
+                                                      </tbody>
+                                                      </table>
+                                                </div>
+                                                </div>
+                                                </div>
                                     </div>
                               </div>
                              
@@ -95,28 +76,28 @@
 
 <script>
 $(document).ready(function() {
-  $("#table").dataTable({
-        pagingType: "simple",
-        language: {
-            paginate: {
-                previous: "<",
-                next: ">"
-            }
-        },
-        responsive: true,
-        language: {
-              lengthMenu: "Hiển thị _MENU_ cửa hàng mỗi trang",
-              zeroRecords: "Không có cửa hàng nào",
-              info: "Đang hiện _PAGE_ trang trên _PAGES_",
-              infoEmpty: "Không có cửa hàng",
-              search: "Tìm Kiếm:",
-              paginate: {
-                    first: "Đầu tiên",
-                    last: "Cuối cùng",
-                    next: "Tiếp theo",
-                    previous: "Trở lại"
-              }
-        }
+          $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
   });
 });
 </script>

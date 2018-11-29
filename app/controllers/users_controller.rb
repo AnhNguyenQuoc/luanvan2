@@ -70,6 +70,11 @@ before_action :check_correct_user, only: [:show, :orders_user]
       @restaurants = @user.restaurants
    end
 
+   def list_comment
+        @user = current_user
+        @comments = @user.comments 
+   end
+
    def destroy 
       @users = User.where.not(id: current_user.id)
       @user = User.find(params[:id])

@@ -12,7 +12,7 @@ module LuanVanBackUp
     config.load_defaults 5.2
     # config.time_zone = 'Hanoi'
     config.active_record.default_timezone = :utc
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
     # config.force_ssl = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

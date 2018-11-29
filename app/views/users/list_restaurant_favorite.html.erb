@@ -23,35 +23,36 @@
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Danh sách nhận xét", comments_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
                         <div class="col m9 s12">
-                           <div id="admin" class="col s12">
+                              <div id="admin" class="col s12">
                                                 <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Danh sách cửa hàng yêu thích</span>
+                                                      <span class="table-title">Danh sách Cửa hàng yêu thích</span>
                                                       <div class="actions">
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="striped centered responsive-table">
+                                                      <table id="datatable" class="centered responsive-table">
                                                       <thead>
-                                                <tr>
-                                                      <th>Tên cửa hàng</th>
-                                                      <th>Địa chỉ</th>
-                                                      <th>Sđt</th>
-                                                      <th>Thời gian mở cửa</th>
-                                                      <th>Thời gian đóng cửa</th>
-                                                      <th></th>
-                                                </tr>
+                                                            <tr>
+                                                                  <th>Tên cửa hàng</th>
+                                                                  <th>Địa chỉ</th>
+                                                                  <th>Sđt</th>
+                                                                  <th>Thời gian mở cửa</th>
+                                                                  <th>Thời gian đóng cửa</th>
+                                                                  <th>Xác nhận</th>
+                                                            </tr>
                                                       </thead>
                                                       <tbody>
-                                                            <%= render partial: "list_restaurant_favorites", collection: @restaurants, as: :restaurant %>
+                                                      <%= render partial: 'list_restaurant_favorites', collection: @restaurants, as: :restaurant%>
                                                       </tbody>
                                                       </table>
                                                 </div>
                                                 </div>
-                                                </div>   
+                                                </div>
                         </div>
                   </div>
             </div>

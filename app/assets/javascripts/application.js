@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.min.js
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -22,6 +22,10 @@
 //= require social-share-button
 //= require materialize
 //= require_tree .
+
+jQuery(document).ready(function($) {
+  $(document).foundation();
+  });
 
 $(document).on('turbolinks:load', function () {
       $('.modal').modal();

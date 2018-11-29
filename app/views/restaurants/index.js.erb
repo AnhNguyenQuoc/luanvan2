@@ -5,6 +5,7 @@ $('#restaurants').stop().animate({
     $(this).html("<%= escape_javascript(render partial: 'restaurant_item', collection: @restaurants, as: :restaurant ) %>").animate({
         opacity: 1
     })
+    $('#pagination-list-restaurant').html("<%= j paginate(@restaurants, remote: true) %>")
 })
 <% else %>
 $('#restaurants').stop().animate({

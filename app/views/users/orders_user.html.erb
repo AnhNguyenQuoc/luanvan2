@@ -23,14 +23,16 @@
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Danh sách nhận xét", comments_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
                         <div class="col s12 m9">
                            <div id="admin" class="col s12">
                                                 <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Lịch sử đơn đặt hàng</span>
+                                                      <span class="table-title">Danh sách mã khuyến mãi</span>
                                                       <div class="actions">
+                                                      <%= link_to '<i class="material-icons">add</i>'.html_safe ,admin_res_danh_sach_mon_an_them_san_pham_path, class: "waves-effect btn-flat nopadding", method: :get  %>
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
@@ -40,16 +42,16 @@
                                                       <th>#</th>
                                                       <th>Tổng tiền</th>
                                                       <th>Trạng thái</th>
-                                                      <th></th>
+                                                      <th>Hành động</th>
                                                 </tr>
                                                       </thead>
                                                       <tbody>
-                                                            <%= render partial: "list_orders_user", collection: @orders, as: :order %>
+                                                      <%= render 'list_orders_user'%>
                                                       </tbody>
                                                       </table>
                                                 </div>
                                                 </div>
-                                                </div>   
+                                                </div>
                         </div>
                   </div>
             </div>

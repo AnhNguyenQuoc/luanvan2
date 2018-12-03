@@ -14,5 +14,6 @@ $('#restaurants').stop().animate({
     $(this).html("Hiện không có cửa hàng bạn tìm kiếm").animate({
         opacity: 1
     })
+    $('#pagination-list-restaurant').html("<%= j paginate(@restaurants, remote: true) %>")
 })
 <% end %>

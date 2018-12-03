@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
       root "templates#index"
-      get '/restaurantinfo' => 'templates#inforestaurant'
+      get '/restaurantinfo' => 'templates#restaurantinfo'
       get '/shipper' => 'templates#shipper'
 
 

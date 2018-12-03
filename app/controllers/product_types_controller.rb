@@ -12,7 +12,7 @@ class ProductTypesController < ApplicationController
             respond_to do |format| 
                   if @product_type.save 
                         flash[:success] = "Tạo sản phẩm thành công"
-                        format.html {redirect_to admin_loai_thuc_an_path}
+                        format.js {render inline: "window.history.back();" }
                   else 
                         format.js {}
                         flash[:danger] = "Có lỗi xảy ra"
@@ -28,7 +28,7 @@ class ProductTypesController < ApplicationController
             @product_type = ProductType.find(params[:id])
             respond_to do |format|
                   if @product_type.update_attributes(product_type_params)
-                        format.html {redirect_to admin_loai_thuc_an_path}
+                        format.js {render inline: "window.history.back();" }
                         flash[:success] = "Cập nhật thành công"
                   else 
                         format.js {render 'create.js.erb'}

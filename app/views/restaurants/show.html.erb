@@ -78,7 +78,7 @@
                                                       </blockquote>
                                                       </p>
                                                       <% if logged_in? %>
-                                                            <%= link_to restaurant_dat_mon_path(@restaurant),class: "secondary-content" do %>
+                                                            <%= link_to restaurant_dat_mon_path(@restaurant),class: "secondary-content", method: :get do %>
                                                                   <i class="material-icons">add_shopping_cart</i>
                                                             <% end %>
                                                       <% else %>
@@ -91,7 +91,7 @@
 
                                           <% end %>
                                           <li>
-                                          <%= link_to "Xem thêm và đặt hàng", restaurant_dat_mon_path(@restaurant), class: "btn", style: "width: 100%", method: :get%>
+                                          <%= link_to "Xem thêm và đặt hàng", restaurant_dat_mon_path(@restaurant), class: "btn", style: "width: 100%", method: :get %>
                                           </li>
                                           </ul>
 

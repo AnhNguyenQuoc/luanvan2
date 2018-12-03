@@ -21,6 +21,7 @@ class Restaurant < ApplicationRecord
       scope :order_name, -> {order("name ASC")}
       scope :order_name_reverse, -> {order("name DESC")}
       scope :order_uncheck, -> {where("order_type.id == 1")}
+      scope :find_product_type, -> (id){joins(:product_types).where("product_types.id = ?", "#{id}")}
       # Ex:- scope :active, -> {where(:active => true)}
 
       VALID_PHONE_REGEX = /\A(09|07|03|08|05)+([0-9]{8})\b\z/i

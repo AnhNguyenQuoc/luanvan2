@@ -18,7 +18,7 @@
                               <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
+                              <%= link_to "CanThoFod",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -149,18 +149,21 @@
                   <div class="row" > 
                     
                         <div id="restaurants">
-                              <% if @restaurant.nil? %>
-                                    <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
-                              <% else %>
+                              <% if @restaurant.blank? %>
+                                    
                                     <p style="text-algin: center">Không có cửa hàng. Vui lòng quay lại sau</p>
+                              <% else %>
+                                    <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
                               <% end %>
                         </div>
                   </div>
                   <br>
                   <div class="row">
+                  <% if !@restaurants.blank?%>
                         <div class="col s12 m3 offset-m5" id="pagination-list-restaurant">
                               <%= paginate @restaurants, remote: true %>
                         </div>
+                  <% end %>
                   </div>
             </div>
       </section>

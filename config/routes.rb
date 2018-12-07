@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
       get 'users/:id/orders' => 'users#orders_user', as: "order_user"
       get 'users/:id/restaurants' => 'users#list_restaurant_favorite', as: "restaurant_favorite_user"
-
+      get 'users/:id/comments' => 'users#list_comment', as: "comments_user"
       get '/login', to: 'sessions#new'
       post '/login',  to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
@@ -108,7 +108,7 @@ Rails.application.routes.draw do
       delete '/orders/:id' => 'orders#destroy', as: "order_destroy"
 
       delete '/comments/:id' => 'comments#destroy', as: "comment_destroy"
-
+      delete '/comments_admin/:id' => 'comments#destroy_admin', as: "comment_admin_destroy"
       #Coupons
       get '/admin/coupons' => 'coupons#index'
       get '/admin/coupons/tao-moi' => 'coupons#new'
@@ -118,5 +118,6 @@ Rails.application.routes.draw do
       #Res Favorite
       resources :restaurant_favorites, only: [:create]
       delete '/restaurant-favorite/' => 'restaurant_favorites#destroy', as: "res_favorite_destroy"
+
 
 end

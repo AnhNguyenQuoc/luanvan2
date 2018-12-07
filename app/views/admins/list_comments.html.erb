@@ -33,7 +33,7 @@
                                     <div class="col s12">   
                                           <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Danh sách loại cửa hàng</span>
+                                                      <span class="table-title">Danh sách nhận xét</span>
                                                       <div class="actions">
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
@@ -44,14 +44,14 @@
                                                                   <th>Tên</th>
                                                                   <th>Nội dung nhận xét</th>
                                                                   <th>Điểm</th>
-                                                                  <th>Cửa hàng</th>
-                                                                  <th style="width: 50%">Hình ảnh</th>
+                                                                  <th style="width: 20%">Cửa hàng</th>
+                                                                  <th style="width: 30%">Hình ảnh</th>
                                                                   <th></th>
                                                                   
                                                             </tr>
                                                       </thead>
-                                                      <tbody>
-                                                      <%= render partial: 'list_comments', collection: @comments, as: :comment %>
+                                                      <tbody id="comment-admin">
+                                                      <%= render partial: 'comments/list_comments', collection: @comments, as: :comment %>
                                                       </tbody>
                                                       </table>
                                                 </div>

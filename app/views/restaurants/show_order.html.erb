@@ -1,8 +1,4 @@
-<script>
-      $(document).ready(function(){
-            $('.modal').modal();
-      })
-</script>
+
             <% provide(:title, @restaurant.name ) %>
      <%= render 'layout_extends/header' %>
      
@@ -195,6 +191,7 @@
             }
       })
                   $(document).ready(function(){
+                        $('.modal').modal();
                         if(screen.width < 1360){
                   $('#main-menu').removeClass('fixed');
             }

@@ -18,7 +18,7 @@
                               <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                             <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
+                             <%= link_to "CanThoFod",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -44,7 +44,7 @@
                   </nav>
                    <ul class="side-nav" id="mobile-demo">
                         <li>
-                              <a href="sass.html">Cửa hàng</a>
+                              <%= link_to "Cửa hàng", cua_hang_path, method: :get %>
                         </li>
                          <% if logged_in? %>
                               <li>
@@ -64,7 +64,7 @@
             <div class="container" style="width: 60%">
                   <div class="row justify-content-md-center mt-5">
                         <div class="col m5 s12">
-                              <h1 class="text-login-form">Welcome newbie</h1>
+                              <h1 class="text-login-form">Chào tài khoản mới </h1>
                         </div>
                   </div>
                   <div class="row justify-content-md-center">

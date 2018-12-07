@@ -27,32 +27,31 @@
                               </div>
                         </div>
                         <div class="col m9 s12">
-                              <div id="admin" class="col s12">
+                           <div id="admin" class="col s12">
                                                 <div class="card material-table">
                                                       <div class="table-header">
-                                                      <span class="table-title">Danh sách Cửa hàng yêu thích</span>
+                                                      <span class="table-title">Danh sách nhận xét</span>
                                                       <div class="actions">
                                                       <a class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                                                       </div>
                                                       </div>
-                                                      <table id="datatable" class="centered responsive-table">
+                                                      <table id="datatable" class="striped centered responsive-table">
                                                       <thead>
-                                                            <tr>
-                                                                  <th>Tên cửa hàng</th>
-                                                                  <th>Địa chỉ</th>
-                                                                  <th>Sđt</th>
-                                                                  <th>Thời gian mở cửa</th>
-                                                                  <th>Thời gian đóng cửa</th>
-                                                                  <th>Xác nhận</th>
-                                                            </tr>
+                                                <tr>
+                                                      <th>Tên cửa hàng</th>
+                                                      <th>Điểm số</th>
+                                                      <th>Nội dung</th>
+                                                      <th style="width: 30%">Hình ảnh</th>
+                                                      <th></th>
+                                                </tr>
                                                       </thead>
                                                       <tbody>
-                                                      <%= render partial: 'list_restaurant_favorites', collection: @restaurants, as: :restaurant%>
+                                                            <%= render partial: "list_comment", collection: @comments, as: :comment %>
                                                       </tbody>
                                                       </table>
                                                 </div>
                                                 </div>
-                                                </div>
+                                                </div>   
                         </div>
                   </div>
             </div>

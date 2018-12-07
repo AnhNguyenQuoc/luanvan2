@@ -13,7 +13,7 @@
                               <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
+                              <%= link_to "CanThoFod",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
                               </a>
@@ -59,7 +59,7 @@
             <div class="container">
                   <div class="row justify-content-md-center mt-5">
                         <div class="col m5 s12 offset-m3">
-                              <h1 class="text-login-form">Welcome back</h1>
+                              <h1 class="text-login-form">Chào mừng trở lại</h1>
                         </div>
                   </div>
                   <div class="row justify-content-md-center">
@@ -67,7 +67,7 @@
 
        <div class="row">
             <div class="input-field col s12">
-                  <%= f.email_field :email, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')" %>
+                  <%= f.email_field :email, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')", :autocomplete => :off %>
                   <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
             </div>
       </div>

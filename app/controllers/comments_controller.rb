@@ -28,7 +28,15 @@ class CommentsController < ApplicationController
                   format.js {}
             end
       end
-      
+
+      def destroy_admin
+            @comment = Comment.find(params[:id])
+            
+
+            if @comment.destroy 
+                  redirect_back(fallback_location: admin_path)
+            end
+      end
 
 
 

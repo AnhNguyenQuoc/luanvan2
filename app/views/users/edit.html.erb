@@ -1,3 +1,9 @@
+<script>
+      $(document).ready(function(){
+            $('select').material_select();
+      })
+</script>
+<% provide(:title, "Sửa thông tin") %>
 <%= render 'layout_extends/header' %>
 
       <section class="main-profile">
@@ -22,12 +28,13 @@
                                     <%= link_to "Quản lý thông tin cá nhân", edit_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Quản lý đơn hàng", order_user_path(current_user), class: "collection-item list-group-item-action"%>
                                     <%= link_to "Danh sách cửa hàng yêu thích", restaurant_favorite_user_path(current_user), class: "collection-item list-group-item-action"%>
+                                    <%= link_to "Danh sách nhận xét", comments_user_path(current_user), class: "collection-item list-group-item-action"%>
                               </div>
                         </div>
                         <div class="col m9 s12">
                               <h2>Cập nhật thông tin</h2>
-                             <%= form_for @user, remote: true do |f| %>
-
+                  <%= form_for @user do |f| %>
+                        <%= render 'layout_extends/error', object: f.object %>
                                     <div class="row">
                         <div class="input-field col s12">
                               <%= f.text_field :username, class: 'validate', placeholder: "Tên của bạn", :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập họ tên ở đây')", oninput: "this.setCustomValidity('')" %>
@@ -42,7 +49,6 @@
                               <%= f.label :email, "Email", class: "active" , data: {error: "Vui lòng kiểm tra lại định dạng"} %>
                         </div>
                   </div>
-                  <% unless current_user.provider %>
                         <div class="row">
                               <div class="input-field col s12">
                                     <%= f.password_field :password%>
@@ -55,8 +61,7 @@
                                     <%= f.label :password_confirmation, "Xác nhận mật khẩu"  %>
                                     <%= f.password_field :password_confirmation %>
                               </div>
-                        </div>
-                  <% end %>                        
+                        </div>                     
 
                   <div class="row">
                         <div class="input-field col s12">

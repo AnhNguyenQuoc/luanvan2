@@ -77,7 +77,11 @@
                                     </div>
                                     <div id="test1" class="col s12">
                                           <%= render 'comment' %>
+                                          <div id="pagination-comment">
+                                          <%= paginate @comments %>
+                                          </div>
                                     </div>
+                              
                               </div>
                               
                         </div>
@@ -135,7 +139,6 @@
                                                             </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                            <a class="modal-close waves-effect waves-green btn-flat">Hủy bỏ</a>
                                                             <%= f.submit "Đăng nhận xét", :class => 'waves-effect waves-light btn modal-action modal-close'%>
                                                       </div>
                                                 </div>

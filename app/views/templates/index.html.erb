@@ -18,7 +18,7 @@
                         <% end %>
                         </ul>
                         <div class="nav-wrapper">
-                              <%= link_to "CanTho Food",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
+                              <%= link_to "CanThoFod",root_path, class: "brand-logo", style: "font-family: 'Playfair Display', serif;"%>
                                     
                               <a href="#" data-activates="mobile-demo" class="button-collapse">
                                     <i class="material-icons">menu</i>
@@ -98,7 +98,7 @@
                               <div class='text-below'>
                                     <h5>Thức ăn nhanh (tiếng Anh gọi là fast food), là thuật ngữ chỉ thức ăn có thể được chế biến và phục vụ cho người ăn rất nhanh chóng.</h5>
                                     <span>
-                                          <a href="#">Xem thêm thức ăn nhanh →</a>
+                                          <%= link_to "Xem thêm Thức ăn nhanh→", cua_hang_path(:find_type => 7)%>
                                     </span>
                               </div>
                         </div>
@@ -109,7 +109,7 @@
                               <div class='text-below'>
                                     <h5>Ẩm thực Việt Nam là cách gọi của phương thức chế biến món ăn, nguyên lý pha trộn gia vị và những thói quen ăn uống nói chung của mọi người Việt trên đất nước Việt Nam.</h5>
                                     <span>
-                                          <a href="#">Xem thêm thức ăn Việt →</a>
+                                          <%= link_to "Xem thêm Thức ăn Việt→", cua_hang_path(:find_type => 9)%>
                                     </span>
                               </div>
                         </div>
@@ -120,7 +120,7 @@
                               <div class='text-below'>
                                     <h5>Trà sữa là loại thức uống đa dạng được tìm thấy ở nhiều nền văn hóa, bao gồm một vài cách kết hợp giữa trà và sữa</h5>
                                     <span>
-                                          <a href="#">Xem thêm trà sữa →</a>
+                                          <%= link_to "Xem thêm Trà sữa→", cua_hang_path(:find_type => 5)%>
                                     </span>
                               </div>
                         </div>
@@ -133,7 +133,7 @@
                               <div class='text-below'>
                                     <h5>Bánh ngọt hay bánh ga-tô là một loại thức ăn thường dưới hình thức món bánh dạng bánh mì từ bột nhào, được nướng lên dùng để tráng miệng.</h5>
                                     <span>
-                                          <a href="#">Xem thêm bánh ngọt →</a>
+                                          <%= link_to "Xem thêm Bánh Ngọt→", cua_hang_path(:find_type => 8)%>
                                     </span>
                               </div>
                         </div>
@@ -144,7 +144,7 @@
                               <div class='text-below'>
                                     <h5>Ẩm thực Nhật Bản là nền ẩm thực xuất xứ từ nước Nhật. Ẩm thực Nhật Bản không lạm dụng quá nhiều gia vị mà chú trọng làm nổi bật hương vị tươi ngon, tinh khiết tự nhiên của món ăn</h5>
                                     <span>
-                                          <a href="#">Xem thêm món ăn Nhật →</a>
+                                          <%= link_to "Xem thêm món ăn Nhật→", cua_hang_path(:find_type => 8)%>
                                     </span>
                               </div>
                         </div>
@@ -161,45 +161,11 @@
                 </div>
             </div>
             <ul class="list-inline">
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">Chinese</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">italian</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">greek</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">thai</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">pizza</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">dessert</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">breakfast</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">american</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">mexican</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">lebanese</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">sushi</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">vegetarian</a>
-                </li>
-                <li class="list-inline-item text-menu3 mt-3 mb-3">
-                    <a target="_blank" href="#">halal</a>
-                </li>
+                  <% @products_type.each do |product_type| %>
+                        <li class="list-inline-item text-menu3 mt-3 mb-3">
+                              <%= link_to product_type.name, cua_hang_path(:find_product_type => product_type.id)%>
+                        </li>
+                <% end %>
             </ul>
         </div>
     </section>

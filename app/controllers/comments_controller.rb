@@ -10,7 +10,6 @@ class CommentsController < ApplicationController
             @comment.restaurant = @restaurant
             respond_to do |format|
                   if @comment.save 
-                        flash[:success] = "Đăng bình luận thành công"
                         @comments = @restaurant.comments.order(created_at: :desc)
                         format.js {render 'create.js.erb'}
                   else 

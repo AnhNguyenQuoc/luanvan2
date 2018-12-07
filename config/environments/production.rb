@@ -37,7 +37,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000', protocol: 'http' }
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
-
+    config.cache_classes = true
+  config.serve_static_assets = true
+  config.assets.compile = true
+  config.assets.digest = true
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

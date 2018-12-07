@@ -149,12 +149,7 @@
                   <div class="row" > 
                     
                         <div id="restaurants">
-                              <% if @restaurant.blank? %>
-                                    
-                                    <p style="text-algin: center">Không có cửa hàng. Vui lòng quay lại sau</p>
-                              <% else %>
-                                    <%= render partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true %>
-                              <% end %>
+                              <%= render(partial: "restaurant_item", collection: @restaurants, as: :restaurant, cache: true) || "Không có cửa hàng nào" %>
                         </div>
                   </div>
                   <br>

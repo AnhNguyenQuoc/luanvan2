@@ -1,5 +1,5 @@
             <% provide(:title, @restaurant.name ) %>
-<body onload='showModal()'>   
+<body>   
      <%= render 'layout_extends/header' %>
      
       <section class="main-restaurant" style="padding-top: 5%;">
@@ -112,7 +112,7 @@
                                                                   <%= comment.user.username%>
                                                                   <span style="float: right; background: red; padding: 10px; color: white; font-weight: bold;"><%= comment.rating %></span>
                                                             </h5>
-                                                            <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y - %Hh:%Mp:%Ss')%></h6>
+                                                            <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y')%></h6>
                                                             <div class="divider"></div>
                                                             <br>
                                                             <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
@@ -153,18 +153,18 @@
 <%= render 'layout_extends/footer' %>
 
 <script>
-      function showModal(){
-            var currentTime = new Date();
-            var openPart = new Date('<%= @restaurant.timeopen %>');
-            var closePart = new Date('<%= @restaurant.timeclose %>');  
-            console.log(currentTime.getHours());
-            console.log(currentTime.getHours() <= openPart.getHours());
-            if((currentTime.getHours() > closePart.getHours()) || (currentTime.getHours() < openPart.getHours())){
-                        $('.modal').modal('open');
-            }
+      // function showModal(){
+      //       var currentTime = new Date();
+      //       var openPart = new Date('<%= @restaurant.timeopen %>');
+      //       var closePart = new Date('<%= @restaurant.timeclose %>');  
+      //       console.log(currentTime.getHours());
+      //       console.log(currentTime.getHours() <= openPart.getHours());
+      //       if((currentTime.getHours() > closePart.getHours()) || (currentTime.getHours() < openPart.getHours())){
+      //                   $('.modal').modal('open');
+      //       }
             
             
-      }
+      // }
 
       $(document).ready(function(){
             $('.modal').modal();

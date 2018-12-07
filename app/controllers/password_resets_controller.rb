@@ -28,7 +28,6 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, "^Không được để trống")
       render 'edit'
     elsif @user.update_attributes(user_params)
-      log_in @user 
       flash[:success] = "Mật khẩu đã được thay đổi" 
       redirect_to root_path
     else 

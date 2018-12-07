@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
                   rescue
                         flash.now[:danger] = 'Có lỗi xảy ra'
                   end
-                  if user.username.present?
+                  if user.phone.present? || user.address.present?
                         redirect_to root_path
                         flash[:success] = "Đăng nhập thành công"
                   else 

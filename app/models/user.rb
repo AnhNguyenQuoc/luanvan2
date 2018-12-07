@@ -96,6 +96,7 @@ class User < ApplicationRecord
                         user.provider = auth_hash['provider']
                         user.uid = auth_hash['uid']
                         user.email = auth_hash['info']['email']
+                        user.username = auth_hash['info']['name']
                         user.role_id = 1
                         user.activated = true
                   end 

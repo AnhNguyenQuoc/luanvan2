@@ -11,7 +11,7 @@
                         <% end %>
                   <% end %>
              </h5>
-             <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y - %Hh:%Mp:%Ss')%></h6>
+             <h6 class="card-subtitle mb-2 text-muted"><%= comment.created_at.strftime('%d/%m/%y')%></h6>
              <div class="divider"></div>
             <br>
             <h6 class="text-flow"><%= link_to comment.restaurant.name, restaurant_dat_mon_path(comment.restaurant.id) %></h6>
@@ -21,10 +21,15 @@
             <div class="img-container lightgallery">
              <% comment.images.each do |image| %>
                        <a href='<%= rails_blob_url(image)%>'>
-                              <%= image_tag image, alt: image.filename, height: "150", weight: "150" %>
+                              <%= image_tag image, alt: image.filename, height: "100", weight: "100" %>
                        </a>
                   <% end %>
             </div>
        </div>
 </div>
 
+<script>
+      $(document).ready(function(){
+            $(".lightgallery").lightGallery();
+      })
+</script>

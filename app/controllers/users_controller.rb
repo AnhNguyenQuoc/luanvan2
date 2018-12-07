@@ -48,21 +48,20 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   def update 
       @user = User.find(params[:id])
-        respond_to do |format|
-            if @user.update_attributes(user_params)
-                    flash[:success] = "Cập nhật thành công"
-                    format.html {redirect_back root_path } 
-            else 
-                    flash[:danger] = "Có lỗi xảy ra"    
-                    format.js {}
-            end 
+
+        if @user.update_attributes(user_params)
+            flash[:success] = "Cập nhật thành công"
+            redirect_to root_path 
+        else 
+            flash[:danger] = "Có lỗi xảy ra"
+            render 'edit'
         end
    end
 
 
    def orders_user
       @user = User.find(params[:id])
-      @orders = @user.buyer_order
+      @orders = @user.buyer_order.order("created_at DESC")
    end
    
    def list_restaurant_favorite

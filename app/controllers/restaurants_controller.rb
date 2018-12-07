@@ -12,6 +12,7 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.find_district(params[:find_district]).page(params[:page]) if params[:find_district].present?
       @restaurants = Restaurant.starts_with(params[:starts_with].downcase).page(params[:page]) if params[:starts_with].present?
       @restaurants = Restaurant.order_name.page(params[:page]) if params[:order_name].present?
+      @restaurants = Restaurant.order_name_reverse.page(params[:page]) if params[:order_name_reverse].present?
       @restaurants = Restaurant.find_type(params[:find_type]).page(params[:page]) if params[:find_type].present?
       @restaurants = Restaurant.find_product_type(params[:find_product_type]).page(params[:page]) if params[:find_product_type].present?
       @coupon = Coupon.where("expiration >= ?", Date.today).order("RANDOM()").first
@@ -39,6 +40,7 @@ class RestaurantsController < ApplicationController
                   session[:cart_id] = @current_cart.id
             end
       end
+      @line_item = @current_cart.line_items.order('created_at ASC')
       store_location
   end 
 
@@ -54,7 +56,7 @@ class RestaurantsController < ApplicationController
       respond_to do |format|
             if @restaurant.save
                   flash[:success] = "Tạo cửa hàng thành công"
-                  format.html {redirect_to admin_res_path}
+                  format.html {render js: "window.location.href = '/admin-res'"}
             else 
                   flash[:danger] = "Có lỗi xảy ra"
                   format.js {}

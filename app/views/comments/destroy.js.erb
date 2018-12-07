@@ -1,3 +1,4 @@
 $('.destroy-comment').bind('ajax:success', function() {  
         $(this).closest('.comment-card').fadeOut();
+        Materialize.toast('Xóa nhận xét thành công', 1000)
 });  

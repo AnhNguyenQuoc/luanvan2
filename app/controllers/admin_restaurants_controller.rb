@@ -18,7 +18,7 @@ class AdminRestaurantsController < ApplicationController
 
 
       def list_order
-            @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group("orders.id").order('updated_at DESC')
+            @orders = Order.joins(:products).where("products.restaurant_id = ?", current_user.restaurant.id).group("orders.id").order('created_at DESC')
       end
       
       def list_product

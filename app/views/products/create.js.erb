@@ -1,4 +1,5 @@
 <% if @product.errors.any? %>
   $("form").prepend(
     "<%= j render "layout_extends/error", object: @product %>")
+  $("html, body").animate({ scrollTop: 0 }, "slow")
 <% end %>

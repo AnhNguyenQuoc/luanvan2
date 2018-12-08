@@ -17,7 +17,7 @@ class CouponsController < ApplicationController
             flash[:success] = "Tạo mã thành công"
             redirect_to admin_coupons_path
         else 
-            flash[:danger] = "Error"
+            flash[:danger] = "Có lỗi xảy ra"
             render 'new'
         end 
     end

@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
                   if @product.save 
                         flash[:success] = "Tạo sản phẩm thành công"  
                         
-                        format.html {redirect_to admin_res_danh_sach_mon_an_path} 
+                        format.html {render inline: "window.history.back();"} 
                   else 
                         flash[:danger] = 'Lỗi xảy ra'
                         format.js {}
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
                         @product.image.purge
                         @product.image.attach(params[:restaurant][:image])
                         end
-                        format.html {redirect_to admin_res_danh_sach_mon_an_path}
+                        format.html {render inline: "window.history.back();"}
                         flash[:success] = "Cập nhật thông tin thành công"
                   else 
                         format.js {render 'create.js.erb'}

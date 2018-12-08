@@ -40,7 +40,6 @@ class RestaurantsController < ApplicationController
                   session[:cart_id] = @current_cart.id
             end
       end
-      @line_item = @current_cart.line_items.order('created_at ASC')
       store_location
   end 
 

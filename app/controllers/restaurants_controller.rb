@@ -33,11 +33,13 @@ class RestaurantsController < ApplicationController
       if logged_in?
             if session[:store_id] != params[:id]
                   session[:store_id] = params[:id]
-                  if(@current_cart)
+                  if @current_cart
+                        @current_cart.line_items.delete_all
                         @current_cart.destroy
-                  end    
-                  @current_cart = Cart.create 
-                  session[:cart_id] = @current_cart.id
+                  else 
+                        @current_cart = Cart.create 
+                        session[:cart_id] = @current_cart.id
+                  end                    
             end
       end
       store_location

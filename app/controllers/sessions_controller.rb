@@ -58,12 +58,13 @@ class SessionsController < ApplicationController
       end
       
       def destroy
-      log_out if logged_in?
-      flash.now[:info] = "Bạn đã đăng xuất"
-      if logged_in? && current_user.role_id == 1
-            @current_cart.destroy
-      end
-      redirect_to root_path
+            log_out if logged_in?
+            flash.now[:info] = "Bạn đã đăng xuất"
+            if @current_cart.present?
+                  @current_cart.line_items.delete_all
+                  @current_cart.destroy
+            end
+            redirect_to root_path
       end
 
 

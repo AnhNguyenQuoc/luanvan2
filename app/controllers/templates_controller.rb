@@ -3,6 +3,7 @@ class TemplatesController < ApplicationController
 
   def index
       @products_type = ProductType.order("RANDOM()").limit(6)
+      store_location
   end
 
   def shipper 

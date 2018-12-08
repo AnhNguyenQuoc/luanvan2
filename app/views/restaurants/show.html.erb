@@ -91,7 +91,14 @@
 
                                           <% end %>
                                           <li>
+                                          <% if logged_in? %>
                                           <%= link_to "Xem thêm và đặt hàng", restaurant_dat_mon_path(@restaurant), class: "btn", style: "width: 100%", method: :get %>
+                                          <% else %>
+                                          <script>
+                                                 var $toastContent = $('<span>đăng nhập để vào đặt hàng</span>').add($('<a href="/login" class="btn-flat toast-action">Đăng nhập</a>'));
+                                          </script>
+                                          <a class="btn" style="width: 100%" onclick="Materialize.toast($toastContent, 4000)">Xem thêm và đặt hàng</a>
+                                          <% end %>
                                           </li>
                                           </ul>
 

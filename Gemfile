@@ -43,6 +43,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'social-share-button'
 gem 'omniauth-google-oauth2'
+gem 'prawn'
+gem 'prawn-table', '~> 0.2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'delayed_job_active_record'

@@ -69,6 +69,79 @@ class AdminsController < ApplicationController
             @comments = Comment.all
       end
 
+      def pdf_by_day_admin
+            if params[:day].present?
+                  @total_per_day = Order.where("orders.order_type_id = 3").by_day("#{params[:day]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_day, params[:day], view_context)
+                              send_data pdf.render, filename: "Order_#{params[:day]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_day = Order.where("orders.order_type_id = 3").by_day(Date.today)
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_day, Date.today.strftime("%e/%m/%Y"), view_context)
+                              send_data pdf.render, filename: "Order_#{Date.today.strftime("%e/%m/%Y")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end 
+
+      def pdf_by_month_admin
+            if params[:month].present?
+                  @total_per_month = Order.where("orders.order_type_id = 3").by_month("#{params[:month]["written_on(2i)"]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_month, params[:month]["written_on(2i)"], view_context)
+                              send_data pdf.render, filename: "Order_Tháng #{params[:month]["written_on(2i)"]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_month = Order.where("orders.order_type_id = 3").by_month("#{params[:month]["written_on(2i)"]}")
+                  
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_month, Date.today.strftime("%m"), view_context)
+                              send_data pdf.render, filename: "Order_Tháng #{Date.today.strftime("%m")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end 
+
+      def pdf_by_year_admin
+            if params[:year].present?
+                  @total_per_year = Order.where("orders.order_type_id = 3").by_year("#{params[:year]["written_on(1i)"]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_year, params[:year]["written_on(1i)"], view_context)
+                              send_data pdf.render, filename: "Order_Năm#{params[:year]["written_on(1i)"]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_year = Order.where("orders.order_type_id = 3").by_year(Date.today)
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalAdminPdf.new(@total_per_year, Date.today.strftime("%Y"), view_context)
+                              send_data pdf.render, filename: "Order_Năm #{Date.today.strftime("%Y")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end
+
       private
       def check_user
             if logged_in?

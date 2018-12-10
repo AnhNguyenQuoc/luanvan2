@@ -119,5 +119,10 @@ Rails.application.routes.draw do
       resources :restaurant_favorites, only: [:create]
       delete '/restaurant-favorite/' => 'restaurant_favorites#destroy', as: "res_favorite_destroy"
 
-
+      get 'pdf_day' => 'admin_restaurants#pdf_day', as: "download_pdf_by_day"
+      get 'pdf_month' => 'admin_restaurants#pdf_month', as: "download_pdf_by_month"
+      get 'pdf_year' => 'admin_restaurants#pdf_year', as: "download_pdf_by_year"
+      get 'pdf_day_admin' => 'admins#pdf_by_day_admin', as: "download_pdf_by_day_admin"
+      get 'pdf_month_admin' => 'admins#pdf_by_month_admin', as: "download_pdf_by_month_admin"
+      get 'pdf_year_admin' => 'admins#pdf_by_year_admin', as: "download_pdf_by_year_admin"
 end

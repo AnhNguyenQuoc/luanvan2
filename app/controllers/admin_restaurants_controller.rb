@@ -54,6 +54,78 @@ class AdminRestaurantsController < ApplicationController
             end
       end
 
+      def pdf_day 
+            if params[:day].present?
+                  @total_per_day = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_day("#{params[:day]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_day, params[:day], view_context)
+                              send_data pdf.render, filename: "Order_#{params[:day]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_day = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_day(Date.today)
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_day, Date.today.strftime("%e/%m/%Y"), view_context)
+                              send_data pdf.render, filename: "Order_#{Date.today.strftime("%e/%m/%Y")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end
+
+      def pdf_month
+            if params[:month].present?
+                  @total_per_month = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_month("#{params[:month]["written_on(2i)"]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_month, params[:month]["written_on(2i)"], view_context)
+                              send_data pdf.render, filename: "Order_Tháng #{params[:month]["written_on(2i)"]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_month = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_month(Date.today)
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_month, Date.today.strftime("%m"), view_context)
+                              send_data pdf.render, filename: "Order_Tháng #{Date.today.strftime("%m")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end
+
+      def pdf_year
+            if params[:year].present?
+                  @total_per_year = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_year("#{params[:year]["written_on(1i)"]}")
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_year, params[:year]["written_on(1i)"], view_context)
+                              send_data pdf.render, filename: "Order_Năm#{params[:year]["written_on(1i)"]}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            else 
+                  @total_per_year = Order.joins(:products).distinct(true).where("orders.order_type_id = 3 AND products.restaurant_id = ?", current_user.restaurant.id).by_year(Date.today)
+                  respond_to do |format|
+                        format.pdf do 
+                              pdf = TotalPdf.new(@total_per_year, Date.today.strftime("%Y"), view_context)
+                              send_data pdf.render, filename: "Order_Năm #{Date.today.strftime("%Y")}.pdf",
+                                                type: "application/pdf",
+                                                disposition: "inline"
+                        end 
+                  end
+            end
+      end
+
 
       private
       def check_user

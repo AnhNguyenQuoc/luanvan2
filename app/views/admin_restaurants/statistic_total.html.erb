@@ -27,35 +27,57 @@
                         <!--start container-->
                         <div class="container">
                               <!--card stats start-->
+                              
                               <div class="row">
                                     <div class="col s12">
-                                          <div class="card">
-                                                <div class="card-content">
-                                                      <h5>Thống kê doanh thu</h5>
+                                          <ul class="tabs">
+                                                <li class="tab col s3"><a href="#test1">Theo ngày</a></li>
+                                                <li class="tab col s3"><a href="#test2">Theo tháng</a></li>
+                                                <li class="tab col s3"><a href="#test3">Theo năm</a></li>
+                                          </ul>
+                                    </div>
+                                    <div id="test1" class="col s12">
+                                          <%= line_chart @total_per_day, download: true %>
+                                                            <%= form_tag download_pdf_by_day_path(format: "pdf"),method: :get,:id => 'form-search', target: '_new' do |f| %> 
+                                                                  <div class="row">
+                                                                        
+                                                                        <div class="input-field col s10">
+                                                                                    <%= text_field_tag :day, params[:day], :autocomplete => :off, class: "datepicker", :input_html => { :value => Date.today } %>
+                                                                                    <%= label_tag 'day', 'Chọn ngày'%>
+                                                                        </div>
+                                                                        <div class="input-field col s2">
+                                                                                    <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search")  do %>
+                                                                                          <i class="material-icons">search</i>
+                                                                                    <%end%>
+                                                                        </div> 
+                                                                  </div>
+                                                                        
+                                                            <% end %>
+                                    </div>
+                                    <div id="test2" class="col s12">
+                                          <%= line_chart @total_per_month, download: true %>
+
+                                    </div>
+                                    <div id="test3" class="col s12">
+                                           <%= line_chart @total_per_year, download: true %>
+                                           <%= form_tag download_pdf_by_year_path(format: "pdf"),method: :get, target: '_new' do |f| %> 
+                                                <div class="row">
+                                                        
+                                                        <div class="input-field col s10">
+                                                                    <%= date_select("year", "written_on", selected: Date.current,discard_day: true, discard_month: true) %>
+                                                                    <%= label_tag 'year', 'Tìm kiếm', class: "active"%>
+                                                            </div>
+                                                            <div class="input-field col s2">
+                                                                    <%= button_tag(class: "btn", style: "width: 94%", id: "btn-search") do %>
+                                                                        <i class="material-icons">search</i>
+                                                                    <%end%>
+                                                            </div> 
+                                                    </div>
+                                                        
                                                 </div>
-                                                <div class="card-tabs">
-                                                      <ul class="tabs tabs-fixed-width">
-                                                            <li class="tab">
-                                                                  <a  class="active" href="#day">Theo Ngày</a>
-                                                            </li>
-                                                            <li class="tab">
-                                                                  <a href="#month">Theo Tháng</a>
-                                                            </li>
-                                                            <li class="tab">
-                                                                  <a href="#year">Theo Năm</a>
-                                                            </li>
-                                                      </ul>
-                                                </div>
-                                                <div class="card-content grey lighten-4">
-                                                      
-                                                      <div id="day"><%= line_chart @total_per_day, download: true %></div>
-                                                      <div id="month"><%= line_chart @total_per_month, download: true %></div>
-                                                      <div id="year"><%= line_chart @total_per_year, download: true %></div>
-                                                </div>
-                                          </div>
+                                            <% end %>
                                     </div>
                               </div>
-
                               <!-- //////////////////////////////////////////////////////////////////////////// -->
                         </div>
                         <!--end container-->
@@ -71,4 +93,3 @@
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START FOOTER -->
       <%= render 'footer' %>
-

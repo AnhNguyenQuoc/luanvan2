@@ -1,5 +1,5 @@
 class TemplatesController < ApplicationController
-      before_action :check_role_logged, only: [:index]
+      before_action :check_role_logged
 
   def index
       @products_type = ProductType.order("RANDOM()").limit(6)

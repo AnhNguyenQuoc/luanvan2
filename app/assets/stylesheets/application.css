@@ -121,6 +121,9 @@ main {
         position: block;
         margin-top: 0px;
       }
+      .side-nav .fixed .leftside-navigation .ps-container .ps-theme-default{
+        top: 0px !important;
+      }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .header .header-bar {
@@ -153,6 +156,9 @@ main {
       .fixed{
         position: block;
         margin-top: 0px;
+      }
+      .side-nav .fixed .leftside-navigation .ps-container .ps-theme-default{
+        top: 0px !important;
       }
 }
 

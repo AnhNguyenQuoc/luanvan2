@@ -126,6 +126,9 @@ class AdminRestaurantsController < ApplicationController
             end
       end
 
+      def edit_admin_restaurant
+            @user = User.find(current_user.id)
+      end
 
       private
       def check_user

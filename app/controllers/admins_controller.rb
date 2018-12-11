@@ -142,6 +142,10 @@ class AdminsController < ApplicationController
             end
       end
 
+      def edit_admin
+            @user = User.find(current_user.id)
+      end
+
       private
       def check_user
             if logged_in?

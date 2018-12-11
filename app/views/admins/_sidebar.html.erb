@@ -8,6 +8,9 @@
                                           <div class="col col s8 m8 l8">
                                                 <ul id="profile-dropdown-nav" class="dropdown-content">
                                                       <li>
+                                                            <%= link_to "<i class='material-icons'>assignment_ind</i>Profile".html_safe, admin_edit_path,class: "grey-text text-darken-1", method: :get%>
+                                                      </li>
+                                                      <li>
                                                             <%= link_to "<i class='material-icons'>keyboard_tab</i>Đăng xuất".html_safe, logout_path,class: "grey-text text-darken-1", method: :delete%>
                                                       </li>
                                                 </ul>

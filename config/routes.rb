@@ -125,4 +125,7 @@ Rails.application.routes.draw do
       get 'pdf_day_admin' => 'admins#pdf_by_day_admin', as: "download_pdf_by_day_admin"
       get 'pdf_month_admin' => 'admins#pdf_by_month_admin', as: "download_pdf_by_month_admin"
       get 'pdf_year_admin' => 'admins#pdf_by_year_admin', as: "download_pdf_by_year_admin"
+
+      get '/admin/edit' => 'admins#edit_admin'
+      get '/admin-res/edit' => 'admin_restaurants#edit_admin_restaurant', as: "admin_res_user_edit"
 end

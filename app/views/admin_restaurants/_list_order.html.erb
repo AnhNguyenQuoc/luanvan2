@@ -1,8 +1,9 @@
 
                                                 <tr>
                                                       <td><%= order.buyer.username%></td>
-                                                      <td><%= number_to_currency_vnd(order.total)%></td>
-                                                      <td><%= order.note %></td>
+                                                      <td><%= order.buyer.phone %></td>
+                                                      <td><%= order.note %>
+                                                      </td>
                                                       <td>
                                                             <div class="card">
                                                                   <div class="card-content">
@@ -13,6 +14,7 @@
                                                                         <% order.line_items.each do |item|%>
                                                                               <p><%= item.product.name %> x <%= item.quantity %></p>
                                                                         <% end %>
+                                                                        <p>Tổng tiền: <%= number_to_currency_vnd(order.total )%></p>
                                                                   </div>
                                                             </div>
                                                                          

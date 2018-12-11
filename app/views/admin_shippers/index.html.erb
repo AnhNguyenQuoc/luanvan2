@@ -43,7 +43,7 @@
                       <span class="card-title activator grey-text text-darken-4"><%= order.buyer.username %></span>
                       <p>
                         
-                        <i class="material-icons">perm_phone_msg</i> <%= number_to_phone(order.buyer.phone, country_code: 84, delimiter: " ")%></p>
+                        <i class="material-icons">perm_phone_msg</i> <%= order.buyer.phone %></p>
                       <p>
                         <i class="material-icons">arrow_forward</i> <%= order.buyer.address %></p>
                       <p>
@@ -75,6 +75,7 @@
                       <p>
                         Tổng cộng : <%= number_to_currency_vnd(order.total)%>
                       </p>
+                      <p><%= order.note %></p>
                     </div>
                   </div>
                 </div>

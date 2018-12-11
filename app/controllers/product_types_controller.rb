@@ -9,15 +9,14 @@ class ProductTypesController < ApplicationController
 
       def create 
             @product_type = ProductType.new(product_type_params)
-            respond_to do |format| 
                   if @product_type.save 
                         flash[:success] = "Tạo sản phẩm thành công"
-                        format.js {render inline: "window.history.back();" }
+                        redirect_to admin_loai_thuc_an_path
                   else 
-                        format.js {}
-                        flash[:danger] = "Có lỗi xảy ra"
+                        render 'new'
                   end
-            end
+
+                  
       end 
 
       def edit 
@@ -26,15 +25,12 @@ class ProductTypesController < ApplicationController
 
       def update 
             @product_type = ProductType.find(params[:id])
-            respond_to do |format|
                   if @product_type.update_attributes(product_type_params)
-                        format.js {render inline: "window.history.back();" }
+                        redirect_to admin_loai_thuc_an_path
                         flash[:success] = "Cập nhật thành công"
                   else 
-                        format.js {render 'create.js.erb'}
-                        flash[:danger] = "Có lỗi xảy ra"
-                  end 
-            end
+                        render 'edit'
+                  end
 
       end 
 
@@ -42,11 +38,13 @@ class ProductTypesController < ApplicationController
       def destroy
             @product_types = ProductType.all
             @product_type = ProductType.find(params[:id])
-            @product_type.destroy 
-            flash[:success] = "Xóa thành công"
-            respond_to do |format|
-                  format.js { render 'index.js.erb' }
+            if @product_type.destroy 
+                  flash[:success] = "Xóa thành công"
+                  redirect_to admin_loai_thuc_an_path
+            else 
+                  redirect_to admin_loai_thuc_an_path
             end
+            
       end
       private
 

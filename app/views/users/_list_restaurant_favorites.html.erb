@@ -1,6 +1,6 @@
 
       <tr>
-            <td style="text-align: center"><%= restaurant.name %></td>
+            <td style="text-align: center"><%= link_to restaurant.name, restaurant_trang_chu_path(restaurant.id), method: :get %></td>
             <td style="text-align: center"><%= restaurant.address %></td>
             <td style="text-align: center"><%= restaurant.phone %></td>
             <td style="text-align: center"><%= restaurant.timeopen.strftime('%H:%M') %></td>

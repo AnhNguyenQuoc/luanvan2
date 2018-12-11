@@ -23,8 +23,9 @@ class CouponsController < ApplicationController
     end
 
     def destroy
-        @coupons = Coupon.all
         @coupon = Coupon.find(params[:id])
+        flash[:success]="Xóa coupon thành công"
+        redirect_to admin_coupons_path
         @coupon.destroy
     end
 

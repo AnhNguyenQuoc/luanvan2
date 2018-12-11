@@ -10,6 +10,7 @@
       <!-- END HEADER -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START MAIN -->
+      <main>
       <div id="main">
             <!-- START WRAPPER -->
             <div class="wrapper">
@@ -29,8 +30,8 @@
 
                               </div>
                               <div class="row">
-                  <%= form_for :product, remote: true do |f| %>
-                              
+                  <%= form_for :product do |f| %>
+                        <%= render 'layout_extends/error', object: @product %>
                         
                         <div class="row">
                                           <div class="input-field col s12">
@@ -64,10 +65,10 @@
                                                       <div class="file-field input-field">
                                                             <div class="btn">
                                                                   <span>Hình đại diện</span>
-                                                                  <%= f.file_field :image, :onchange => 'previewFile()', class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Chọn hình ở đây')", oninput: "this.setCustomValidity('')"%>
+                                                                  <%= f.file_field :image, :onchange => 'previewFile()'%>
                                                             </div>
                                                             <div class="file-path-wrapper">
-                                                                  <input class="file-path validate" type="text" required aira-require="true" oninvalid="this.setCustomValidity('Chọn hình ở đây')" oninput="this.setCustomValidity('')" >
+                                                                  <input class="file-path validate" type="text" >
                                                             </div>
                                                       </div>
                                                 </div>
@@ -91,6 +92,7 @@
       <!-- END MAIN -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START FOOTER -->
+      </main>
       <%= render 'admin_restaurants/footer' %>
 <script>
      function previewFile() {

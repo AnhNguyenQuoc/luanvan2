@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
       
       def destroy
             log_out if logged_in?
-            flash.now[:info] = "Bạn đã đăng xuất"
+            flash[:danger] = "Bạn đã đăng xuất"
             if @current_cart.present?
                   @current_cart.line_items.delete_all
                   @current_cart.destroy

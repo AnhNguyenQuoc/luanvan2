@@ -13,7 +13,7 @@ class Product < ApplicationRecord
       
       #  delegate :uncheck, to: :orders, prefix: true
       validates :name, presence: {message: "^Tên không được để trống"}
-      validates :price  , presence: {message: "^Giá sp không được để trống"}, numericality: { only_integer: true, message: "^Giá sp phải là số" }
+      validates :price  , presence: {message: "^Giá sp không được để trống"}, numericality: {greater_than_or_equal_to: 0, message: "^Giá sản phẩm phải lớn hơn 0" } 
       validates :product_type ,presence: {message: "^Loại sản phẩm không được để trống"}
       validate :image?
 
@@ -27,9 +27,9 @@ class Product < ApplicationRecord
 
       def image?
             if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
-                  errors.add(:image, 'Cần phải là JPEG hoặc PNG')
+                  errors.add(:image, '^Cần phải là JPEG hoặc PNG')
             elsif image.attached? == false 
-                  errors.add(:image, 'Cần phải có ảnh')
+                  errors.add(:image, '^Cần phải có ảnh')
             end 
       end
 end

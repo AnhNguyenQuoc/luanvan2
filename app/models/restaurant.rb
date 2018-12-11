@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-      paginates_per 3
+      paginates_per 6
 
       before_save  {self.name = self.name}
       has_one_attached :image, dependent: :destroy

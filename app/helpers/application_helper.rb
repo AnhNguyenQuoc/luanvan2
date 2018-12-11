@@ -8,4 +8,11 @@ module ApplicationHelper
             number_to_phone(phone, country_code: 84, delimiter: " ")
       end
 
+      def custom_flash
+            flash.each do |type, message| 
+                  text = "<script>Materialize.toast(#{message}, 4000)</script>"
+                  text.html_safe
+            end 
+      end
+
 end

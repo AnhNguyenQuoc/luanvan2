@@ -1,11 +1,10 @@
 <% @coupons.each do |coupon| %>
       <tr>
-            <th style="text-align: center"><%= coupon.id%></th>
             <th style="text-align: center"><%= coupon.code %></th>
             <th style="text-align: center"><%= "#{coupon.amount}%"  %></th> 
             <th style="text-align: center"><%= coupon.expiration.strftime('%d-%m-%Y') %></th>
             <th style="text-align: center">
-                   <%= link_to "<i class='material-icons'>delete</i>".html_safe, coupon_destroy_path(coupon), method: :delete, remote: true,  data: {confirm: "Bạn có chắc chắn chứ?"}%>
+                   <%= link_to "<i class='material-icons'>delete</i>".html_safe, coupon_destroy_path(coupon), method: :delete,  data: {confirm: "Bạn có chắc chắn chứ?"}%>
             </th>
       </tr>
 <% end %>

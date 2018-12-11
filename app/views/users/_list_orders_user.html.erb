@@ -1,7 +1,8 @@
  <% @orders.each do |order| %>
  <tr>
       <td style="text-align: center">Đơn hàng - #<%= order.id %></td>
-      <td style="text-align: center"><%= order.total_all_price %></td>
+      <td style="text-align: center"><%= link_to order.products.first.restaurant.name, restaurant_trang_chu_path(order.products.first.restaurant.id), method: :get %></td>
+      <td style="text-align: center"><%= number_to_currency_vnd(order.total_all_price) %></td>
       <td style="text-align: center"><%= order.order_type.name %></td>
        <td style="text-align: center">
                   <% if order.order_type.id == 1%>

@@ -55,9 +55,9 @@
                   <div class="row" id="main-section">
                         <div class="col m2 s12">
                               <div class="collection fixed main-menu" id="main-menu">
-                                    <%= link_to "Trang chủ", restaurant_trang_chu_path(@restaurant), class: "collection-item active "%>
-                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item"%>
-                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item"%>
+                                    <%= link_to "Trang chủ", restaurant_trang_chu_path(@restaurant), class: "collection-item active", method: :get %>
+                                    <%= link_to "Đặt món", restaurant_dat_mon_path(@restaurant), class: "collection-item", method: :get%>
+                                    <%= link_to "Nhận xét", restaurant_comment_path(@restaurant), class: "collection-item", method: :get%>
                                     <div id="restaurant-favorite" style="text-align: center">
                                           <%= render partial: "restaurant_favorites/res_favorite"%>
                                     </div>

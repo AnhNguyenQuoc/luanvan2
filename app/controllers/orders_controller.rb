@@ -7,13 +7,21 @@ class OrdersController < ApplicationController
                   @order = Order.new order_params
                   customer = Stripe::Customer.create email: stripe_params["stripeEmail"], card: stripe_params["stripeToken"]
                   order = Order.last.id + 1 if Order.count > 0
+                  @total_price = 0
+                  if params[:order][:code1].present?
+                        @total_price = @current_cart.total_price - ((@current_cart.total_all_price * params[:order][:code1].to_i)/100)
+                        @order.total = @total_price
+                  else 
+                        @order.total = @current_cart.total_price
+                  end
+                  total_price_after_discount = @total_price + @current_cart.total_ship
                   Stripe::Charge.create customer: customer.id,
-                                                amount: @current_cart.total_all_price,
+                                                amount: total_price_after_discount,
                                                 description: "Mã đơn hàng #{order}",
                                                 currency: 'vnd'
                   @order.add_line_item_from_cart(@current_cart)
                   @order.buyer = current_user
-                  @order.total = @current_cart.total_price 
+                  #@order.total = @current_cart.total_price 
                   @order.feeship = @current_cart.total_ship
                   @order.save 
                   flash[:success] = "Đặt hàng thành công"
@@ -24,7 +32,7 @@ class OrdersController < ApplicationController
                   @order.add_line_item_from_cart(@current_cart)
                   @order.buyer = current_user
                   if params[:order][:code].present?
-                        total = @current_cart.total_price - ((@current_cart.total_price * params[:order][:code].to_i)/100)
+                        total = @current_cart.total_price - ((@current_cart.total_all_price * params[:order][:code].to_i)/100)
                         @order.total = total
                   else 
                         @order.total = @current_cart.total_price

@@ -34,15 +34,17 @@
                   if(data.valid == true){
                         $('#code').css('border-color', 'green');
                         $('#coupon-apply').attr('disabled', 'disabled');
-                        $('#coupon-msg').text("Coupon applied").css("color", "green");
+                        $('#code').prop('disabled', true);
+                        $('#coupon-msg').text("Mã khuyến mãi đã được áp dụng").css("color", "green");
                         let totalCul = newTotal - ((newTotal* data.amount)/100);
                         let format = totalCul.toFixed(0).replace(/(\d)(?=(\d{3})+$)/g, "$1,") + "đ";
                         $('#total').html(format);
                         $('#order_code').val(data.amount);
+                        $('#order_code1').val(data.amount);
 
                   } else {
                         $('#code').css('border-color', 'red');
-                        $('#coupon-msg').text("Coupon error").css("color", "green");
+                        $('#coupon-msg').text("Sai mã khuyến mãi").css("color", "red");
                   }     
             })      
       })

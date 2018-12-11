@@ -51,8 +51,8 @@
   </head>
 
   <body>    
-     <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>" id="flash" style="z-index:999;"><%= message %></div>
+      <% flash.each do |message_type, message| %>
+            <script>Materialize.toast("<%= message %>", 1500)</script>
        <% end %>
     <%= yield %>
    

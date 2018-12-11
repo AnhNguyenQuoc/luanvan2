@@ -9,6 +9,7 @@
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START HEADER -->
      <%= render 'header' %>
+     <main>
       <!-- END HEADER -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START MAIN -->
@@ -71,9 +72,11 @@
       <!-- END MAIN -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START FOOTER -->
+      </main>
       <%= render 'footer' %>
 
 <script>
+
 $(document).ready(function() {
           $('.search-toggle').click(function() {
       if ($('.hiddensearch').css('display') == 'none')
@@ -85,18 +88,19 @@ $(document).ready(function() {
     "oLanguage": {
       "sStripClasses": "",
       "sSearch": "",
-      "sSearchPlaceholder": "Enter Keywords Here",
+      "sSearchPlaceholder": "Nhập từ tìm kiếm ở đây",
       "sInfo": "_START_ -_END_ of _TOTAL_",
-      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+      "sLengthMenu": '<span>Dữ liệu mỗi trang là:</span><select class="browser-default">' +
         '<option value="10">10</option>' +
         '<option value="20">20</option>' +
         '<option value="30">30</option>' +
         '<option value="40">40</option>' +
         '<option value="50">50</option>' +
-        '<option value="-1">All</option>' +
+        '<option value="-1">Tất cả</option>' +
         '</select></div>'
     },
     bAutoWidth: false
   });
+
 });
 </script>

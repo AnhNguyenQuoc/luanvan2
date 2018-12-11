@@ -10,6 +10,7 @@
       <!-- END HEADER -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START MAIN -->
+      <main>
       <div id="main">
             <!-- START WRAPPER -->
             <div class="wrapper">
@@ -30,6 +31,7 @@
                               </div>
                               <div class="row">
                   <%= form_for @product, url: product_edit_path do |f| %>
+                        <%= render 'layout_extends/error', object: @product %>
                         <div class="row">
                                           <div class="input-field col s12">
                                                 <%= f.text_field :name, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')" %>
@@ -46,7 +48,7 @@
                               <div class="row">
                                           <div class="input-field col s12">
                                                 <%= f.number_field :price, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập tên ở đây')", oninput: "this.setCustomValidity('')" %>
-                                                <%= f.label :price, "Giá", data: {error: "Vui lòng kiểm tra lại"} %>
+                                                <%= f.label :price, "Giá", data: {error: "Vui lòng kiểm tra lại"}, class: "active" %>
                                           </div>
                                     </div>
                                     
@@ -62,10 +64,10 @@
                                                       <div class="file-field input-field">
                                                             <div class="btn">
                                                                   <span>Hình đại diện</span>
-                                                                  <%= f.file_field :image, :onchange => 'previewFile()', class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Chọn hình ở đây')", oninput: "this.setCustomValidity('')"%>
+                                                                  <%= f.file_field :image, :onchange => 'previewFile()'%>
                                                             </div>
                                                             <div class="file-path-wrapper">
-                                                                  <input class="file-path validate" type="text" required aira-require="true" oninvalid="this.setCustomValidity('Chọn hình ở đây')" oninput="this.setCustomValidity('')" >
+                                                                  <input class="file-path validate" type="text" >
                                                             </div>
                                                       </div>
                                                 </div>
@@ -76,6 +78,7 @@
                                           </div>
 
                               <% end %>
+                              <br />
                         </div>
                   </div>
              </section>
@@ -89,6 +92,7 @@
       <!-- END MAIN -->
       <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START FOOTER -->
+      </main>
       <%= render 'admin_restaurants/footer' %>
 <script>
      function previewFile() {

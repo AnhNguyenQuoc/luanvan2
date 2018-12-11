@@ -35,7 +35,7 @@ before_action :check_correct_user, only: [:show, :orders_user]
             flash[:success] = "Đã tạo tài khoản thành công"
             redirect_to admin_danh_sach_nguoi_dung_path
       else 
-            redirect_back(fallback_location: admin_danh_sach_nguoi_dung_path)
+            render 'admins/user_create'
             flash[:danger] = "Có lỗi xảy ra"
       end 
 

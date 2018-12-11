@@ -27,14 +27,15 @@
                               <div class="row">
                                     <div class="col s12">
                                          
-                                          <div class="card blue-grey darken-1">
-                                                <div class="card-content white-text">
+                                          <div class="card" style="height: 500px">
+                                                <div class="card-content">
                                                       <span class="card-title">Tạo mới mã khuyến mãi</span>
                                                        <%= form_for :coupon do |f| %>
+                                                            <%= render 'layout_extends/error', object: @coupon %>
                                                             <div class="row">
                                                                   <div class="input-field col s12">
                                                                         <%= f.text_field :code, class: 'form-control' %>
-                                                                        <%= f.label :code, "Mã khuyến mãi" %>
+                                                                        <%= f.label :code, "Mã khuyến mãi", class: "active" %>
                                                                   </div>
                                                             </div>
 

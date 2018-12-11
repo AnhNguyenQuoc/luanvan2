@@ -112,9 +112,9 @@ Rails.application.routes.draw do
       #Coupons
       get '/admin/coupons' => 'coupons#index'
       get '/admin/coupons/tao-moi' => 'coupons#new'
-      post '/admin/coupons/tao-moi' => 'coupons#create'
+      post '/admin/coupons/tao-moi' => 'coupons#create'     
       delete '/admin/coupons/:id' => 'coupons#destroy', as: "coupon_destroy"
-
+      get '/coupons/:id/validate' => 'coupons#validate'
       #Res Favorite
       resources :restaurant_favorites, only: [:create]
       delete '/restaurant-favorite/' => 'restaurant_favorites#destroy', as: "res_favorite_destroy"

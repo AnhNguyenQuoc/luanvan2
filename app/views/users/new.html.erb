@@ -68,9 +68,9 @@
                         </div>
                   </div>
                   <div class="row justify-content-md-center">
-            <%= form_for(@user, url: signup_path, :html => {:class => 'col s12'}, remote: true) do |f| %>
+            <%= form_for(@user, url: signup_path, :html => {:class => 'col s12'}) do |f| %>
 
-                  
+                                          <%= render 'layout_extends/error', object: f.object %>
                   
                   <div class="row">
                         <div class="input-field col s12">
@@ -83,7 +83,7 @@
                   <div class="row">
                         <div class="input-field col s12">
                               <%= f.email_field :email, class: 'validate', :required => true, aria: {require: true}, oninvalid: "this.setCustomValidity('Nhập Email ở đây')", oninput: "this.setCustomValidity('')"%>
-                              <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"} %>
+                              <%= f.label :email, "Email", data: {error: "Vui lòng kiểm tra lại định dạng"}, class: "active" %>
                         </div>
                   </div>
 

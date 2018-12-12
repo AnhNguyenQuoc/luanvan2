@@ -54,24 +54,23 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.create(restaurant_params)
       @restaurant.image.attach(params[:restaurant][:image])
       @restaurant.user_id = current_user.id
-      respond_to do |format|
             if @restaurant.save
                   flash[:success] = "Tạo cửa hàng thành công"
-                  format.html {render js: "window.location.href = '/admin-res'"}
+                  redirect_to admin_res_path
             else 
                   flash[:danger] = "Có lỗi xảy ra"
-                  format.js {}
+                  render 'new'
             end
-      end
   end
 
   def destroy
       @restaurant = Restaurant.find(params[:id])
       if @restaurant.destroy 
             flash[:success] = "Xóa thành công"
-            redirect_to admin_path
+            redirect_to admin_danh_sach_cua_hang_path
       else 
             flash[:danger] = "Có lỗi xảy ra"
+            redirect_to admin_danh_sach_cua_hang_path
       end
 end
 

@@ -15,16 +15,13 @@ before_action :check_correct_user, only: [:show, :orders_user]
 
   def create
       @user = User.create(user_params)
-      respond_to do |format|
         if @user.save 
                 UserMailer.account_activation(@user).deliver_now
                 flash[:success] = "Bạn vui lòng vào email để kích hoạt tài khoản"
-                format.html {redirect_to root_path } 
+                redirect_to root_path
         else 
-                flash[:danger] = "Có lỗi xảy ra"
-                format.js
+                render 'new'
         end 
-    end
 
   end 
 

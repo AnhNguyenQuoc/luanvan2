@@ -23,12 +23,11 @@ $ rails db:seed
 $ rails s
 ```
 
-Now you can use a account to access to administrator:
-	* email: nqa@gmail.com 
-	* password: 123456 
+Now you can use a account to access to administrator:<br/>
+	* email: nqa@gmail.com<br/> 
+	* password: 123456
 
-
-live version: https://stormy-savannah-71123.herokuapp.com/.
+* live version: https://stormy-savannah-71123.herokuapp.com/.
 
 ## Contact
 

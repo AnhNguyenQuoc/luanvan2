@@ -34,7 +34,7 @@ gem 'table_print'
  gem 'stripe'
  gem 'perfect-scrollbar-rails'
  gem 'groupdate'
- gem 'chartkick', '~> 2.2.0'
+ gem 'chartkick', '~> 3.4.0'
  gem 'kaminari'
  gem 'jquery-datatables'
 # Use ActiveStorage variant
